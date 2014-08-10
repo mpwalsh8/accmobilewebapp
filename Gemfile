@@ -24,6 +24,7 @@ group :development do
 end
 group :production do
   gem 'thin'
+  gem 'rails_12factor'
 end
 
 ##  Everything above this line was created with the Rails App Composer
