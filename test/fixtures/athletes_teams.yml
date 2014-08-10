@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  athlete_id: 1
+  team_id: 1
+  captain: false
+  jerseynumber: MyString
+  position: MyString
+
+two:
+  athlete_id: 1
+  team_id: 1
+  captain: false
+  jerseynumber: MyString
+  position: MyString

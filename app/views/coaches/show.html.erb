@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="ui-bar ui-bar-b ui-corner-all"><%=h @coach.displayname %></h3>
+
+<ul data-role="listview" data-inset="true">
+  <% if !@coach.email.blank? %>
+    <li><a  href="<%= sprintf("mailto:%s", @coach.email) %>">Email Address</a><span class="ui-li-aside" data-rel="external""><%= @coach.email %></span></li>
+  <% end %>
+  <% if !@coach.twitter.blank? %>
+    <li><a  href="<%= sprintf("https://twitter.com/%s", @coach.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @coach.twitter %></span></li>
+  <% end %>
+</ul>
+
+  <h3>Teams:</h3>
+  <% if @coach.teams.count > 0 %>
+    <%#= @coach.teams.collect {|t| link_to(t.formalname, t)}.join(", ").html_safe %>
+    <ul data-role="listview" data-inset="true" data-filter="true">
+      <% @coach.teams.each do |t| %>
+        <% hc = CoachesTeam.find_by(:team_id => t.id, :coach_id => @coach.id) %>
+        <li><%= link_to(t.formalname, t) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
+      <% end %>
+    </ul>
+  <% else %>
+    Not currently on any coaching staff.
+  <% end %>
+
+
+<div data-role="control-group" data-type="horizontal">
+  <%= link_to 'Back to Coaches', coaches_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Edit Coach', edit_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+  <%#= link_to 'Edit Teams', teams_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+</div>

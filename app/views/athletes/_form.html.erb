@@ -1,0 +1,81 @@
+<%= simple_form_for(@athlete) do |f| %>
+  <%= f.error_notification %>
+
+<!--
+  <div class="form-inputs">
+    <%#= f.input :firstname %>
+    <%#= f.input :middlename %>
+    <%#= f.input :lastname %>
+    <%#= f.input :nickname %>
+    <%#= f.input :dob %>
+    <%#= f.input :gradyear %>
+    <%#= f.input :active %>
+    <%#= f.input :height %>
+    <%#= f.input :weight %>
+    <%#= f.input :email %>
+    <%#= f.input :twitter %>
+    <%#= f.input :gender %>
+  </div>
+
+  <div class="form-actions">
+    <%#= f.button :submit %>
+  </div>
+-->
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :firstname, "First Name" %>
+    <%= f.text_field :firstname %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :middlename, "Middle Name" %>
+    <%= f.text_field :middlename %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :lastname, "Last Name" %>
+    <%= f.text_field :lastname %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :nickname %>
+    <%= f.text_field :nickname %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :gender, "Gender" %>
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+      <%= f.radio_button :gender, 'male' %>
+      <%= f.label :gender, 'Male', :value => 'male' %>
+      <%= f.radio_button :gender, 'female' %>
+      <%= f.label :gender, 'Female', :value => 'female' %>
+    </fieldset>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :dob, "Date of Birth" %>
+    <%= f.text_field :dob, :type => 'date', :'data-role' => 'date', :'data-inline' => 'true' %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :gradyear, "Graduation Year" %>
+    <%= f.select :gradyear, (Time.zone.now.year - 2)..(Time.zone.now.year + 4)%>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :active, "Active Student" %>
+    <%= f.check_box :active %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :height %>
+    <%= f.text_field :height %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :email, "Email Address" %>
+    <%= f.text_field :email %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :twitter, "Twitter Handle" %>
+    <%= f.text_field :twitter %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save Athlete" %>
+  </div>
+<% end %>

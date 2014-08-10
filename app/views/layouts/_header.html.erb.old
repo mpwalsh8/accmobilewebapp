@@ -1,0 +1,37 @@
+<%# Header Partial %>
+<div data-role="panel" id="leftnavpanel" data-display="overlay" data-position="left">
+    <div data-role="controlgroup" data-corners="false">
+      <a href="/" data-role="button" data-icon="home" data-iconpos="left">Home</a>
+      <a href="#" data-role="button" data-icon="eye" data-iconpos="left">Sports</a>
+      <a href="#" data-role="button" data-icon="user" data-iconpos="left">Login</a>
+<!-- Devise -->
+<% if user_signed_in? %>
+  Logged in as <strong><%= current_user.email %></strong>.
+  <%= link_to 'Edit profile', edit_user_registration_path, :'data-role' => "button", :'data-icon' => "user" %>
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+
+<!--  /Devise -->
+      <a href="#" data-role="button" data-icon="gear" data-iconpos="left">Settings</a>
+      <a href="#" data-role="button" data-icon="info" data-iconpos="left">About</a>
+    </div>
+  </div>
+  <div data-role="panel" id="rightnavpanel" data-display="overlay" data-position="right">
+    <div data-role="controlgroup" data-corners="false">
+      <a href="/athletes_teams" data-role="button" data-icon="user" data-iconpos="right">Athletes - Teams</a>
+      <a href="/coaches_teams" data-role="button" data-icon="user" data-iconpos="right">Coaches - Teams</a>
+      <a href="/coaches_teams" data-role="button" data-icon="location" data-iconpos="right">Venues - Sports</a>
+      <a href="#" data-role="button" data-icon="calendar" data-iconpos="right">Schedules</a>
+    </div>
+  </div>
+
+    <div id="header" data-role="header" data-theme="a">
+      <a id="bars-button" data-icon="bars" class="ui-btn-left" qstyle="margin-top:10px;" href="#leftnavpanel" data-iconpos="left">Actions</a>
+      <h1>Title<%#= Settings.Header.Title %><br><small>SubTitle<%#= Settings.Header.SubTitle %></small></h1>
+      <a id="bars-button" data-icon="bars" class="ui-btn-right" qstyle="margin-top:10px;" href="#rightnavpanel" data-iconpos="right">Admin</a>
+
+</div>

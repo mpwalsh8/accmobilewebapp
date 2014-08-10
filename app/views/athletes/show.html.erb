@@ -1,0 +1,103 @@
+<p id="notice"><%= notice %></p>
+
+<ul data-role="listview" data-inset="true">
+  <li data-role="list-divider"><h1>Athlete Profile:  <%= @athlete.fullname %></h1></li>
+  <% if !@athlete.firstname.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">First Name:</div>
+      <div class="ui-block-b"><%= @athlete.firstname %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.middlename.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Middle Name:</div>
+      <div class="ui-block-b"><%= @athlete.middlename %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.lastname.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Last Name:</div>
+      <div class="ui-block-b"><%= @athlete.lastname %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.nickname.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Nickname:</div>
+      <div class="ui-block-b"><%= @athlete.nickname %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.gradyear.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Graduation Year:</div>
+      <div class="ui-block-b"><%= @athlete.gradyear %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.gender.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Gender:</div>
+      <div class="ui-block-b"><%= @athlete.gender.camelize %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.height.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Height:</div>
+      <div class="ui-block-b"><%= @athlete.height %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.weight.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Weight:</div>
+      <div class="ui-block-b"><%= @athlete.weight %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.dob.blank? %>
+  <li>
+    <div class="ui-grid-a">
+      <div class="ui-block-a">Date of Birth:</div>
+      <div class="ui-block-b"><%= @athlete.dob %></div>
+    </div>
+  </li>
+  <% end %>
+  <% if !@athlete.email.blank? %>
+    <li><a  href="<%= sprintf("mailto:%s", @athlete.email) %>">Email Address</a><span class="ui-li-aside" data-rel="external""><%= @athlete.email %></span></li>
+  <% end %>
+  <% if !@athlete.twitter.blank? %>
+    <li><a  href="<%= sprintf("https://twitter.com/%s", @athlete.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @athlete.twitter %></span></li>
+  <% end %>
+</ul>
+
+  <% if @athlete.teams.count > 0 %>
+  <h3><%= @athlete.firstname %> is a member of the following teams:</h3>
+    <ul data-role="listview" data-inset="true" data-filter="true">
+      <% @athlete.teams.each do |t| %>
+        <% tc = AthletesTeam.find_by(:team_id => t.id, :athlete_id => @athlete.id) %>
+        <li><%= link_to(t.formalname, t) %><span class="ui-li-aside"><%= tc.captain ? "Team Captain" : "" %></span></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= @athlete.firstname %> is not currently on any team roster.
+  <% end %>
+
+<div data-role="control-group" data-type="horizontal">
+  <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Edit Athlete', edit_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+  <%#= link_to 'Edit Teams', teams_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+
+</div>
+

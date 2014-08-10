@@ -1,0 +1,15 @@
+<% content_for :title do %>Teams Admin<% end %>
+<h3>Teams Administration</h3>
+<div data-role="control-group" data-type="vertical">
+  <%= link_to 'Add Team', new_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+  <%= link_to 'Add Coach to Team', new_coaches_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+  <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+</div>
+<div data-role="container">
+  <ul data-role="listview" data-inset="true">
+    <li data-role="list-divider"><h1>Teams Administrative Tasks</h1></li>
+    <li><%= link_to 'Add Team', new_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %></li>
+    <li><%= link_to 'Add Coach to Team', new_coaches_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %></li>
+    <li><%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %></li>
+  </ul>
+</div>

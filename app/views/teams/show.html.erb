@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="ui-bar ui-bar-b ui-corner-all"><%= @team.formalname %></h3>
+
+<ul data-role="listview" data-inset="true">
+  <% if !@team.url.blank? %> 
+    <li><a  href="<%= sprintf("%s", @team.url) %>">Team Web Site</a><span class="ui-li-aside" data-rel="external""><%= @team.url %></span></li>
+  <% end %>
+  <% if !@team.twitter.blank? %>
+    <li><a  href="<%= sprintf("https://twitter.com/%s", @team.twitter.delete("@")) %>" data-rel="external">Team Twitter Handle</a><span class="ui-li-aside"><%= @team.twitter %></span></li>
+  <% end %>
+<!--
+  <li><%#= link_to 'Team Roster', roster_team_path(@team) %></a></li>
+  <li><%#= link_to 'Coaching Staff', staff_team_path(@team) %></a></li>
+-->
+  <li><a href="#">Schedule</a></li>
+  <!--  Team Coaching Staff -->
+  <li>
+    <div data-role="collapsible-set" data-inset="true">
+      <div data-role="collapsible" data-collapsed="true" data-iconpos="right">
+        <h3 class="ui-bar ui-bar-b ui-corner-all">Coaching Staff<span class="ui-li-count"><%= @team.coaches.count %></span></h3>
+        <% if @team.coaches.count > 0 %>
+        <%#= @team.coaches.collect {|c| link_to(c.fullname, c)}.join(", ").html_safe %>
+        <ul data-role="listview" data-inset="false" data-filter="false">
+          <% @team.coaches.each do |c| %>
+            <% hc = CoachesTeam.find_by(:coach_id => c.id, :team_id => @team.id) %>
+            <li><%= link_to(c.fullname, c) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
+          <% end %>
+        </ul>
+        <% else %>
+        <p>No coaches currently on staff.</p>
+        <% end %>
+      </div>
+    </div>
+  </li>
+  <!--  Team Athlete Roster -->
+  <li>
+    <div data-role="collapsible-set" data-inset="true">
+      <div data-role="collapsible" data-collapsed="true" data-iconpos="right">
+        <h3 class="ui-bar ui-bar-b ui-corner-all">Roster<span class="ui-li-count"><%= @team.athletes.count %></span></h3>
+        <% if @team.athletes.count > 0 %>
+        <%#= @team.athletes.collect {|c| link_to(c.fullname, c)}.join(", ").html_safe %>
+        <ul data-role="listview" data-inset="false" data-filter="false">
+          <% @team.athletes.each do |a| %>
+            <% tc = AthletesTeam.find_by(:athlete_id => a.id, :team_id => @team.id) %>
+            <% notes = tc.captain ? "Captain" : "" %>
+            <% if !tc.position.blank? %>
+                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.position) %>
+            <% end %>
+            <% if !tc.jerseynumber.blank? %>
+                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.jerseynumber) %>
+            <% end %>
+            <li><%= link_to(a.displayname, a) %><span class="ui-li-aside"><%= notes %></span></li>
+          <% end %>
+        </ul>
+        <% else %>
+        <p>No athletes currently on roster.</p>
+        <% end %>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+<h3 class="ui-bar ui-bar-b ui-corner-all">Team Administration</h3>
+
+<div data-role="control-group" data-type="horizontal">
+  <%= link_to 'Back to Teams', teams_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Edit', edit_team_path(@team), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+</div>

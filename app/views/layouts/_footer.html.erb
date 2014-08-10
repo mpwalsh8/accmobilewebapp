@@ -1,0 +1,32 @@
+<!--  Start Footer  -->
+<div data-role="footer" data-id="main" data-position="fixed">
+  <div data-role="navbar">
+    <ul>
+<!--
+      <li><a href="/" data-icon="home">Home</a></li>
+-->
+      <!-- Devise -->
+      <% if user_signed_in? %>
+        <!-- Logged in as <strong><%#= current_user.email %></strong>.-->
+        <li><%= link_to 'Edit Profile', edit_user_registration_path, :'data-icon' => "edit" %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :'data-icon' => "user"  %></li>
+      <% else %>
+        <li><%= link_to "Login", new_user_session_path, :'data-icon' => "user" %></li>
+        <li><%= link_to "Sign Up", new_user_registration_path, :'data-icon' => "user" %></li>
+      <% end %>
+      <!--  /Devise -->
+<!--
+      <li><%#= link_to 'Admin', page_path('admin'), :'data-icon' => "info" %></li>
+-->
+      <li><%= link_to 'Sports', sports_path, :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
+      <li><%= link_to 'Venues', venues_path, :'data-icon' => 'location', :'data-transition' => 'slide' %></li>
+
+      <li><%= link_to 'About', page_path('about'), :'data-icon' => "info" %></li>
+    </ul>
+  </div>
+  <div data-role="content">
+    <p>Banner Ad Here</p>
+  </div>
+</div>
+
+<!--  End of Footer  -->

@@ -1,0 +1,15 @@
+Header:
+  Title:  Apex Cougar Club
+  SubTitle:  Supporting Apex HS Athletics
+  AppName:  Apex Cougar Club Mobile
+
+School:
+  Principal:  Matt Wight
+  AthleticDirector:  Del Philips
+
+Twitter:
+  ConsumerKey:  "ABC"
+  ConsumerKey: "YOUR_CONSUMER_KEY"
+  ConsumerSecret: "YOUR_CONSUMER_SECRET"
+  AccessToken: "YOUR_ACCESS_TOKEN"
+  AccessTokenSecret: "YOUR_ACCESS_SECRET"

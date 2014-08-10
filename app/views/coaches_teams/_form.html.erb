@@ -1,0 +1,32 @@
+<%= simple_form_for(@coaches_team) do |f| %>
+  <%= f.error_notification %>
+<!--
+  <div class="form-inputs">
+    <%#= f.input :team_id %>
+    <%#= f.input :coach_id %>
+    <%#= f.input :headcoach %>
+  </div>
+
+  <div class="form-actions">
+    <%#= f.button :submit %>
+  </div>
+-->
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :team_id, "Team" %>
+    <%= f.collection_select :team_id, Team.all, :id, :formalname %>
+  </div>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :coach_id, "Coach" %>
+    <%= f.collection_select :coach_id, Coach.all, :id, :lastcommafirst %>
+  </div>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :headcoach %><br>
+    <%= f.check_box :headcoach %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit "Save Team Coach" %>
+  </div>
+<% end %>

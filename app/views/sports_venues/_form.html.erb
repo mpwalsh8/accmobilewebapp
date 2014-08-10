@@ -1,0 +1,27 @@
+<%= simple_form_for(@sports_venue) do |f| %>
+  <%= f.error_notification %>
+
+<!--
+  <div class="form-inputs">
+    <%#= f.input :sport_id %>
+    <%#= f.input :venue_id %>
+  </div>
+
+  <div class="form-actions">
+    <%#= f.button :submit %>
+  </div>
+-->
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :sport_id, "Sport" %><br>
+    <%= f.collection_select :sport_id, Sport.all, :id, :name %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :venue_id, "Venue" %><br>
+    <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+  </div>
+  <br />
+  <div class="actions">
+    <%= f.submit "Save Sport to Venue" %>
+  </div>
+
+<% end %>

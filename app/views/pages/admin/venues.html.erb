@@ -1,0 +1,6 @@
+<% content_for :title do %>Venue Admin<% end %>
+<h3>Venue Administration</h3>
+<div data-role="control-group" data-type="vertical">
+  <%= link_to 'Add Venue', new_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+  <%= link_to 'Add Sport to Venue', new_sports_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+</div>

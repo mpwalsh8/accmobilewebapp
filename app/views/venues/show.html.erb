@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="ui-bar ui-bar-b ui-corner-all">Venue:  <%= @venue.name %></h3>
+
+<ul data-role="listview" data-inset="true">
+  <li data-role="list-divider"> 
+    <h1><%= @venue.name %><br /><%= simple_format h @venue.address %><br /><%= @venue.phone %></h1>
+  </li> 
+  <% if !@venue.url.blank? %>
+    <li><a  href="<%= sprintf("%s", @venue.url) %>">Web Site</a><span class="ui-li-aside" data-rel="external""><%= @venue.url %></span></li>
+  <% end %>
+  <% if !@venue.twitter.blank? %>
+    <li><a  href="<%= sprintf("https://twitter.com/%s", @venue.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @venue.twitter %></span></li>
+  <% end %>
+  <% if !@venue.googlemapsurl.blank? %>
+    <li><a  href="<%= sprintf("%s", @venue.googlemapsurl) %>">Google Maps</a><span class="ui-li-aside" data-rel="external""><%= @venue.googlemapsurl %></span></li>
+  <% end %>
+  <li data-role="list-divider">
+    <h1>Sports</h1>
+  </li>
+<!--
+  <%# @sportsatvenue.each do |s| %>
+    <li><%#= s.sport.name %></li>
+  <%# end %>
+  <li data-role="list-divider">
+    <h1>Sports</h1>
+  </li>
+-->
+  <li>
+    <div class="ui-grid-b">
+      <% c = 0 %>
+      <% uib = ['a', 'b', 'c'] %>
+      <% @sportsatvenue.each do |s| %>
+        <div class="ui-block-<%= uib[c.modulo(3)] %>">
+          <figure>
+            <%= image_tag(s.sport.imageurl, alt: s.sport.name, title: s.sport.name) %>
+            <figcaption><%= s.sport.name %><figcaption>
+          </figure>
+        </div>
+        <% c += 1 %>
+      <% end %>
+    </div>
+  </li>
+</ul>
+
+<%#= debug(@sportsatvenue) %>

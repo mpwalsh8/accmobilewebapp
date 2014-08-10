@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h3 class="ui-bar ui-bar-b ui-corner-all"><%= @coaches_team.team.formalname %>:  <%= @coaches_team.coach.fullname %></h3>
+
+<figure id="pictogram">
+  <%= image_tag(@coaches_team.team.sport.imageurl, alt: @coaches_team.team.formalname) %>
+</figure>
+      
+<ul data-role="listview" data-inset="true">
+  <li><%= link_to @coaches_team.team.formalname, team_path(@coaches_team.team_id) %></li>
+  <li><%= link_to @coaches_team.coach.fullname, coach_path(@coaches_team.coach_id) %></li>
+</ul> 
+
+<div data-role="control-group" data-type="horizontal">
+  <%= link_to 'Back to Team Coaches', coaches_teams_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Edit Team Coaches', edit_coaches_team_path(@coaches_team), :'data-role' => "button", :'data-icon' => "edit", :'data-inline' => "true" %>
+</div>

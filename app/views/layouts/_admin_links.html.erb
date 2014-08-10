@@ -1,0 +1,8 @@
+<%# add admin navigation links to this file %>
+<% if user_signed_in? %>
+  <li><%= link_to 'Coaches / Teams', coaches_teams_path %></li>
+  <li><%= link_to 'Athletes / Teams', athletes_teams_path %></li>
+  <li><%= link_to 'Sports / Venues', sports_venues_path %></li>
+  <li><%= link_to 'Sports / Venues', sports_venues_path %></li>
+  <li><%= link_to 'Venue Admin', page_path('admin'), :name => '#venues', :'data-icon' => "info" %></li>
+<% end %>

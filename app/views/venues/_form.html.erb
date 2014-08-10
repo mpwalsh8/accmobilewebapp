@@ -1,0 +1,52 @@
+<%= simple_form_for(@venue) do |f| %>
+  <%= f.error_notification %>
+
+<!--
+  <div class="form-inputs">
+    <%#= f.input :name %>
+    <%#= f.input :address %>
+    <%#= f.input :googlemapsurl %>
+    <%#= f.input :phone %>
+    <%#= f.input :url %>
+    <%#= f.input :twitter %>
+    <%#= f.input :latlong %>
+  </div>
+
+  <div class="form-actions">
+    <%#= f.button :submit %>
+  </div>
+-->
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :address %>
+    <%= f.text_area :address %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :twitter, "Twitter Handle" %>
+    <%= f.text_field :twitter, type: "text" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :url, "URL" %>
+    <%= f.text_field :url, type: "url" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :googlemapsurl, "Google Maps URL" %>
+    <%= f.text_field :googlemapsurl, type: "url" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, type: "phone" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :latlong, "Lat/Long" %>
+    <%= f.text_field :latlong, type: "text" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save Venue" %>
+  </div>
+
+<% end %>

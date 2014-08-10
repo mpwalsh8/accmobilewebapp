@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Accmobilewebapp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= Settings.Header.AppName %></title>
+  <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body class='<%= controller.controller_name %>'>
+  <!--<div data-role="page" data-add-back-btn="true">-->
+  <div data-role="page" id="home">
+    <!-- "header" -->
+    <%= render :partial => 'layouts/header' %>
+    <!-- "header" -->
 
-<%= yield %>
+    <%#= render :partial => 'layouts/navigation_links' %>
 
+    <div data-role="content" class="ui-content ui-body ui-corner-all">
+      <%= render :partial => 'layouts/messages' %>
+      <%= yield %>
+    </div>
+
+    <!-- "footer" -->
+    <%= render :partial => 'layouts/footer' %>
+    <!-- "footer" -->
+  </div>
 </body>
 </html>

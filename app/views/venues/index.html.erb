@@ -1,0 +1,24 @@
+<h3 class="ui-bar ui-bar-b ui-corner-all">Venues</h3>
+
+<ul data-role="listview" data-inset="true" data-autodividers="true" data-filter="true">
+  <% @venues.each do |venue| %>
+    <li><%= link_to venue.name, venue %></li>
+  <% end %>
+</ul> 
+        
+<!--  Admin Block -->
+<div data-role="collapsible-set" data-mini="true">
+  <h3 class="ui-bar ui-bar-b ui-corner-all">Venue Administration</h3>
+  <% @venues.each do |venue| %>
+    <div data-role="collapsible" data-iconpos="right" data-collapsed="true">
+      <h2><%= h venue.name %></h2>
+      <%= link_to 'Edit', edit_venue_path(venue), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+      <%= link_to 'Delete', venue, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+    </div>
+  <% end %>
+</div>
+<!-- Footer --> 
+<div data-role="control-group" data-type="horizontal">
+  <%= link_to 'Add Venue', new_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "true" %>
+</div>
+

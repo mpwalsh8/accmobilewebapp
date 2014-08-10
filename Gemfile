@@ -25,3 +25,20 @@ end
 group :production do
   gem 'thin'
 end
+
+##  Everything above this line was created with the Rails App Composer
+##  See:  https://github.com/RailsApps/rails-devise
+##
+
+##  jQuery Mobile
+gem 'jquery_mobile_rails'
+
+##  Font Awesome
+#gem 'font-awesome-rails'
+
+##  RailsConfig
+gem 'rails_config'
+
+##  CanCan
+#gem 'cancan'
+
