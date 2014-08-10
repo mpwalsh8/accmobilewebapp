@@ -1,0 +1,15 @@
+<% content_for :title do %>Coach Admin<% end %>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <h3 class="ui-bar ui-bar-a">Coach Administration</h3>
+    <div data-role="control-group" data-type="vertical">
+      <%= link_to 'Add Coach', new_coach_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+      <%= link_to 'Add Coach to Team', new_coaches_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+    </div>
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
+~              

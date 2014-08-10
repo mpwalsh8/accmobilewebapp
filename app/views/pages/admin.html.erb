@@ -1,38 +1,55 @@
 <% content_for :title do %>Admin<% end %>
-<div data-role="container">
-  <ul data-role="listview" data-inset="true">
-    <li data-role="list-divider"><h1>Administrative Tasks</h1></li>
-    <li><div class="ui-grid-a">
-      <div class="ui-block-a">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-b">
-        <%= link_to 'Venues', page_path('admin/venues'), :'data-role' => "button", :'data-icon' => "grid" %>
-      </div>
-      <div class="ui-block-a">
-        <%= link_to 'Teams', page_path('admin/teams'), :'data-role' => "button", :'data-icon' => "grid" %>
-      </div>
-      <div class="ui-block-b">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-a">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-b">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-a">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-b">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-a">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-      <div class="ui-block-b">
-        <a href="#" data-role="button">TBD</a>
-      </div>
-    </div></li>
-  </ul>
-</div>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <ul data-role="listview" data-inset="true">
+      <li data-role="list-divider"><h1>Administrative Tasks</h1></li>
+      <li><div class="ui-grid-a">
+
+        <div class="ui-block-a">
+          <a href="#" data-role="button" data-icon="calendar">Event</a>
+        </div>
+
+        <div class="ui-block-b">
+          <%= link_to 'Team', page_path('admin/team'), :'data-role' => "button", :'data-icon' => "grid" %>
+        </div>
+
+        <div class="ui-block-a">
+          <%= link_to 'Coach', page_path('admin/coach'), :'data-role' => "button", :'data-icon' => "user" %>
+        </div>
+
+        <div class="ui-block-b">
+          <%= link_to 'Athlete', page_path('admin/athlete'), :'data-role' => "button", :'data-icon' => "user" %>
+        </div>
+
+        <div class="ui-block-a">
+          <%= link_to 'Venue', page_path('admin/venue'), :'data-role' => "button", :'data-icon' => "location" %>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+        <div class="ui-block-a">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+        <div class="ui-block-a">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+      </div></li>
+    </ul>
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
