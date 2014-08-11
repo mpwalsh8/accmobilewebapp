@@ -2,11 +2,27 @@
 <% if current_user.try(:admin?) %>
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Team Administration</h3>
-    <div data-role="control-group" data-type="vertical">
+    <div data-role="controlgroup" data-type="vertical">
       <%= link_to 'Add Team', new_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Add Coach to Team', new_coaches_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
+    <!--  List of Existing Teams -->
+    <div data-role="collapsible-set">
+      <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Teams</h4>
+      <!--<div data-role="list-divider">Teams</div>-->
+
+      <% @teams = Team.all.order(:gender, :varsity) %>
+      <% @teams.each do |team| %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+          <h2><%= h team.formalname %></h2>
+          <%= link_to 'Show', team, :'data-role' => 'button', :'data-icon' => 'info', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Edit', edit_team_path(team), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', team, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+      <% end %>
+    </div>
+    <!--  /List of Existing Teams -->
   </div>
 <% else %>
   <div data-role="container">

@@ -2,14 +2,27 @@
 <% if current_user.try(:admin?) %>
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Venue Administration</h3>
-    <div data-role="control-group" data-type="vertical">
+    <div data-role="controlgroup" data-type="vertical">
       <%= link_to 'Add Venue', new_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Add Sport to Venue', new_sports_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
+    <!--  List of Existing Venues -->
+    <div data-role="collapsible-set" data-mini="true">
+      <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Venues</h4>
+      <% @venues = Venue.all.order(:name) %>
+      <% @venues.each do |venue| %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+
+          <h2><%= h venue.name %></h2>
+          <%= link_to 'Edit', edit_venue_path(venue), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', venue, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+      <% end %>
+    </div>
+    <!--  /List of Existing Venues -->
   </div>
 <% else %>
   <div data-role="container">
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
   </div>
 <% end %>
-~              

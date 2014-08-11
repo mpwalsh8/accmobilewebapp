@@ -1,7 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h3 class="ui-bar ui-bar-b ui-corner-all">Venue:  <%= @venue.name %></h3>
-
+<h3 class="ui-bar ui-bar-a ui-corner-none">Venue:  <%= @venue.name %></h3>
 <ul data-role="listview" data-inset="true">
   <li data-role="list-divider"> 
     <h1><%= @venue.name %><br /><%= simple_format h @venue.address %><br /><%= @venue.phone %></h1>
@@ -42,5 +39,8 @@
     </div>
   </li>
 </ul>
-
 <%#= debug(@sportsatvenue) %>
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Back to Venues', venues_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
+  <%#= link_to 'Edit', edit_venue_path(@venue), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+</div>

@@ -2,14 +2,27 @@
 <% if current_user.try(:admin?) %>
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Athlete Administration</h3>
-    <div data-role="control-group" data-type="vertical">
+    <div data-role="controlgroup" data-type="vertical">
       <%= link_to 'Add Athlete', new_athlete_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
   </div>
+  <!--  List of Existing Athletes -->
+  <h3 class="ui-bar ui-bar-a ui-corner-none">Existing Athletes</h3>
+  <div data-role="collapsible-set" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+    <% @athletes = Athlete.all.order(:lastname, :firstname) %>
+    <% @athletes.each do |athlete| %>
+      <div data-role="collapsible" data-collapsed="true" data-iconpos="right">
+        <h2><%= h athlete.lastcommafirst %></h2>
+        <%= link_to 'Show', athlete, :'data-role' => 'button', :'data-icon' => 'info', :'data-inline' => "true", :'data-mini' => "true" %>
+        <%= link_to 'Edit', edit_athlete_path(athlete), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+        <%= link_to 'Delete', athlete, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+      </div>
+    <% end %>
+  </div>
+  <!--  /List of Existing Athletes -->
 <% else %>
   <div data-role="container">
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
   </div>
 <% end %>
-~              

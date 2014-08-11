@@ -1,7 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<h3 class="ui-bar ui-bar-a">Athlete:  <%= @athlete.fullname %></h3>
 <ul data-role="listview" data-inset="true">
-  <li data-role="list-divider"><h1>Athlete Profile:  <%= @athlete.fullname %></h1></li>
+  <li data-role="list-divider"><h1>Personal Details:</h1></li>
   <% if !@athlete.firstname.blank? %>
   <li>
     <div class="ui-grid-a">
@@ -83,7 +82,7 @@
 </ul>
 
   <% if @athlete.teams.count > 0 %>
-  <h3><%= @athlete.firstname %> is a member of the following teams:</h3>
+  <h4 class="ui-bar ui-bar-a">Team Rosters:</h4>
     <ul data-role="listview" data-inset="true" data-filter="true">
       <% @athlete.teams.each do |t| %>
         <% tc = AthletesTeam.find_by(:team_id => t.id, :athlete_id => @athlete.id) %>
@@ -94,9 +93,9 @@
     <%= @athlete.firstname %> is not currently on any team roster.
   <% end %>
 
-<div data-role="control-group" data-type="horizontal">
-  <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
-  <%= link_to 'Edit Athlete', edit_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
+  <%#= link_to 'Edit Athlete', edit_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
   <%#= link_to 'Edit Teams', teams_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
 
 </div>
