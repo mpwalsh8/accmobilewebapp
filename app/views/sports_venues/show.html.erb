@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h3 class="ui-bar ui-bar-b ui-corner-all"><%= @sports_venue.sport.name %> at <%= @sports_venue.venue.name %></h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none"><%= @sports_venue.sport.name %> at <%= @sports_venue.venue.name %></h3>
 
 <figure id="pictogram">
   <%= image_tag(@sports_venue.sport.imageurl, alt: @sports_venue.sport.name) %>
@@ -12,7 +12,7 @@
 </ul>
 
 
-<div data-role="control-group" data-type="horizontal">
+<div data-role="controlgroup" data-type="horizontal">
   <%= link_to 'Back to Sports Venues', sports_venues_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
   <%= link_to 'Edit Sports Venue', edit_sports_venue_path(@sports_venue), :'data-role' => "button", :'data-icon' => "edit", :'data-inline' => "true" %>
 </div>

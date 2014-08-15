@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h3 class="ui-bar ui-bar-b ui-corner-all">Venue Sports</h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none">Venue Sports</h3>
 
 <div data-role="collapsible-set" data-autodividers="true" data-mini="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d">
     <% vid = nil %>
@@ -27,6 +27,6 @@
     </div>
 </div>
 
-<div data-role="control-group" data-type="horizontal">
+<div data-role="controlgroup" data-type="horizontal">
   <%= link_to 'New Sports Venue', new_sports_venue_path, :'data-role' => "button", :'data-icon' => 'plus', :'data-inline' => "true" %>
 </div>

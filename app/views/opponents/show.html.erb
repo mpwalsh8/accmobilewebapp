@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @opponent.name %>
+</p>
+
+<p>
+  <strong>Mascot:</strong>
+  <%= @opponent.mascot %>
+</p>
+
+<p>
+  <strong>Homevenue:</strong>
+  <%= @opponent.homevenue %>
+</p>
+
+<p>
+  <strong>Conferenceopponent:</strong>
+  <%= @opponent.conferenceopponent %>
+</p>
+
+<%= link_to 'Edit', edit_opponent_path(@opponent) %> |
+<%= link_to 'Back', opponents_path %>
+
+<h3 class="ui-bar ui-bar-a ui-corner-none">Opponent:  <%= @opponent.name %></h3>
+<ul data-role="listview" data-inset="true">
+  <li data-role="list-divider">
+    <h1><%= @opponent.name %> <%= @opponent.mascot %></h1>
+  </li>
+  <%# venue = Venues.find_by(:id => @opponent.homevenue) %>
+  <li>Home Venue:  <%= @opponent.homevenue %></li>
+  <li>Home Venue:  <%#= link_to 'Home Venue', venue_path(@venue) %></li>
+  <li>Conference Opponent:  <%= @opponent.conferenceopponent %></li>
+  </li>
+</ul>
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Back to Opponents', opponents_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
+  <%#= link_to 'Edit', edit_opponent_path(@opponent), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+</div>
+

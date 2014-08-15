@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h3 class="ui-bar ui-bar-b ui-corner-all"><%= @sport.name %></h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none"><%= @sport.name %></h3>
 
 <figure id="pictogram">
   <%= image_tag(@sport.imageurl, alt: @sport.name) %>
@@ -15,7 +15,7 @@
 </ul>
 
 
-<div data-role="control-group" data-type="horizontal">
+<div data-role="controlgroup" data-type="horizontal">
   <%= link_to 'Back to Sports', sports_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true", :'data-inline' => "true" %>
   <%= link_to 'Edit Sport', edit_sport_path(@sport), :'data-role' => "button", :'data-icon' => "edit", :'data-inline' => "true", :'data-inline' => "true" %>
 </div>

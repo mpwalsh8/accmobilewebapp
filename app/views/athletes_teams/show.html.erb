@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h3 class="ui-bar ui-bar-b ui-corner-all"><%= @athletes_team.team.formalname %>:  <%= @athletes_team.athlete.fullname %></h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none"><%= @athletes_team.team.formalname %>:  <%= @athletes_team.athlete.fullname %></h3>
     
 <figure id="pictogram">
   <%= image_tag(@athletes_team.team.sport.imageurl, alt: @athletes_team.team.formalname) %>
@@ -33,7 +33,7 @@
   <li><%= link_to @athletes_team.athlete.fullname, athlete_path(@athletes_team.athlete_id) %></li>
 </ul>
 
-<div data-role="control-group" data-type="horizontal">
+<div data-role="controlgroup" data-type="horizontal">
   <%= link_to 'Back to Team Athletes', athletes_teams_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
   <%= link_to 'Edit Team Athlete', edit_athletes_team_path(@athletes_team), :'data-role' => "button", :'data-icon' => "edit" %>
 </div>

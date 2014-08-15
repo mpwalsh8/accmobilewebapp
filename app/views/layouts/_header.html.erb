@@ -1,8 +1,8 @@
 <!--  Start Header  -->
 <div data-role="header" data-id="header" position="fixed">
-  <a href="/" data-icon="home">Home</a>
+  <a href="/" data-icon="home" data-iconpos="notext">Home</a>
   <h1><%= Settings.Header.Title %><br><small><%= Settings.Header.SubTitle %></small></h1>
-  <div data-role="navbar">
+  <div data-role="navbar" data-inline="true" data-mini="true" data-iconpos="left">
     <ul>
       <li><a href="#" data-icon="calendar" data-transition="slide">Events</a></li>
 <!--
@@ -17,7 +17,7 @@
     </ul>
   </div>
   <% if user_signed_in? %>
-    <%= link_to 'Admin', page_path('admin'), :'data-icon' => "gear", :'data-iconpos' => "right" %>
+    <%= link_to 'Admin', page_path('admin'), :'data-icon' => "gear", :'data-iconpos' => "notext" %>
   <% end %>
 </div>
 

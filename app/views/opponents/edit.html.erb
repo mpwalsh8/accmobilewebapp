@@ -1,0 +1,9 @@
+<h3 class="ui-bar ui-bar-a ui-corner-none">Edit Opponent</h3>
+
+<%= render 'form' %>
+
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Show Opponent', @opponent, :'data-role' => 'button', :'data-icon' => "eye", :'data-inline' => "true" %>
+  <%= link_to 'Back to Opponents', opponents_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
+</div>
+

@@ -80,6 +80,7 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+/config/application.yml.save
 
 config/settings.local.yml
 config/settings/*.local.yml
