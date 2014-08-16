@@ -7,21 +7,9 @@
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <!--  Meta Tags to allow app to run as a mobile web app -->
-  <!--
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <!--  /Meta Tags to allow app to run as a mobile web app -->
-  <!--  Apple Home Screen Icons -->
-  <link rel="apple-touch-icon" href="<%#= image_url("webapp-icons/BigALogoYellow.png") %>">
-  <link rel="apple-touch-icon" sizes="76x76" href="<%#= image_url("webapp-icons/BigALogoYellow-76x76.png") %>">
-  <link rel="apple-touch-icon" sizes="120x120" href="<%#= image_url("webapp-icons/BigALogoYellow-120x120.png") %>">
-  <link rel="apple-touch-icon" sizes="152x152" href="<%#= image_url("webapp-icons/BigALogoYellow-152x152.png") %>">
-  <!--  /Apple Home Screen Icons -->
--->
+  <!--  Meta Tags to allow app to run as a mobile web app on IOS -->
   <%= render :partial => 'layouts/ios' %>
+  <!--  /Meta Tags to allow app to run as a mobile web app on IOS -->
 
 </head>
 <body class='<%= controller.controller_name %>'>
