@@ -2,6 +2,8 @@
 
 <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
   <% @sports.each do |sport| %>
-    <li><%= link_to sport.name, sport %></li>
+    <% if sport.active? %>
+      <li><%= link_to sport.name, sport %></li>
+    <% end %>
   <% end %>
 </ul>
