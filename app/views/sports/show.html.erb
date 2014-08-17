@@ -3,7 +3,7 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @sport.name %></h3>
 
 <figure id="pictogram">
-  <%= image_tag(asset_path(@sport.imageurl), alt: @sport.name) %>
+  <%= image_tag(@sport.imageurl, alt: @sport.name) %>
 </figure>
 
 <ul data-role="listview" data-inset="true" data-filter="false">

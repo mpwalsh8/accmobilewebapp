@@ -1,0 +1,27 @@
+<% content_for :title do %>Sport Admin<% end %>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <h3 class="ui-bar ui-bar-a">Sport Administration</h3>
+    <div data-role="controlgroup" data-type="vertical">
+      <%= link_to 'Add Sport', new_sport_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+    </div>
+    <!--  List of Existing Sports -->
+    <div data-role="collapsible-set" data-mini="true">
+      <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Sports</h4>
+      <% @sports = Sport.all.order(:name) %>
+      <% @sports.each do |sport| %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+
+          <h2><%= h sport.name %></h2>
+          <%= link_to 'Edit', edit_sport_path(sport), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', sport, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+      <% end %>
+    </div>
+    <!--  /List of Existing Sports -->
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
