@@ -4,7 +4,7 @@ class AthletesController < ApplicationController
   # GET /athletes
   # GET /athletes.json
   def index
-    @athletes = Athlete.all
+    @athletes = Athlete.all.order(:lastname, :firstname)
   end
 
   # GET /athletes/1
