@@ -22,9 +22,10 @@
         <% if @team.coaches.count > 0 %>
         <%#= @team.coaches.collect {|c| link_to(c.fullname, c)}.join(", ").html_safe %>
         <ul data-role="listview" data-inset="false" data-filter="false">
-          <% @team.coaches.each do |c| %>
+          <% coaches = @team.coaches.sort_by { |c| [ c.lastname, c.firstname ] } %>
+          <% coaches.each do |c| %>
             <% hc = CoachesTeam.find_by(:coach_id => c.id, :team_id => @team.id) %>
-            <li><%= link_to(c.fullname, c) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
+            <li><%= link_to(c.lastcommafirst, c) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
           <% end %>
         </ul>
         <% else %>
@@ -41,7 +42,8 @@
         <% if @team.athletes.count > 0 %>
         <%#= @team.athletes.collect {|c| link_to(c.fullname, c)}.join(", ").html_safe %>
         <ul data-role="listview" data-inset="false" data-filter="false">
-          <% @team.athletes.each do |a| %>
+          <% athletes = @team.athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
+          <% athletes.each do |a| %>
             <% tc = AthletesTeam.find_by(:athlete_id => a.id, :team_id => @team.id) %>
             <% notes = tc.captain ? "Captain" : "" %>
             <% if !tc.position.blank? %>
@@ -50,7 +52,7 @@
             <% if !tc.jerseynumber.blank? %>
                 <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.jerseynumber) %>
             <% end %>
-            <li><%= link_to(a.displayname, a) %><span class="ui-li-aside"><%= notes %></span></li>
+            <li><%= link_to(a.lastcommafirst, a) %><span class="ui-li-aside"><%= notes %></span></li>
           <% end %>
         </ul>
         <% else %>
