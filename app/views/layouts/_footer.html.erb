@@ -10,7 +10,11 @@
     </ul>
   </div>
   <div id="banner-content">
-    <img src="<%= image_url("webapp/banner/ACC_320x50_Template.svg") %>">
+    <% banner = ACCMobileWebApp::Application::MOBILEADS.sample %>
+    <%#= puts banner["url"] %>
+    <%#= puts banner[:name] %>
+    <%#= puts banner %>
+    <a href="<%= banner[1] %>" alt="<%= banner[0] %>"><img src="<%= image_url(banner[2]) %>"></a>
   </div>
 </div>
 

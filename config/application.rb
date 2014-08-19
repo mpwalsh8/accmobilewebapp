@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Accmobilewebapp
+module ACCMobileWebApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -19,5 +19,24 @@ module Accmobilewebapp
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    BANNERADS = []
+    hash = {
+        :name => 'Apex Cougar Club',
+        :url => 'http://www.apexcougarclub.org/corporate-sponsorship/',
+        :img => 'webapp/banner/ACC_320x50_Template.svg'
+      }
+    BANNERADS.push(hash)
+
+    hash = {
+        :name => 'Kona-Ice',
+        :url => 'http://www.kona-ice.com',
+        :img => 'webapp/banner/Kona_Ice_Banner.svg'
+      }
+    BANNERADS.push(hash)
+
+    SPLASHADS = [
+    ]
+
   end
 end
