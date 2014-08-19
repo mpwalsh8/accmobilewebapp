@@ -1,21 +1,21 @@
 <!--  Start Header  -->
 <div data-role="header" data-id="header" position="fixed">
-  <a href="/" data-icon="home" data-iconpos="notext">Home</a>
+  <!--<a href="/" data-icon="home" data-iconpos="notext">Home</a>-->
+  <a href="#leftnavpanel" data-icon="bars" data-iconpos="notext">Menu</a>
+  <%= render :partial => 'layouts/panelleft' %>
   <h1><%= Settings.Header.Title %><br /><small><%= Settings.Header.SubTitle %></small></h1>
+  <!--
   <div data-role="navbar" data-inline="true" data-mini="true" data-iconpos="left">
     <ul>
       <li><a href="#" data-icon="calendar" data-transition="slide">Events</a></li>
-<!--
       <li><%#= link_to 'Sports', sports_path, :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
--->
-      <li><%= link_to 'Teams', teams_path, :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
-      <li><%= link_to 'Athletes', athletes_path, :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
-      <li><%= link_to 'Coaches', coaches_path, :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
-<!--
+      <li><%#= link_to 'Teams', teams_path, :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
+      <li><%#= link_to 'Athletes', athletes_path, :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
+      <li><%#= link_to 'Coaches', coaches_path, :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
       <li><%#= link_to 'Venues', venues_path, :'data-icon' => 'location', :'data-transition' => 'slide' %></li>
--->
     </ul>
   </div>
+  -->
   <% if user_signed_in? %>
     <%= link_to 'Admin', page_path('admin'), :'data-icon' => "gear", :'data-iconpos' => "notext" %>
   <% end %>

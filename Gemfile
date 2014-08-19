@@ -43,3 +43,5 @@ gem 'rails_config'
 ##  CanCan
 #gem 'cancan'
 
+##  jQuery mmenu
+#gem 'mmenu-rails'

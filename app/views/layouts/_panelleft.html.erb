@@ -1,0 +1,34 @@
+  <div data-role="panel" id="leftnavpanel" data-display="overlay" data-position="left">
+    <ul data-role="listview" data-inset="true" data-corners="true">
+      <li><a href="/" data-role="button" data-icon="home" data-iconpos="left">Home</a></li>
+      <li><a href="#" data-role="button" data-icon="calendar" data-transition="slide">Events</a></li>
+<!--
+      <li><%#= link_to 'Sports', sports_path, :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
+-->
+      <li><%= link_to 'Teams', teams_path, :'data-role' => "button", :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
+      <li><%= link_to 'Athletes', athletes_path, :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
+      <li><%= link_to 'Coaches', coaches_path, :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
+      <li><%= link_to 'Sports', sports_path, :'data-role' => "button", :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
+      <li><%= link_to 'Venues', venues_path, :'data-role' => "button", :'data-icon' => 'location', :'data-transition' => 'slide' %></li>
+      <li><%= link_to 'About', page_path('about'), :'data-role' => "button", :'data-icon' => "info" %></li>
+
+      <li data-role="list-divider">Access</li>
+      <% if user_signed_in? %>
+        <!-- Logged in as <strong><%#= current_user.email %></strong>.-->
+        <li><%= link_to 'Profile', edit_user_registration_path, :'data-role' => "button", :'data-icon' => "edit" %></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :'data-role' => "button", :'data-icon' => "user" %></li>
+      <% else %>
+        <li><%= link_to "Login", new_user_session_path, :'data-role' => "button", :'data-icon' => "user" %></li>
+        <li><%= link_to "Sign Up", new_user_registration_path, :'data-role' => "button", :'data-icon' => "user" %></li>
+      <% end %>
+      <!--  /Devise -->
+
+
+
+  <% if user_signed_in? %>
+    <li data-role="list-divider">Admin</li>
+    <li><%= link_to 'Admin', page_path('admin'), :'data-role' => "button", :'data-icon' => "gear", :'data-iconpos' => "left" %></li>
+  <% end %>
+
+    </ul>
+  </div>
