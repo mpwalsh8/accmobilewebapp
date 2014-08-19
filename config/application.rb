@@ -20,21 +20,18 @@ module ACCMobileWebApp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    BANNERADS = []
-    hash = {
+    BANNERADS = [
+      {
         :name => 'Apex Cougar Club',
         :url => 'http://www.apexcougarclub.org/corporate-sponsorship/',
         :img => 'webapp/banner/ACC_320x50_Template.svg'
-      }
-    BANNERADS.push(hash)
-
-    hash = {
+      },
+      {
         :name => 'Kona-Ice',
         :url => 'http://www.kona-ice.com',
         :img => 'webapp/banner/Kona_Ice_Banner.svg'
       }
-    BANNERADS.push(hash)
-
+    ]
     SPLASHADS = [
     ]
 
