@@ -1,4 +1,4 @@
-  <div data-role="panel" id="leftnavpanel" data-display="overlay" data-position="left">
+  <div data-role="panel" id="menu" data-display="overlay" data-position="right">
     <ul data-role="listview" data-inset="true" data-corners="true">
       <li><a href="/" data-role="button" data-icon="home" data-iconpos="left">Home</a></li>
       <li><a href="#" data-role="button" data-icon="calendar" data-transition="slide">Events</a></li>
@@ -25,10 +25,17 @@
 
 
 
-  <% if user_signed_in? %>
+  <% if current_user.try(:admin?) %>
     <li data-role="list-divider">Admin</li>
-    <li><%= link_to 'Admin', page_path('admin'), :'data-role' => "button", :'data-icon' => "gear", :'data-iconpos' => "left" %></li>
-  <% end %>
+    <li><%= link_to 'Admin Home', page_path('admin'), :'data-role' => "button", :'data-icon' => "gear", :'data-iconpos' => "left" %></li>
 
+    <li><a href="#" data-role="button" data-icon="calendar">Event</a></li>
+    <li><%= link_to 'Team', page_path('admin/team'), :'data-role' => "button", :'data-icon' => "grid" %></li>
+    <li><%= link_to 'Coach', page_path('admin/coach'), :'data-role' => "button", :'data-icon' => "user" %></li>
+    <li><%= link_to 'Athlete', page_path('admin/athlete'), :'data-role' => "button", :'data-icon' => "user" %></li>
+    <li><%= link_to 'Venue', page_path('admin/venue'), :'data-role' => "button", :'data-icon' => "location" %></li>
+    <li><%= link_to 'Sport', page_path('admin/sport'), :'data-role' => "button", :'data-icon' => "user" %></li>
+    <li><%= link_to 'Opponent', page_path('admin/opponent'), :'data-role' => "button", :'data-icon' => "location" %></li>
+  <% end %>
     </ul>
   </div>

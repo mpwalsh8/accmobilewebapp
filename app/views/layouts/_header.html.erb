@@ -1,8 +1,6 @@
 <!--  Start Header  -->
 <div data-role="header" data-id="header" position="fixed">
-  <!--<a href="/" data-icon="home" data-iconpos="notext">Home</a>-->
-  <a href="#leftnavpanel" data-icon="bars" data-iconpos="notext">Menu</a>
-  <%= render :partial => 'layouts/panelleft' %>
+  <a href="/" data-icon="home" data-iconpos="notext">Home</a>
   <h1><%= Settings.Header.Title %><br /><small><%= Settings.Header.SubTitle %></small></h1>
   <!--
   <div data-role="navbar" data-inline="true" data-mini="true" data-iconpos="left">
@@ -16,9 +14,11 @@
     </ul>
   </div>
   -->
-  <% if user_signed_in? %>
-    <%= link_to 'Admin', page_path('admin'), :'data-icon' => "gear", :'data-iconpos' => "notext" %>
-  <% end %>
+  <%# if user_signed_in? %>
+    <%#= link_to 'Admin', page_path('admin'), :'data-icon' => "gear", :'data-iconpos' => "notext" %>
+  <%# end %>
+  <a href="#menu" data-icon="bars" data-iconpos="notext">Menu</a>
+  <%= render :partial => 'layouts/menu' %>
 </div>
 
 <!--  End of Header  -->
