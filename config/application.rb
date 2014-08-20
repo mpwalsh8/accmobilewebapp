@@ -154,7 +154,7 @@ module ACCMobileWebApp
       {
         :name => 'Red Robin',
         :url => 'http://www.redrobin.com',
-        :img => 'webapp/banner/.svg'
+        :img => 'webapp/banner/Red_Robin_320x50.svg'
       },
       {
         :name => 'Scruffy Duck',
@@ -169,7 +169,7 @@ module ACCMobileWebApp
       {
         :name => 'Triangle Eye Institute',
         :url => 'http://www.tei2020.com',
-        :img => 'webapp/banner/'
+        :img => 'webapp/banner/Triangle_Eye_Institute_320x50.svg'
       },
       {
         :name => 'Triangle Orthopaedics',
