@@ -24,12 +24,17 @@ module ACCMobileWebApp
       {
         :name => 'Apex Cougar Club',
         :url => 'http://www.apexcougarclub.org/corporate-sponsorship/',
-        :img => 'webapp/banner/ACC_320x50_Template.svg'
+        :img => 'webapp/banner/Apex_Cougar_Club_320x50.svg'
       },
       {
         :name => 'Kona-Ice',
         :url => 'http://www.kona-ice.com',
-        :img => 'webapp/banner/Kona_Ice_Banner.svg'
+        :img => 'webapp/banner/Kona_Ice_320x50.svg'
+      },
+      {
+        :name => 'Sports Clips Haircuts',
+        :url => 'http://haircutmenmorrisvillenc.com/',
+        :img => 'webapp/banner/Sport_Clips_320x50.svg'
       }
     ]
     SPLASHADS = [

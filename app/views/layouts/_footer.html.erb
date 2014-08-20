@@ -11,6 +11,7 @@
   </div>
   <div id="banner-content">
     <% banner = ACCMobileWebApp::Application::BANNERADS.sample %>
+    <% puts banner %>
     <a href="<%= banner[:url] %>" alt="<%= banner[:name] %>"><img src="<%= image_url(banner[:img]) %>"></a>
   </div>
 </div>
