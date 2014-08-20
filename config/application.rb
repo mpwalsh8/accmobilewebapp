@@ -35,6 +35,11 @@ module ACCMobileWebApp
         :name => 'Sports Clips Haircuts',
         :url => 'http://haircutmenmorrisvillenc.com/',
         :img => 'webapp/banner/Sport_Clips_320x50.svg'
+      },
+      {
+        :name => 'Spielberg Orthodontics',
+        :url => 'http://www.spielberg-ortho.com/',
+        :img => 'webapp/banner/Spielberg_Ortho_320x50.png'
       }
     ]
     SPLASHADS = [
