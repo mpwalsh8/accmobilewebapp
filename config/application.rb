@@ -77,9 +77,9 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Chick-Fil-A_of_Apex_320x50.svg'
       },
       {
-        :name => 'Cici\'s Pizza of Apex',
+        :name => 'CiCi\'s Pizza of Apex',
         :url => 'http://www.cicispizza.com',
-        :img => 'webapp/banner/Cici_Pizza_of_Apex_320x50.svg'
+        :img => 'webapp/banner/CiCi_Pizza_of_Apex_320x50.svg'
       },
       {
         :name => 'Fresh Coat Painters',
