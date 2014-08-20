@@ -164,8 +164,8 @@
 <g id="Apex_Lions_Club" display="none">
 	<text transform="matrix(1 0 0 1 99.62 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Lions Club</tspan><tspan x="-11.979" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexlions.org</tspan></text>
 </g>
-<g id="Apex_Rotary_Club">
-	<text transform="matrix(1 0 0 1 95.1917 20.9043)"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Rotary Club</tspan><tspan x="-12.222" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexrotary.org</tspan></text>
+<g id="Apex_Rotary_Club" display="none">
+	<text transform="matrix(1 0 0 1 95.1917 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Rotary Club</tspan><tspan x="-12.222" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexrotary.org</tspan></text>
 </g>
 <g id="Bo_Jangles" display="none">
 	<text transform="matrix(1 0 0 1 120.4002 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Bo Jangles</tspan><tspan x="-33.704" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.bojangles.org</tspan></text>
@@ -185,7 +185,16 @@
 <g id="Beavers_Denistry" display="none">
 	<text transform="matrix(1 0 0 1 95.8309 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Beaver’s Denistry</tspan><tspan x="-38.609" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.beaversdentistry.com</tspan></text>
 </g>
-<g id="Cici_x27_s_of_Apex_copy_2" display="none">
+<g id="Fresh_Coat_Painters" display="none">
 	<text transform="matrix(1 0 0 1 88.0907 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Fresh Coat Painters</tspan><tspan x="-29.654" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.freshcoatpainters.net</tspan></text>
+</g>
+<g id="Hendrick_Cary_Auto_Mall" display="none">
+	<text transform="matrix(1 0 0 1 69.6141 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Hendrick Cary Auto Mall</tspan><tspan x="1.485" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.caryautomall.com</tspan></text>
+</g>
+<g id="Hendrick_Toyota_Scion_of_Apex" display="none">
+	<text transform="matrix(1 0 0 1 45.3236 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Hendrick Toyota Scion of Apex</tspan><tspan x="20.906" y="21.6" font-family="'Myriad-Roman'" font-size="18">hendricktoyotaapex.com</tspan></text>
+</g>
+<g id="JD_x27_s_Tavern">
+	<text transform="matrix(1 0 0 1 117.9256 20.9043)"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">JD&apos;s Tavern</tspan><tspan x="-32.922" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.jdstavern.com</tspan></text>
 </g>
 </svg>

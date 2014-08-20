@@ -4,7 +4,7 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 320 50" enable-background="new 0 0 320 50" xml:space="preserve">
 <g id="Background">
-	<rect x="0" y="0" fill="#E5E590" width="320" height="50"/>
+	<rect x="0" y="0" fill="#FFFFFF" width="320" height="50"/>
 </g>
 <g id="Logo_Left">
 	<g>
@@ -161,31 +161,7 @@
 		</g>
 	</g>
 </g>
-<g id="Apex_Lions_Club" display="none">
-	<text transform="matrix(1 0 0 1 99.62 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Lions Club</tspan><tspan x="-11.979" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexlions.org</tspan></text>
-</g>
-<g id="Apex_Rotary_Club">
-	<text transform="matrix(1 0 0 1 95.1917 20.9043)"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Rotary Club</tspan><tspan x="-12.222" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexrotary.org</tspan></text>
-</g>
-<g id="Bo_Jangles" display="none">
-	<text transform="matrix(1 0 0 1 120.4002 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Bo Jangles</tspan><tspan x="-33.704" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.bojangles.org</tspan></text>
-</g>
-<g id="Bradley_Flooring" display="none">
-	<text transform="matrix(1 0 0 1 98.5575 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Bradley Flooring</tspan><tspan x="-34.451" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.bradleyscarpet.com</tspan></text>
-</g>
-<g id="Cat_Kearns_-_REMAX_United" display="none">
-	<text transform="matrix(1 0 0 1 59.2015 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Cat Kearns - REMAX United</tspan><tspan x="-0.639" y="21.6" font-family="'Myriad-Roman'" font-size="18">catkearns.remaxagent.com</tspan></text>
-</g>
-<g id="Chick-Fil-A_of_Apex" display="none">
-	<text transform="matrix(1 0 0 1 89.1078 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Chick-Fil-A of Apex</tspan><tspan x="-5.247" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.chick-fil-a.com</tspan></text>
-</g>
-<g id="Cici_x27_s_of_Apex" display="none">
-	<text transform="matrix(1 0 0 1 109.2318 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">CiCi’s of Apex</tspan><tspan x="-24.417" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.cicispizza.com</tspan></text>
-</g>
-<g id="Beavers_Denistry" display="none">
-	<text transform="matrix(1 0 0 1 95.8309 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Beaver’s Denistry</tspan><tspan x="-38.609" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.beaversdentistry.com</tspan></text>
-</g>
-<g id="Cici_x27_s_of_Apex_copy_2" display="none">
-	<text transform="matrix(1 0 0 1 88.0907 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Fresh Coat Painters</tspan><tspan x="-29.654" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.freshcoatpainters.net</tspan></text>
+<g id="Row_1_Copy">
+	<text transform="matrix(1 0 0 1 51.0745 20.9043)"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Advertise Your Business Here</tspan><tspan x="49.526" y="21.6" font-family="'Myriad-Roman'" font-size="18">Click For Details</tspan></text>
 </g>
 </svg>

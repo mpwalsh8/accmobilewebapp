@@ -3,8 +3,11 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 320 50" enable-background="new 0 0 320 50" xml:space="preserve">
-<g id="Background">
-	<rect x="0" y="0" fill="#E5E590" width="320" height="50"/>
+<g id="Background_Yellow" display="none">
+	<rect x="0" y="0" display="inline" fill="#E5E590" width="320" height="50"/>
+</g>
+<g id="Background_Blue">
+	<rect x="0" y="0" fill="#91C7E2" width="320" height="50"/>
 </g>
 <g id="Logo_Left">
 	<g>
@@ -164,8 +167,8 @@
 <g id="Apex_Lions_Club" display="none">
 	<text transform="matrix(1 0 0 1 99.62 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Lions Club</tspan><tspan x="-11.979" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexlions.org</tspan></text>
 </g>
-<g id="Apex_Rotary_Club">
-	<text transform="matrix(1 0 0 1 95.1917 20.9043)"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Rotary Club</tspan><tspan x="-12.222" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexrotary.org</tspan></text>
+<g id="Apex_Rotary_Club" display="none">
+	<text transform="matrix(1 0 0 1 95.1917 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Apex Rotary Club</tspan><tspan x="-12.222" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.apexrotary.org</tspan></text>
 </g>
 <g id="Bo_Jangles" display="none">
 	<text transform="matrix(1 0 0 1 120.4002 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Bo Jangles</tspan><tspan x="-33.704" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.bojangles.org</tspan></text>
@@ -185,7 +188,19 @@
 <g id="Beavers_Denistry" display="none">
 	<text transform="matrix(1 0 0 1 95.8309 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Beaver’s Denistry</tspan><tspan x="-38.609" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.beaversdentistry.com</tspan></text>
 </g>
-<g id="Cici_x27_s_of_Apex_copy_2" display="none">
+<g id="Fresh_Coat_Painters" display="none">
 	<text transform="matrix(1 0 0 1 88.0907 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Fresh Coat Painters</tspan><tspan x="-29.654" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.freshcoatpainters.net</tspan></text>
+</g>
+<g id="Hendrick_Cary_Auto_Mall" display="none">
+	<text transform="matrix(1 0 0 1 69.6141 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Hendrick Cary Auto Mall</tspan><tspan x="1.485" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.caryautomall.com</tspan></text>
+</g>
+<g id="Hendrick_Toyota_Scion_of_Apex" display="none">
+	<text transform="matrix(1 0 0 1 45.3236 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Hendrick Toyota Scion of Apex</tspan><tspan x="20.906" y="21.6" font-family="'Myriad-Roman'" font-size="18">hendricktoyotaapex.com</tspan></text>
+</g>
+<g id="JD_x27_s_Tavern" display="none">
+	<text transform="matrix(1 0 0 1 117.9256 20.9043)" display="inline"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">JD&apos;s Tavern</tspan><tspan x="-32.922" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.jdstavern.com</tspan></text>
+</g>
+<g id="Kangaroo_Express">
+	<text transform="matrix(1 0 0 1 93.3919 20.9043)"><tspan x="0" y="0" font-family="'Myriad-Roman'" font-size="18">Kangaroo Express</tspan><tspan x="-37.593" y="21.6" font-family="'Myriad-Roman'" font-size="18">www.kangarooexpress.com</tspan></text>
 </g>
 </svg>
