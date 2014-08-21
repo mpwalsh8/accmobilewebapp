@@ -83,7 +83,7 @@
 
   <% if @athlete.teams.count > 0 %>
   <h4 class="ui-bar ui-bar-a">Team Rosters:</h4>
-    <ul data-role="listview" data-inset="true" data-filter="true">
+    <ul data-role="listview" data-inset="true" data-filter="false">
       <% @athlete.teams.each do |t| %>
         <% tc = AthletesTeam.find_by(:team_id => t.id, :athlete_id => @athlete.id) %>
         <li><%= link_to(t.formalname, t) %><span class="ui-li-aside"><%= tc.captain ? "Team Captain" : "" %></span></li>
