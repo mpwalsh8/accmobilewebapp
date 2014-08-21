@@ -177,7 +177,18 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Triangle_Orthopaedics_320x50.svg'
       }
     ]
+
     SPLASHADS = [
+      {
+        :name => 'Kona-Ice',
+        :url => 'http://www.kona-ice.com/find-a-kona/local-site/353',
+        :img => 'webapp/splash/Kona_Ice_320x420_Splash.svg'
+      },
+      {
+        :name => 'NC State Fair',
+        :url => 'http://www.ncstatefair.org/2014/index.htm',
+        :img => 'webapp/splash/NCSF2014_320x420_Splash.svg'
+      },
     ]
 
   end

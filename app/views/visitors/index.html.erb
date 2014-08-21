@@ -4,6 +4,8 @@
 <p>Some content goes here.</p>
 -->
 
+
+
 <% seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' } %>
 <div data-role="collapsible-set" data-inset="true">
   <% seasons.each do |key, value| %>
@@ -18,3 +20,16 @@
     </div>
   <% end %>
 </div>
+
+<!-- Splash Banner -->
+<div data-role="popup" id="splash-content" style="width: 320px; height:420px;">
+ <% splash = ACCMobileWebApp::Application::SPLASHADS.sample %>
+ <a href="<%= splash[:url] %>" alt="<%= splash[:name] %>"><img src="<%= image_url(splash[:img]) %>"></a>
+</div>
+<a style="display:none;" id="splash-content-click" data-rel="popup" href="#splash-content" data-position-to="window" data-role="button" data-inline="true" data-transition="fade">Pop Up</a>
+<script type="text/javascript">
+  $( document ).on( "pagecreate", function( event ) {
+  $("#splash-content-click").trigger('click') ;
+});
+</script>
+<!-- /Splash Banner -->
