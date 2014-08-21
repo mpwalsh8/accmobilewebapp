@@ -47,9 +47,9 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Bovenizer_Orthodontics_320x50_Banner.svg'
       },
       {
-        :name => 'Bo Jangles',
+        :name => 'Bojangles',
         :url => 'http://www.bojangles.com',
-        :img => 'webapp/banner/Bo_Jangles_320x50.svg'
+        :img => 'webapp/banner/Bojangles_320x50.svg'
       },
       {
         :name => 'Bradley Flooring',
@@ -99,7 +99,7 @@ module ACCMobileWebApp
       {
         :name => 'Kangaroo Express',
         :url => 'http://kangarooexpress.com/StoreHome/846',
-        :img => 'webapp/banner/Kangaroo_Express_320x50.svg'
+        :img => 'webapp/banner/Kangaroo_Express_320x50_Banner.svg'
       },
       {
         :name => 'Kona-Ice',
