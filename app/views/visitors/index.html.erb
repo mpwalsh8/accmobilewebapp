@@ -5,7 +5,7 @@
 -->
 
 <!-- Splash Banner -->
-<div id="splash-content">
+<div class="ui-content" id="splash-content">
  <% splash = ACCMobileWebApp::Application::SPLASHADS.sample %>
  <a href="<%= splash[:url] %>" alt="<%= splash[:name] %>"><img src="<%= image_url(splash[:img]) %>"></a>
 </div>
@@ -28,22 +28,9 @@
 </div>
 
 <!-- Splash Banner -->
-<!--
-<div data-role="popup" id="splash-content" style="width: 320px; height:420px;">
- <#% splash = ACCMobileWebApp::Application::SPLASHADS.sample %>
- <a href="<#%= splash[:url] %>" alt="<#%= splash[:name] %>"><img src="<#%= image_url(splash[:img]) %>"></a>
-</div>
-<a style="display:none;" id="splash-content-click" data-rel="popup" href="#splash-content" data-position-to="window" data-role="button" data-inline="true" data-transition="fade">Pop Up</a>
-<script type="text/javascript">
-  //$( document ).on( "pagecreate", function( event ) {
-  //$("#splash-content-click").trigger('click') ;
-});
-</script>
--->
-<!-- /Splash Banner -->
 <script type="text/javascript">
   $( document ).on( "pagecreate", function( event ) {
-  //setTimeout( "$('#splash-content').hide();",3000 );
-  setTimeout( "$('#splash-content').fadeOut(1000);",2000 );
+  setTimeout( "$('#splash-content').fadeOut(4000);",5000 );
 });
 </script>
+<!-- /Splash Banner -->
