@@ -27,21 +27,6 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Apex_Cougar_Club_320x50.svg'
       },
       {
-        :name => 'Kona-Ice',
-        :url => 'http://www.kona-ice.com/find-a-kona/local-site/353',
-        :img => 'webapp/banner/Kona_Ice_320x50.svg'
-      },
-      {
-        :name => 'Sports Clips Haircuts',
-        :url => 'http://haircutmenmorrisvillenc.com',
-        :img => 'webapp/banner/Sport_Clips_320x50.svg'
-      },
-      {
-        :name => 'Spielberg Orthodontics',
-        :url => 'http://www.spielberg-ortho.com',
-        :img => 'webapp/banner/Spielberg_Ortho_320x50.png'
-      },
-      {
         :name => 'Apex Lions Club',
         :url => 'http://www.apexlions.org',
         :img => 'webapp/banner/Apex_Lions_Club_320x50.svg'
@@ -55,6 +40,11 @@ module ACCMobileWebApp
         :name => 'Beavers Denistry',
         :url => 'http://www.beaversdenistry.com',
         :img => 'webapp/banner/Beavers_Denistry_320x50.svg'
+      },
+      {
+        :name => 'Bovenizer Orthodontics',
+        :url => 'http://www.bovorthodontics.com',
+        :img => 'webapp/banner/Bovenizer_Orthodontics_320x50_Banner.svg'
       },
       {
         :name => 'Bo Jangles',
@@ -87,16 +77,6 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Fresh_Coat_Painters_320x50.svg'
       },
       {
-        :name => 'Apex Lions Club',
-        :url => 'http://www.apexlions.org',
-        :img => 'webapp/banner/Apex_Lions_Club_320x50.svg'
-      },
-      {
-        :name => 'Apex Rotary Club',
-        :url => 'http://www.apexrotary.org',
-        :img => 'webapp/banner/Apex_Rotary_Club_320x50.svg'
-      },
-      {
         :name => 'Hendrick Cary Auto Mall',
         :url => 'http://www.caryautomall.com',
         :img => 'webapp/banner/Hendrick_Cary_Auto_Mall_320x50.svg'
@@ -107,6 +87,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Hendrick_Toyota_Scion_of_Apex_320x50.svg'
       },
       {
+        :name => 'Hurricane Grill & Wings',
+        :url => 'http://hurricanewings.com/cary',
+        :img => 'webapp/banner/Hurricane_Grill_and_Wings_320x50_Banner.svg '
+      },
+      {
         :name => 'JD\'s Tavern',
         :url => 'http://www.jdstavern.com',
         :img => 'webapp/banner/JDs_Tavern_320x50.svg'
@@ -115,6 +100,11 @@ module ACCMobileWebApp
         :name => 'Kangaroo Express',
         :url => 'http://kangarooexpress.com/StoreHome/846',
         :img => 'webapp/banner/Kangaroo_Express_320x50.svg'
+      },
+      {
+        :name => 'Kona-Ice',
+        :url => 'http://www.kona-ice.com/find-a-kona/local-site/353',
+        :img => 'webapp/banner/Kona_Ice_320x50.svg'
       },
       {
         :name => 'L.G. Jordan Oil Co.',
@@ -165,6 +155,16 @@ module ACCMobileWebApp
         :name => 'The Skin Institute',
         :url => 'http://www.tsiskin.com',
         :img => 'webapp/banner/The_Skin_Institute_320x50.svg'
+      },
+      {
+        :name => 'Spielberg Orthodontics',
+        :url => 'http://www.spielberg-ortho.com',
+        :img => 'webapp/banner/Spielberg_Ortho_320x50.png'
+      },
+      {
+        :name => 'Sports Clips Haircuts',
+        :url => 'http://haircutmenmorrisvillenc.com',
+        :img => 'webapp/banner/Sport_Clips_320x50.svg'
       },
       {
         :name => 'Triangle Eye Institute',
