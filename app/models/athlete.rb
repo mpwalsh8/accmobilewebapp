@@ -18,6 +18,15 @@ class Athlete < ActiveRecord::Base
     end
   end
 
+  def height2text
+    if height.blank? then
+      pec = "n/a"
+    else
+      divmod_output = height.divmod(12)
+      pec = sprintf("%d'%d\"", divmod_output[0], divmod_output[1])
+    end
+  end
+
   #  Is athlete on roster?
   def is_on_roster?(team)
     self.teams.include?(team)
