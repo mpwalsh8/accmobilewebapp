@@ -107,6 +107,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Kona_Ice_320x50.svg'
       },
       {
+        :name => 'Leith Auto Park Chrysler-Jeep',
+        :url => 'http://www.autoparkchryslerjeep.com',
+        :img => 'webapp/banner/Leith_AutoPark_320x50_Banner.svg'
+      },
+      {
         :name => 'L.G. Jordan Oil Co.',
         :url => 'http://www.lgjordanoil.com',
         :img => 'webapp/banner/LGJordan_Oil_Co_320x50.svg'
