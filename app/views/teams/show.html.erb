@@ -1,10 +1,10 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %></h3>
 <ul data-role="listview" data-inset="true">
   <% if !@team.url.blank? %> 
-    <li><a  href="<%= sprintf("%s", @team.url) %>">Web Site</a><span class="ui-li-aside" data-rel="external""><%= @team.url %></span></li>
+    <li><a data-rel="external" href="<%= sprintf("%s", @team.url) %>">Team Web Site<p><%= @team.url %></p></a></li>
   <% end %>
   <% if !@team.twitter.blank? %>
-    <li><a  href="<%= sprintf("https://twitter.com/%s", @team.twitter.delete("@")) %>" data-rel="external">Twitter</a><span class="ui-li-aside"><%= @team.twitter %></span></li>
+    <li><a  href="<%= sprintf("https://twitter.com/%s", @team.twitter.delete("@")) %>" data-rel="external">Twitter<p><%= @team.twitter %></p></a></li>
   <% end %>
 <!--
   <li><%#= link_to 'Team Roster', roster_team_path(@team) %></a></li>
