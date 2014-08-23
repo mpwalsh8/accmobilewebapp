@@ -35,7 +35,7 @@
         <h3 class="collapsible-fix ui-bar ui-bar-a ui-corner-none">Roster<span class="ui-li-count"><%= @team.athletes.count %></span></h3>
         <% if @team.athletes.count > 0 %>
         <%#= @team.athletes.collect {|c| link_to(c.fullname, c)}.join(", ").html_safe %>
-        <ul data-role="listview" data-inset="false" data-filter="false">
+        <ul data-role="listview" data-inset="false" data-filter="true">
           <% athletes = @team.athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
           <% athletes.each do |a| %>
             <% tc = AthletesTeam.find_by(:athlete_id => a.id, :team_id => @team.id) %>
@@ -44,7 +44,7 @@
                 <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.position) %>
             <% end %>
             <% if !tc.jerseynumber.blank? %>
-                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.jerseynumber) %>
+                <% notes = sprintf("%s%s#%s", notes, notes.blank? ? "" : " / ", tc.jerseynumber) %>
             <% end %>
             <li><%= link_to(a.lastcommafirst, a) %><span class="ui-li-aside"><%= notes %></span></li>
           <% end %>
