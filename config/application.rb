@@ -27,6 +27,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Apex_Cougar_Club_320x50.svg'
       },
       {
+        :name => 'Apex Auto Works',
+        :url => 'http://www.apexautoworks.org',
+        :img => 'webapp/banner/Apex_Auto_Works_320x50.svg'
+      },
+      {
         :name => 'Apex Lions Club',
         :url => 'http://www.apexlions.org',
         :img => 'webapp/banner/Apex_Lions_Club_320x50.svg'
@@ -127,6 +132,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Luihn_Food_Systems_Taco_Bell_320x50.svg'
       },
       {
+        :name => 'Mathnasium',
+        :url => 'http://www.mathnasium.com/apex',
+        :img => 'webapp/banner/Mathnasium_320x50.svg'
+      },
+      {
         :name => 'McDonalds of Apex',
         :url => 'http://www.mcnorthcarolina.com/17721',
         :img => 'webapp/banner/McDonalds_of_Apex_320x50.svg'
@@ -152,6 +162,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Red_Robin_320x50.svg'
       },
       {
+        :name => 'Rudinos Sports Porch of Apex',
+        :url => 'http://www.rudinos.com/sports_porch',
+        :img => 'webapp/banner/Rudions_Sports_Porch_320x50.svg'
+      },
+      {
         :name => 'Scruffy Duck',
         :url => 'http://www.scruffy-duck.com',
         :img => 'webapp/banner/Scruffy_Duck_320x50.svg'
@@ -165,6 +180,11 @@ module ACCMobileWebApp
         :name => 'Spielberg Orthodontics',
         :url => 'http://www.spielberg-ortho.com',
         :img => 'webapp/banner/Spielberg_Ortho_320x50.png'
+      },
+      {
+        :name => 'SportHQ',
+        :url => 'http://www.sporthq.org',
+        :img => 'webapp/banner/SportHQ_320x50.svg'
       },
       {
         :name => 'Sports Clips Haircuts',
