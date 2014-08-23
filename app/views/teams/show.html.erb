@@ -46,7 +46,7 @@
             <% if !tc.jerseynumber.blank? %>
                 <% notes = sprintf("%s%s#%s", notes, notes.blank? ? "" : " / ", tc.jerseynumber) %>
             <% end %>
-            <li><%= link_to(a.lastcommafirst, a) %><span class="ui-li-aside"><%= notes %></span></li>
+            <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, a) %></li>
           <% end %>
         </ul>
         <% else %>
