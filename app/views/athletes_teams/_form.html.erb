@@ -20,7 +20,7 @@
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :athlete_id, "Athlete" %>
-    <%= f.collection_select :athlete_id, Athlete.all, :id, :lastcommafirst%>
+    <%= f.collection_select :athlete_id, Athlete.all.order(:lastname, :firstname), :id, :lastcommafirst%>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :captain %>
