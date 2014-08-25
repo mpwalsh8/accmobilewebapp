@@ -1,18 +1,11 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %></h3>
 <ul data-role="listview" data-inset="true">
+  <li><a href="#">Schedule</a><span class="ui-li-aside"><i>Coming Soon!</i></span></li>
   <% if !@team.url.blank? %> 
     <li><a data-rel="external" href="<%= sprintf("%s", @team.url) %>">Team Web Site<p><%= @team.url %></p></a></li>
   <% end %>
-  <% if !@team.twitter.blank? %>
-    <li><a  href="<%= sprintf("https://twitter.com/%s", @team.twitter.delete("@")) %>" data-rel="external">Twitter<p><%= @team.twitter %></p></a></li>
-  <% end %>
-<!--
-  <li><%#= link_to 'Team Roster', roster_team_path(@team) %></a></li>
-  <li><%#= link_to 'Coaching Staff', staff_team_path(@team) %></a></li>
--->
-  <li><a href="#">Schedule</a><span class="ui-li-aside"><i>Coming Soon!</i></span></li>
-  <!--  Team Coaching Staff -->
 </ul>
+  <!--  Team Coaching Staff -->
   <div data-role="collapsible-set" data-inset="true" data-mini="false">
       <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
         <h3 class="ui-bar ui-bar-a ui-corner-none">Coaching Staff<span class="ui-li-count-fix ui-li-count"><%= @team.coaches.count %></span></h3>
@@ -56,6 +49,32 @@
     </div>
 
 
+  <% if !@team.twitter.blank? %>
+
+
+<%
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
+  config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
+  config.oauth_token = ENV["TWITTER_OAUTH_TOKEN"]
+  config.oauth_token_secret = ENV["TWITTER_OAUTH_TOKEN_SECRET"]
+end
+
+client.user(@team.twitter.delete("@"))
+%>
+
+
+<% @tweets = client.user_timeline(@team.twitter.delete("@"))[0..2] %>
+  <ul data-role="listview" data-inset="true">
+    <li data-role="list-divider"><%= @team.formalname %> on Twitter</li>
+    <% @tweets.each do |tweet| %>
+<% debug tweet %>
+      <li><%= link_to(sprintf("@%s<p>%s</p>", tweet.user.screen_name, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}") %></li>
+
+    <% end %>
+  </ul>
+
+<% end %>
 
 <div data-role="controlgroup" data-type="horizontal">
   <%= link_to 'Back to Teams', teams_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>

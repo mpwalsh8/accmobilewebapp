@@ -27,6 +27,37 @@
   <% end %>
 </div>
 
+<%
+client = Twitter::REST::Client.new do |config|
+  config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
+  #config.consumer_key = Settings.Twitter.ConsumerKey
+  config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
+  #config.consumer_secret = Settings.Twitter.ConsumerSecret
+  config.oauth_token = ENV["TWITTER_OAUTH_TOKEN"]
+  #config.oauth_token = Settings.Twitter.AccessToken
+  config.oauth_token_secret = ENV["TWITTER_OAUTH_TOKEN_SECRET"]
+  #config.oauth_token_secret = Settings.Twitter.AccessTokenSecret
+end
+
+client.user(Settings.Twitter.Username)
+logger.debug "\n\t " + client.current_user.to_yaml + "\n\n"
+%>
+
+
+<% @tweets = client.user_timeline[0..2] %>
+<section id="tweets">
+<!--<div data-role="content">-->
+  <ul data-role="listview" data-inset="true">
+    <li data-role="list-divider"><%= client.user.name %> on Twitter</li>
+    <% @tweets.each do |tweet| %>
+<% debug tweet %>
+      <li><%= link_to(sprintf("@%s<p>%s</p>", tweet.user.screen_name, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}") %></li>
+
+    <% end %>
+  </ul>
+<!--</div>-->
+</section>
+
 <!-- Splash Banner -->
 <script type="text/javascript">
   $( document ).on( "pagecreate", function( event ) {
