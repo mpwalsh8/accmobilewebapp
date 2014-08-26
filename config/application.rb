@@ -24,7 +24,7 @@ module ACCMobileWebApp
       {
         :name => 'Apex Cougar Club',
         :url => 'http://www.apexcougarclub.org/corporate-sponsorship',
-        :img => 'webapp/banner/Apex_Cougar_Club_320x50.svg'
+        :img => 'webapp/banner/Apex_Cougar_Club_320x50_Banner.svg'
       },
       {
         :name => 'Apex Auto Works',
@@ -94,7 +94,7 @@ module ACCMobileWebApp
       {
         :name => 'Hurricane Grill & Wings',
         :url => 'http://hurricanewings.com/cary',
-        :img => 'webapp/banner/Hurricane_Grill_and_Wings_320x50_Banner.svg '
+        :img => 'webapp/banner/Hurricane_Grill_and_Wings_320x50_Banner.svg'
       },
       {
         :name => 'JD\'s Tavern',
@@ -142,14 +142,14 @@ module ACCMobileWebApp
         :img => 'webapp/banner/McDonalds_of_Apex_320x50.svg'
       },
       {
-        :name => 'Metcalf Painting & Interiors',
-        :url => 'http://www.metcalfpainting.com',
-        :img => 'webapp/banner/Metcalf_Painting_320x50.svg'
+        :name => 'Money Pages of Cary & Apex',
+        :url => 'http://www.moneypages.com/cary-nc-coupons',
+        :img => 'webapp/banner/MoneyPages_320x50_Banner.svg'
       },
       {
         :name => 'Mosquito Authority',
         :url => 'http://www.bugsbite.com',
-        :img => 'webapp/banner/Mosquito_Authority_320x50.svg'
+        :img => 'webapp/banner/Mosquito_Authority_320x50_Banner.svg'
       },
       {
         :name => 'Perfect Promotions',
