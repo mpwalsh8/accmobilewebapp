@@ -184,7 +184,7 @@ module ACCMobileWebApp
       {
         :name => 'SportHQ',
         :url => 'http://www.sporthq.org',
-        :img => 'webapp/banner/SportHQ_320x50.svg'
+        :img => 'webapp/banner/SportHQ_320x50_Banner.svg'
       },
       {
         :name => 'Sports Clips Haircuts',
