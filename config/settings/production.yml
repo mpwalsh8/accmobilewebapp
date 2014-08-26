@@ -1,15 +1,33 @@
 Header:
-  Title:  Apex Cougar Club
-  SubTitle:  Supporting Apex HS Athletics
-  AppName:  Apex Cougar Club Mobile
+  Title:  "Apex Cougar Club"
+  SubTitle:  "Supporting Apex HS Athletics"
+  AppName:  "Apex Cougar Club Mobile App"
 
 School:
-  Principal:  Matt Wight
-  AthleticDirector:  Del Philips
+  Name:  "Apex High School"
+  Conference:  "SWAC4A"
+  Classification:  "4A"
+  Address:  "1501 Laura Duncan Rd."
+  City:  "Apex"
+  State:  "North Carolina"
+  ZipCode:  "27502"
+  Phone:  "+1-919-387-2208"
+  WebSite:  "http://www.apexhigh.com"
+  Twitter:  "@ApexHighSchool"
+  Principal:  "Matt Wight"
+  PrincipalEmail:  "mwight@wcpss.net"
+  AthleticDirector:  "Del Philips"
+  AthleticDirectorEmail:  "wphillips@wcpss.net"
+
 
 Twitter:
-  ConsumerKey:  "ABC"
+  Enabled:  "No"
+  Username: "apexcougarclub"
   ConsumerKey: "YOUR_CONSUMER_KEY"
   ConsumerSecret: "YOUR_CONSUMER_SECRET"
   AccessToken: "YOUR_ACCESS_TOKEN"
   AccessTokenSecret: "YOUR_ACCESS_SECRET"
+
+AppSettings:
+  AutoTweetResults: On
+  AutoTweetScheduleUpdates: On

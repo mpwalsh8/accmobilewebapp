@@ -44,7 +44,7 @@ module ACCMobileWebApp
       {
         :name => 'Beavers Denistry',
         :url => 'http://www.beaversdenistry.com',
-        :img => 'webapp/banner/Beavers_Denistry_320x50.svg'
+        :img => 'webapp/banner/Beavers_Dentistry_320x50_Banner.svg'
       },
       {
         :name => 'Bovenizer Orthodontics',
