@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.4)
       actionpack (= 4.1.4)
@@ -109,6 +110,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.4)
       sprockets-rails (~> 2.0)
+    rails-assets-jquery-cycle2 (2.1.5)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -175,11 +177,16 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.2.0)
+    twitter-text (1.9.2)
+      unf (~> 0.1.0)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -200,6 +207,7 @@ DEPENDENCIES
   pg
   quiet_assets
   rails (= 4.1.4)
+  rails-assets-jquery-cycle2
   rails_12factor
   rails_config
   rails_layout
@@ -211,4 +219,5 @@ DEPENDENCIES
   thin
   turbolinks
   twitter
+  twitter-text
   uglifier (>= 1.3.0)

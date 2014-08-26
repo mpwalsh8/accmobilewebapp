@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.1.2'
 gem 'rails', '4.1.4'
 gem 'sass-rails', '~> 4.0.3'
@@ -45,3 +46,7 @@ gem 'rails_config'
 
 ##  Twitter support
 gem 'twitter'
+gem 'twitter-text'
+
+##  Cycle2 support
+gem 'rails-assets-jquery-cycle2'
