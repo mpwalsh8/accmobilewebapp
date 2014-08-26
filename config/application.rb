@@ -154,7 +154,7 @@ module ACCMobileWebApp
       {
         :name => 'Perfect Promotions',
         :url => 'http://www.perfect-promos.com',
-        :img => 'webapp/banner/Perfect_Promotions_320x50.svg'
+        :img => 'webapp/banner/Perfect_Promotions_320x50_Banner.svg'
       },
       {
         :name => 'Red Robin',
