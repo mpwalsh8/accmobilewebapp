@@ -164,7 +164,7 @@ module ACCMobileWebApp
       {
         :name => 'Rudinos Sports Porch of Apex',
         :url => 'http://www.rudinos.com/sports_porch',
-        :img => 'webapp/banner/Rudions_Sports_Porch_320x50.svg'
+        :img => 'webapp/banner/Rudinos_Sports_Porch_320x50.svg'
       },
       {
         :name => 'Scruffy Duck',
