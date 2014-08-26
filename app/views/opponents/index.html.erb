@@ -1,3 +1,4 @@
+<!--
 <h1>Listing opponents</h1>
 
 <table>
@@ -12,25 +13,26 @@
   </thead>
 
   <tbody>
-    <% @opponents.each do |opponent| %>
+    <%# @opponents.each do |opponent| %>
       <tr>
-        <td><%= opponent.name %></td>
-        <td><%= opponent.mascot %></td>
-        <td><%= opponent.homevenue %></td>
-        <td><%= opponent.conferenceopponent %></td>
-        <td><%= link_to 'Show', opponent %></td>
-        <td><%= link_to 'Edit', edit_opponent_path(opponent) %></td>
-        <td><%= link_to 'Destroy', opponent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= opponent.name %></td>
+        <td><%#= opponent.mascot %></td>
+        <td><%#= opponent.homevenue %></td>
+        <td><%#= opponent.conferenceopponent %></td>
+        <td><%#= link_to 'Show', opponent %></td>
+        <td><%#= link_to 'Edit', edit_opponent_path(opponent) %></td>
+        <td><%#= link_to 'Destroy', opponent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Opponent', new_opponent_path %>
+<%#= link_to 'New Opponent', new_opponent_path %>
+-->
 
-<h3 class="ui-bar ui-bar-a ui-corner-all">Opponents</h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none">Opponents</h3>
 <ul data-role="listview" data-inset="true" data-autodividers="true" data-filter="true">
   <% @opponents.each do |opponent| %>
     <li><%= link_to opponent.name + " " + opponent.mascot, opponent %></li>

@@ -4,12 +4,13 @@ class OpponentsController < ApplicationController
   # GET /opponents
   # GET /opponents.json
   def index
-    @opponents = Opponent.all
+    @opponents = Opponent.all.order(:name)
   end
 
   # GET /opponents/1
   # GET /opponents/1.json
   def show
+    #@homevenue = Venue.find_by(:id => self.homevenue)
   end
 
   # GET /opponents/new
