@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811160921) do
+ActiveRecord::Schema.define(version: 20140827120734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,18 @@ ActiveRecord::Schema.define(version: 20140811160921) do
   end
 
   add_index "coaches_teams", ["coach_id", "team_id"], name: "index_coaches_teams_on_coach_id_and_team_id", unique: true, using: :btree
+
+  create_table "events", force: true do |t|
+    t.integer  "teamid"
+    t.integer  "opponentid"
+    t.integer  "venueid"
+    t.integer  "eventduration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "eventdate"
+    t.string   "eventtime"
+    t.string   "eventlocation"
+  end
 
   create_table "opponents", force: true do |t|
     t.string   "name"

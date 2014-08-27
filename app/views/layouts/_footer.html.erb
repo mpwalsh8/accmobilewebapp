@@ -3,7 +3,7 @@
   <div data-role="navbar" data-inline="true" data-mini="true" data-corners="false">
     <ul>
       <li><a href="#" data-role="button" data-icon="info" data-transition="slide">News</a></li>
-      <li><a href="#" data-role="button" data-icon="calendar" data-transition="slide">Events</a></li>
+      <li><%= link_to 'Events', events_path, :'data-role' => "button", :'data-icon' => 'calendar', :'data-transition' => 'slide' %></li>
       <li><%= link_to 'Volunteer', page_path('volunteer'), :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'slide' %></li>
       <!--<li><%#= link_to 'Sports', sports_path, :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'slide' %></li>-->
       <li><%= link_to 'Teams', teams_path, :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'slide' %></li>

@@ -1,6 +1,7 @@
   <div data-role="panel" id="menu" data-display="overlay" data-position="right">
     <ul data-role="listview" data-inset="true" data-corners="true">
       <li><a href="/" data-role="button" data-icon="home" data-iconpos="left">Home</a></li>
+      <li><%= link_to 'Events', events_path, :'data-role' => "button", :'data-icon' => 'calendar', :'data-transition' => 'slide' %></li>
       <li><a href="#" data-role="button" data-icon="calendar" data-transition="slide">Events</a></li>
       <li><%= link_to 'Volunteer', page_path('volunteer'), :'data-role' => "button", :'data-icon' => "user" %></li>
 <!--
