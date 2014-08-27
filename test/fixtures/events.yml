@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teamid: 1
+  opponentid: 1
+  venueid: 1
+  type: 
+  eventdatetime: 2014-08-26 15:28:18
+  eventduration: 1
+
+two:
+  teamid: 1
+  opponentid: 1
+  venueid: 1
+  type: 
+  eventdatetime: 2014-08-26 15:28:18
+  eventduration: 1

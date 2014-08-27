@@ -1,0 +1,29 @@
+<!--
+<%#= link_to 'Edit', edit_event_path(@event) %> |
+<%#= link_to 'Back', events_path %>
+-->
+
+<% venue = Venue.find_by(:id => @event.venueid) %>
+<% team = Team.find_by(:id => @event.teamid) %>
+<% opponent = Opponent.find_by(:id => @event.opponentid) %>
+<% dt = DateTime.parse(sprintf("%s %s", @event.eventdate, @event.eventtime)) %>
+
+<ul data-role="listview" data-inset="true">
+  <li data-role="list-divider">
+    <h1><%= team.formalname %> vs <%= opponent.name %></h1>
+    <p>Scheduled:  <%= dt.strftime("%A, %B %-d %Y at %l:%M %p") %></p>
+    <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
+  </li>
+  <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>
+  <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %></li>
+  <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-aside" data-rel="external""><i>(<%= @event.eventlocation.camelize %>)</i></span></li>
+</ul>
+
+<% logger.info(@event.to_yaml) %>
+<% logger.info(@team.to_yaml) %>
+
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
+  <%#= link_to 'Edit', edit_event_path(@event), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+</div>
+

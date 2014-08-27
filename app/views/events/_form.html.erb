@@ -1,0 +1,61 @@
+<%= simple_form_for(@event) do |f| %>
+  <%= f.error_notification %>
+
+<!--
+  <div class="form-inputs">
+    <%= f.input :teamid %>
+    <%= f.input :opponentid %>
+    <%= f.input :venueid %>
+    <%= f.input :eventlocation %>
+    <%= f.input :eventdate %>
+    <%= f.input :eventtime %>
+    <%= f.input :eventduration %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+-->
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :teamid, "Team" %>
+    <%= f.collection_select :teamid, Team.all, :id, :formalname %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :opponentid, "Opponent" %>
+    <%= f.collection_select :opponentid, Opponent.all, :id, :name %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :venueid, "Venue" %>
+    <%= f.collection_select :venueid, Venue.all, :id, :name %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :eventlocation, "Location" %>
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+      <%= f.radio_button :eventlocation, 'home' %>
+      <%= f.label :eventlocation, 'Home', :value => 'home' %>
+      <%= f.radio_button :eventlocation, 'away' %>
+      <%= f.label :eventlocation, 'Away', :value => 'away' %>
+      <%= f.radio_button :eventlocation, 'neutral' %>
+      <%= f.label :eventlocation, 'Neutral', :value => 'neutral' %>
+    </fieldset>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :eventdate, "Event Date" %>
+    <%= f.text_field :eventdate, :type => "date" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :eventtime, "Event Time" %>
+    <%= f.text_field :eventtime, :type => "time" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :eventduration, "Duration (minutes)" %>
+    <%= f.text_field :eventduration, :type => "number", :value => "120" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save Event" %>
+  </div>
+
+
+<% end %>
