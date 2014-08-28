@@ -30,7 +30,8 @@
       <% @sportsatvenue.each do |s| %>
         <div class="ui-block-<%= uib[c.modulo(3)] %>">
           <figure>
-            <%= image_tag(s.sport.imageurl, alt: s.sport.name, title: s.sport.name) %>
+            <%= image_tag("pictograms/svg/#{s.sport.imageurl}.svg", alt: s.sport.name, style: "height: 80px;", title: s.sport.name) %>
+
             <figcaption><%= s.sport.name %><figcaption>
           </figure>
         </div>
