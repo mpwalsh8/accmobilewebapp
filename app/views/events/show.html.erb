@@ -6,12 +6,11 @@
 <% venue = Venue.find_by(:id => @event.venueid) %>
 <% team = Team.find_by(:id => @event.teamid) %>
 <% opponent = Opponent.find_by(:id => @event.opponentid) %>
-<% dt = DateTime.parse(sprintf("%s %s", @event.eventdate, @event.eventtime)) %>
 
 <ul data-role="listview" data-inset="true">
   <li data-role="list-divider">
     <h1><%= team.formalname %> vs <%= opponent.name %></h1>
-    <p>Scheduled:  <%= dt.strftime("%A, %B %-d %Y at %l:%M %p") %></p>
+    <p>Scheduled:  <%= @event.datetimelong %></p>
     <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
   </li>
   <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>

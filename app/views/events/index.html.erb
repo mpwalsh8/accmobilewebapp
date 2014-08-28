@@ -1,3 +1,4 @@
+<!--
 <h1>Listing events</h1>
 
 <table>
@@ -15,31 +16,38 @@
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+    <%# @events.each do |event| %>
       <tr>
-        <td><%= event.teamid %></td>
-        <td><%= event.opponentid %></td>
-        <td><%= event.venueid %></td>
-        <td><%= event.eventlocation %></td>
-        <td><%= event.eventdate %></td>
-        <td><%= event.eventtime %></td>
-        <td><%= event.eventduration %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= event.teamid %></td>
+        <td><%#= event.opponentid %></td>
+        <td><%#= event.venueid %></td>
+        <td><%#= event.eventlocation %></td>
+        <td><%#= event.eventdate %></td>
+        <td><%#= event.eventtime %></td>
+        <td><%#= event.eventduration %></td>
+        <td><%#= link_to 'Show', event %></td>
+        <td><%#= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%#= link_to 'New Event', new_event_path %>
+-->
 
-<h3 class="ui-bar ui-bar-a ui-corner-all">Events</h3>
-<ul data-role="listview" data-inset="true" data-autodividers="true" data-filter="true">
+<h3 class="ui-bar ui-bar-a ui-corner-none">Events</h3>
+<ul data-role="listview" data-inset="true">
   <% @events.each do |event| %>
-    <li><%= link_to event.id, event %></li>
+    <% venue = Venue.find_by(:id => event.venueid) %>
+    <% team = Team.find_by(:id => event.teamid) %>
+    <% opponent = Opponent.find_by(:id => event.opponentid) %>
+    <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s at %s</p>",
+      image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
+      opponent.name, event.datetime, venue.name).html_safe, event %></li>
+    </li>
   <% end %>
 </ul>
 
