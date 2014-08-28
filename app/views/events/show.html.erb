@@ -18,8 +18,8 @@
   <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-aside" data-rel="external""><i>(<%= @event.eventlocation.camelize %>)</i></span></li>
 </ul>
 
-<% logger.info(@event.to_yaml) %>
-<% logger.info(@team.to_yaml) %>
+<%# logger.info(@event.to_yaml) %>
+<%# logger.info(@team.to_yaml) %>
 
 <div data-role="controlgroup" data-type="horizontal">
   <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>

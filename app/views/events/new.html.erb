@@ -1,5 +1,8 @@
-<h1>New event</h1>
+<h3 class="ui-bar ui-bar-a ui-corner-none">New Event</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', events_path %>
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
+</div>
+
