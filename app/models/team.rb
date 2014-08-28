@@ -9,10 +9,10 @@ class Team < ActiveRecord::Base
   def formalname
     if (gender != 'co-ed')
       sprintf("%s's %s %s", gender.camelize,
-        varsity? ? "Varsity" : "JV", sport.name)
+        varsity? ? "" : "JV", sport.name)
     else
       sprintf("%s %s",
-        varsity? ? "Varsity" : "JV", sport.name)
+        varsity? ? "" : "JV", sport.name)
     end
   end
 end
