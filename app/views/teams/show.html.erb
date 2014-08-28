@@ -10,7 +10,7 @@
         <% events = Event.where(:teamid => @team.id).order(:eventdate, :eventtime) %>
         <h3 class="ui-bar ui-bar-a ui-corner-none">Schedule<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
         <% if events.count > 0 %>
-        <ul data-role="listview" data-inset="true">
+        <ul data-role="listview" data-inset="false">
           <% events.each do |event| %>
 <% logger.info event.to_yaml %>
             <% venue = Venue.find_by(:id => event.venueid) %>
