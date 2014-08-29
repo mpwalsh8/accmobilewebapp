@@ -18,7 +18,10 @@
 
       <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
         <% events = Event.where(:eventdate => Time.now.strftime("%Y-%m-%d")).order(:eventdate, :eventtime) %>
+<% logger.info "#######################################" %>
+<% logger.info events.count %>
 <% logger.info events.to_yaml %>
+<% logger.info "#######################################" %>
         <h3 class="ui-bar ui-bar-a ui-corner-none">Today's Schedule<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
         <% if events.count > 0 %>
         <ul data-role="listview" data-inset="true">
