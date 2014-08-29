@@ -19,7 +19,7 @@
 -->
   <div class="field">
     <%= f.label :sport_id %>
-    <%= f.collection_select :sport_id, Sport.all, :id, :name %>
+    <%= f.collection_select :sport_id, Sport.order(:name).all, :id, :name,  {include_blank: true} %>
   </div>
 <div class="ui-grid-a">
 <div class="ui-block-a">

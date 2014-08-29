@@ -16,11 +16,11 @@
 -->
   <div data-role="fieldcontain" class="field">
     <%= f.label :team_id, "Team" %>
-    <%= f.collection_select :team_id, Team.all, :id, :formalname %>
+    <%= f.collection_select :team_id, Team.order(:gender, :varsity).all, :id, :formalname, {include_blank: true} %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :athlete_id, "Athlete" %>
-    <%= f.collection_select :athlete_id, Athlete.all.order(:lastname, :firstname), :id, :lastcommafirst%>
+    <%= f.collection_select :athlete_id, Athlete.all.order(:lastname, :firstname), :id, :lastcommafirst, {include_blank: true} %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :captain %>

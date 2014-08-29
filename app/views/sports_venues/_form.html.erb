@@ -13,11 +13,11 @@
 -->
   <div data-role="fieldcontain" class="field">
     <%= f.label :sport_id, "Sport" %><br>
-    <%= f.collection_select :sport_id, Sport.all, :id, :name %>
+    <%= f.collection_select :sport_id, Sport.order(:name).all, :id, :name, {include_blank: true} %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :venue_id, "Venue" %><br>
-    <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+    <%= f.collection_select :venue_id, Venue.order(:name).all, :id, :name, {include_blank: true} %>
   </div>
   <br />
   <div class="actions">

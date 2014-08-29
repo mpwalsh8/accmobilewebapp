@@ -24,7 +24,7 @@
   </div>
   <div class="fieldcontain field">
     <%= f.label :homevenue, "Home Venue" %><br>
-    <%= f.collection_select :homevenue, Venue.all, :id, :name %>
+    <%= f.collection_select :homevenue, Venue.order(:name).all, :id, :name,  {include_blank: true} %>
   </div>
   <div class="fieldcontain field">
     <%= f.label :conferenceopponent, "Conference Opponent" %>
