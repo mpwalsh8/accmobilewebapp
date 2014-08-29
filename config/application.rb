@@ -119,7 +119,7 @@ module ACCMobileWebApp
       {
         :name => 'L.G. Jordan Oil Co.',
         :url => 'http://www.lgjordanoil.com',
-        :img => 'webapp/banner/LGJordan_Oil_Co_320x50.svg'
+        :img => 'webapp/banner/LG_Jordan_Oil_Co_320x50_Banner.svg'
       },
       {
         :name => 'Luihn Food Systems KFC',
@@ -139,7 +139,7 @@ module ACCMobileWebApp
       {
         :name => 'McDonalds of Apex',
         :url => 'http://www.mcnorthcarolina.com/17721',
-        :img => 'webapp/banner/McDonalds_of_Apex_320x50.svg'
+        :img => 'webapp/banner/McDonalds_of_Apex_320x50_Banner.svg'
       },
       {
         :name => 'Money Pages of Cary & Apex',
