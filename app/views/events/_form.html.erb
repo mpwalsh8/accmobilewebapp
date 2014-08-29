@@ -19,15 +19,15 @@
 
   <div data-role="fieldcontain" class="field">
     <%= f.label :teamid, "Team" %>
-    <%= f.collection_select :teamid, Team.all, :id, :formalname %>
+    <%= f.collection_select :teamid, Team.order(:gender, :varsity).all, :id, :formalname, {include_blank: true} %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :opponentid, "Opponent" %>
-    <%= f.collection_select :opponentid, Opponent.all, :id, :name %>
+    <%= f.collection_select :opponentid, Opponent.order(:name).all, :id, :name, {include_blank: true} %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :venueid, "Venue" %>
-    <%= f.collection_select :venueid, Venue.all, :id, :name %>
+    <%= f.collection_select :venueid, Venue.order(:name).all, :id, :name, {include_blank: true} %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventlocation, "Location" %>
