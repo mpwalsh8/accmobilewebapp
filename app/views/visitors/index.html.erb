@@ -18,10 +18,6 @@
 
       <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
         <% events = Event.where(:eventdate => Time.now.strftime("%Y-%m-%d")).order(:eventdate, :eventtime) %>
-<% logger.info "#######################################" %>
-<% logger.info events.count %>
-<% logger.info events.to_yaml %>
-<% logger.info "#######################################" %>
         <h3 class="ui-bar ui-bar-a ui-corner-none">Today's Schedule<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
         <% if events.count > 0 %>
         <ul data-role="listview" data-inset="true">
@@ -31,7 +27,7 @@
             <% opponent = Opponent.find_by(:id => event.opponentid) %>
             <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s at %s</p>",
               image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
-              opponent.name, event.datetime, venue.name).html_safe, event %><span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %></span></li>
+              opponent.name, event.datetime, venue.name).html_safe, event %><span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %> / <%= opponent.conferenceopponent ? "C" : "O" %></span></li>
           <% end %>
         </ul>
         <% else %>
@@ -45,11 +41,15 @@
     <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-inset="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
       <% @teams = Team.where(:season => key) %>
       <h3 class="collapsible-fix"><%= key.camelize %> Sports<span class="ui-li-count-fix ui-li-count"><%= @teams.count %></span></h3>
+      <% if @teams.count > 0 %>
       <ul data-role="listview" data-inset="true" data-filter="false">
         <% @teams.each do |team| %>
           <li><%= link_to team.formalname, team %></li>
         <% end %>
       </ul>
+      <% else %>
+        <p>No teams for <%= key.camelize %> season.</p>
+      <% end %>
     </div>
   <% end %>
 </div>
