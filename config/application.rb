@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module ACCMobileWebApp
   class Application < Rails::Application
+
+    # Disable strong params
+    #config.action_controller.permit_all_parameters = true
+    #config.action_controller.action_on_unpermitted_parameters = :raise
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

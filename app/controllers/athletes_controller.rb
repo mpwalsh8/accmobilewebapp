@@ -7,6 +7,21 @@ class AthletesController < ApplicationController
     @athletes = Athlete.all.order(:lastname, :firstname)
   end
 
+  # POST /athletes/import
+  # POST /athletes/import.json
+  def import
+    if request.post?
+      begin
+        Athlete.import(params[:import][:file])
+        redirect_to page_path('admin'), notice: "Athletes imported."
+      rescue
+        redirect_to page_path('admin'), notice: "Invalid CSV file format."
+      end
+    else
+      logger.info("Arrived via GET!")
+    end
+  end
+
   # GET /athletes/1
   # GET /athletes/1.json
   def show
@@ -64,6 +79,7 @@ class AthletesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_athlete
+      logger.info(sprintf("set_athlete - %s::%s", __FILE__, __LINE__))
       @athlete = Athlete.find(params[:id])
     end
 

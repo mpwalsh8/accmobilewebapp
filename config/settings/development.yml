@@ -29,5 +29,5 @@ Twitter:
   AccessTokenSecret: "YOUR_ACCESS_SECRET"
 
 AppSettings:
-  AutoTweetResults: On
-  AutoTweetScheduleUpdates: On
+  AutoTweetResults: Off
+  AutoTweetScheduleUpdates: Off

@@ -4,6 +4,7 @@
     <h3 class="ui-bar ui-bar-a">Athlete Administration</h3>
     <div data-role="controlgroup" data-type="vertical">
       <%= link_to 'Add Athlete', new_athlete_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+      <%= link_to 'Import Athletes', import_athletes_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
   </div>
