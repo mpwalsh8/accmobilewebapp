@@ -34,3 +34,19 @@
     margin: 0 auto;
 */
 }
+
+.flash-notice {
+  color: green;
+}
+
+.flash-alert {
+  color: red;
+}
+
+.ui-icon-flash-info {
+    background-image: url("app-icon-info.png") !important;
+}
+
+.ui-icon-flash-alert {
+    background-image: url("app-icon-alert.png") !important;
+}

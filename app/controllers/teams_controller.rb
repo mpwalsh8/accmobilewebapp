@@ -28,6 +28,21 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
 
+    ##  Check for duplicates ...
+    team = Team.where(:name => params[:team][:name],
+        :active => params[:team][:active],
+        :url => params[:team][:url],
+        :twitter => params[:team][:twitter],
+        :gender => params[:team][:gender],
+        :varsity => params[:team][:varsity],
+        :season => params[:team][:season],
+        :sport_id => params[:team][:sport_id])
+
+    ##  If the team exists, return with an alert
+    if team.count != 0
+      return redirect_to page_path('admin/team'), alert: 'Team already exists.'
+    end
+
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }

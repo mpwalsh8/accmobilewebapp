@@ -6,20 +6,37 @@ class Athlete < ActiveRecord::Base
 
   ##  CSV import
   def self.import(file)
-    logger.info(sprintf("self.import - %s::%s", __FILE__, __LINE__))
+    athletes = { :skipped => 0, :imported => 0 }
     CSV.foreach(file.path, headers: true) do |row|
 
-      athlete_hash = row.to_hash # exclude the ? field
-      athlete = Athlete.where(id: athlete_hash["id"])
+      athlete_hash = row.to_hash.compact # exclude the nil fields
 
-      ##  If the athlete exists, update it with any new data
-      if athlete.count == 1
-        athlete.first.update_attributes
-      else
+      ##  Handle :active field which is a boolean
+      ##  but may come in as a yes not field ...
+
+      if athlete_hash.has_key?("active")
+        athlete_hash["active"] = to_boolean(athlete_hash["active"])
+      end
+
+      athlete = Athlete.where(athlete_hash)
+      
+      ##  If the athlete exists, skip it otherwise,
+      ##  create a new athlete with the provided info
+      if athlete.count == 0
         Athlete.create!(athlete_hash)
-      end # end if !athlete.nil?
-    end # end CSV.foreach
-  end # end self.import(file)
+        athletes[:imported] += 1
+      else
+        athletes[:skipped] += 1
+      end
+    end
+
+    return athletes
+  end
+
+  ##  Map strings to boolean
+  def self.to_boolean(s)
+    !!(s =~ /^(true|t|yes|y|1)$/i)
+  end
 
   ##  Athlete full name
   def fullname

@@ -11,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :coaches
 
-  resources :teams
+  resources :teams do
+    collection { get :import }
+    collection { post :import }
+  end
 
   resources :athletes do
     collection { get :import }

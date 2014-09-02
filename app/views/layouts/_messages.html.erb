@@ -1,8 +1,11 @@
 <%# add notifications and alerts to this file %>
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+<% unless flash.empty? %>
+  <% icons = [ "notice" => "info", "alert" => "alert"] %>
+  <div class="ui-body ui-body-a ui-corner-all">
+    <% flash.each do |key, value| %>
+      <div class="flash-<%= key %>">
+        <span class="ui-icon ui-icon-<%= key %> ui-icon-button-left" style="position: relative;"></span><%= value %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-

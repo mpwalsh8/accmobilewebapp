@@ -12,13 +12,11 @@ class AthletesController < ApplicationController
   def import
     if request.post?
       begin
-        Athlete.import(params[:import][:file])
-        redirect_to page_path('admin'), notice: "Athletes imported."
+        athletes = Athlete.import(params[:import][:file])
+        redirect_to page_path('admin/athlete'), notice: sprintf("Athletes:  %d imported, %d skipped", athletes[:imported], athletes[:skipped])
       rescue
-        redirect_to page_path('admin'), notice: "Invalid CSV file format."
+        redirect_to page_path('admin/athlete'), alert: "Invalid CSV file format."
       end
-    else
-      logger.info("Arrived via GET!")
     end
   end
 
@@ -71,7 +69,7 @@ class AthletesController < ApplicationController
   def destroy
     @athlete.destroy
     respond_to do |format|
-      format.html { redirect_to athletes_url, notice: 'Athlete was successfully destroyed.' }
+      format.html { redirect_to page_path('admin/athlete'), notice: 'Athlete was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
