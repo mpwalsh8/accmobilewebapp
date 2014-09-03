@@ -7,6 +7,20 @@ class AthletesTeamsController < ApplicationController
     @athletes_teams = AthletesTeam.all
   end
 
+  # POST /athletes_teams/import
+  # POST /athletes_teams/import.json
+  def import
+    if request.post?
+      begin
+        team_athletes = AthletesTeam.import(params[:import][:file], params[:import][:team_id])
+logger.info(team_athletes.to_yaml)
+        redirect_to page_path('admin/team'), notice: sprintf("Athletes/Team:  %d/%d imported, %d/%d skipped", team_athletes[:athletes][:imported], team_athletes[:team_athletes][:imported], team_athletes[:athletes][:skipped], team_athletes[:team_athletes][:skipped])
+      rescue
+        redirect_to page_path('admin/team'), alert: "Invalid CSV file format."
+      end
+    end
+  end
+
   # GET /athletes_teams/1
   # GET /athletes_teams/1.json
   def show
