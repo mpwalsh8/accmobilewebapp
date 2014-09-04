@@ -14,7 +14,7 @@
     <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
   </li>
   <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>
-  <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "O" %></span></li>
+  <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
   <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
 </ul>
 
