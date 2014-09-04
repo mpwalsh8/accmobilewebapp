@@ -50,6 +50,7 @@ class AthletesTeam < ActiveRecord::Base
       end
 
       ##  Check to see if athlete is already on team roster
+      team_hash[:team_id] = team_id
       team_hash[:athlete_id] = athlete.id
       team_hash.compact!
 
