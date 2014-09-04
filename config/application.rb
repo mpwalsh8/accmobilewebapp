@@ -202,6 +202,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/Triangle_Eye_Institute_320x50.svg'
       },
       {
+        :name => 'Trubute Pizza',
+        :url => 'http://www.tributepizzaplace.com',
+        :img => 'webapp/banner/Tribute_Pizza_320x50_Banner.svg'
+      },
+      {
         :name => 'Triangle Orthopaedics',
         :url => 'http://www.triangleortho.com',
         :img => 'webapp/banner/Triangle_Orthopaedics_320x50.svg'
