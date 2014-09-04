@@ -22,31 +22,44 @@
     <%= f.collection_select :sport_id, Sport.order(:name).all, :id, :name,  {include_blank: true} %>
   </div>
 <div class="ui-grid-a">
-<div class="ui-block-a">
-  <div class="field">
-    <%= f.label :varsity, "Type" %>
-    <fieldset data-role="controlgroup" data-type="horizontal">
-      <%= f.radio_button :varsity, true %>
-      <%= f.label :varsity, 'Varsity', :value => true %>
-      <%= f.radio_button :varsity, false %>
-      <%= f.label :varsity, 'JV', :value => false %>
-    </fieldset>
+  <div class="ui-block-a">
+    <div class="field">
+      <%= f.label :varsity, "Type" %>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <%= f.radio_button :varsity, true %>
+        <%= f.label :varsity, 'Varsity', :value => true %>
+        <%= f.radio_button :varsity, false %>
+        <%= f.label :varsity, 'JV', :value => false %>
+      </fieldset>
+    </div>
+  </div>
+  <div class="ui-block-b">
+    <div class="field">
+      <%= f.label :gender, "Gender" %>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <%= f.radio_button :gender, 'men' %>
+        <%= f.label :gender, 'Men', :value => 'men' %>
+        <%= f.radio_button :gender, 'women' %>
+        <%= f.label :gender, 'Women', :value => 'women' %>
+        <%= f.radio_button :gender, 'co-ed' %>
+        <%= f.label :gender, 'Co-Ed', :value => 'co-ed' %>
+      </fieldset>
+    </div>
   </div>
 </div>
-<div class="ui-block-b">
   <div class="field">
-    <%= f.label :gender, "Gender" %>
+    <%= f.label :suffix, "Team Name Suffix" %>
     <fieldset data-role="controlgroup" data-type="horizontal">
-      <%= f.radio_button :gender, 'men' %>
-      <%= f.label :gender, 'Men', :value => 'men' %>
-      <%= f.radio_button :gender, 'women' %>
-      <%= f.label :gender, 'Women', :value => 'women' %>
-      <%= f.radio_button :gender, 'co-ed' %>
-      <%= f.label :gender, 'Co-Ed', :value => 'co-ed' %>
+      <%= f.radio_button :suffix, '' %>
+      <%= f.label :suffix, 'None', :value => '' %>
+      <%= f.radio_button :suffix, 'a' %>
+      <%= f.label :suffix, 'A', :value => 'a' %>
+      <%= f.radio_button :suffix, 'b' %>
+      <%= f.label :suffix, 'B', :value => 'b' %>
+      <%= f.radio_button :suffix, 'c' %>
+      <%= f.label :suffix, 'C', :value => 'c' %>
     </fieldset>
   </div>
-</div>
-</div>
   <div class="field">
     <%= f.label :season, "Season" %>
     <fieldset data-role="controlgroup" data-type="vertical">

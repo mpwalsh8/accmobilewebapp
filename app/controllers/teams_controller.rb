@@ -29,14 +29,17 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
 
     ##  Check for duplicates ...
-    team = Team.where(:name => params[:team][:name],
-        :active => params[:team][:active],
-        :url => params[:team][:url],
-        :twitter => params[:team][:twitter],
-        :gender => params[:team][:gender],
-        :varsity => params[:team][:varsity],
-        :season => params[:team][:season],
-        :sport_id => params[:team][:sport_id])
+#    team = Team.where(:name => params[:team][:name],
+#        :active => params[:team][:active],
+#        :url => params[:team][:url],
+#        :twitter => params[:team][:twitter],
+#        :suffix => params[:team][:suffix],
+#        :gender => params[:team][:gender],
+#        :varsity => params[:team][:varsity],
+#        :season => params[:team][:season],
+#        :sport_id => params[:team][:sport_id])
+    team = Team.where(team_params)
+    
 
     ##  If the team exists, return with an alert
     if team.count != 0
@@ -86,6 +89,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :active, :url, :twitter, :gender, :varsity, :season, :sport_id)
+      params.require(:team).permit(:name, :active, :url, :twitter, :suffix, :gender, :varsity, :season, :sport_id)
     end
 end
