@@ -3,6 +3,7 @@
 <%= render 'form' %>
 
 <div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Sports Venues', sports_venues_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Admin', page_path('admin'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Venue Admin', page_path('admin/venue'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
   <%= link_to 'Show Sports Venue', @sports_venue, :'data-role' => "button", :'data-icon' => "eye", :'data-inline' => "true" %>
 </div>

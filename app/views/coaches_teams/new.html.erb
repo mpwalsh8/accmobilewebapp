@@ -3,5 +3,6 @@
 <%= render 'form' %>
 
 <div data-role="controlgroup" data-type="horizontal">
-<%= link_to 'Back to Team Coaches', coaches_teams_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Admin', page_path('admin'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Coach Admin', page_path('admin/coach'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
 </div>
