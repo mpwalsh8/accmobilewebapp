@@ -6,12 +6,13 @@ class AthletesTeam < ActiveRecord::Base
 
   ##  CSV import
   def self.import(file, team_id)
+    columns = AthletesTeam.column_names
     athletes = { :skipped => 0, :imported => 0 }
     team_athletes = { :skipped => 0, :imported => 0 }
     CSV.foreach(file.path, headers: true) do |row|
 
       athlete_hash = row.to_hash.compact # exclude the nil fields
-      team_hash = { "athlete_id" => nil, "team_id" => team_id, "captain" => nil, "jerseynumber" => nil, "position" => nil }
+      team_hash = Hash[columns.map {|k| [k, nil]}]
 
       ##  Handle :active field which is a boolean
       ##  but may come in as a yes not field ...

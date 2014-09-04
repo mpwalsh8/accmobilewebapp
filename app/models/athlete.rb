@@ -6,10 +6,19 @@ class Athlete < ActiveRecord::Base
 
   ##  CSV import
   def self.import(file)
+    columns = Athlete.column_names
     athletes = { :skipped => 0, :imported => 0 }
     CSV.foreach(file.path, headers: true) do |row|
 
-      athlete_hash = row.to_hash.compact # exclude the nil fields
+      ##  Hash the data and discard nil fields
+      athlete_hash = row.to_hash.compact
+
+      ##  Discard any columns which don't match the model
+      athlete_hash.each do |k, v|
+        if !columns.include?(k)
+          athlete_hash.delete(k)
+        end
+      end
 
       ##  Handle :active field which is a boolean
       ##  but may come in as a yes not field ...

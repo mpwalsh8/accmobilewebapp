@@ -43,10 +43,9 @@
   color: red;
 }
 
-.ui-icon-flash-info {
-    background-image: url("app-icon-info.png") !important;
+.center-wrapper{
+text-align: center;
 }
-
-.ui-icon-flash-alert {
-    background-image: url("app-icon-alert.png") !important;
+.center-wrapper * {
+margin: 0 auto;
 }
