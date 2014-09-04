@@ -44,10 +44,12 @@
     <% venue = Venue.find_by(:id => event.venueid) %>
     <% team = Team.find_by(:id => event.teamid) %>
     <% opponent = Opponent.find_by(:id => event.opponentid) %>
+<% if !opponent.nil? %>
     <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s at %s</p>",
       image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
       opponent.name, event.datetime, venue.name).html_safe, event %>
       <span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %> / <%= opponent.conferenceopponent ? "C" : "O" %></span></li>
+<% end %>
   <% end %>
 </ul>
 
