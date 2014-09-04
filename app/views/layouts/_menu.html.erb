@@ -24,21 +24,17 @@
         <li><%= link_to "Sign Up", new_user_registration_path, :'data-role' => "button", :'data-icon' => "user" %></li>
       <% end %>
       <!--  /Devise -->
-
-
-
   <% if current_user.try(:admin?) %>
     <li data-role="list-divider">Admin</li>
     <li><%= link_to 'Admin Home', page_path('admin'), :'data-role' => "button", :'data-icon' => "gear", :'data-iconpos' => "left" %></li>
 
-    <li><a href="#" data-role="button" data-icon="calendar">Event</a></li>
+    <li><%= link_to 'Event', page_path('admin/event'), :'data-role' => "button", :'data-icon' => "calendar" %></li>
     <li><%= link_to 'Team', page_path('admin/team'), :'data-role' => "button", :'data-icon' => "grid" %></li>
     <li><%= link_to 'Coach', page_path('admin/coach'), :'data-role' => "button", :'data-icon' => "user" %></li>
     <li><%= link_to 'Athlete', page_path('admin/athlete'), :'data-role' => "button", :'data-icon' => "user" %></li>
-    <li><%= link_to 'Event', page_path('admin/event'), :'data-role' => "button", :'data-icon' => "location" %></li>
-    <li><%= link_to 'Venue', page_path('admin/venue'), :'data-role' => "button", :'data-icon' => "location" %></li>
     <li><%= link_to 'Sport', page_path('admin/sport'), :'data-role' => "button", :'data-icon' => "user" %></li>
     <li><%= link_to 'Opponent', page_path('admin/opponent'), :'data-role' => "button", :'data-icon' => "location" %></li>
+    <li><%= link_to 'Venue', page_path('admin/venue'), :'data-role' => "button", :'data-icon' => "location" %></li>
   <% end %>
     </ul>
   </div>
