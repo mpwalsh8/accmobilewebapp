@@ -20,19 +20,16 @@
     text-shadow: 0 1px 0 #f3f3f3;
 }
 
-#splash-content {
+#splash-content-svg {
     z-index: 999;
     width: 75%;
     margin: 0 auto;
-/*
-    overflow: visible;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 420px;
-    width: 320px;
+}
+
+#splash-content-png {
+    z-index: 999;
+    width: 90%;
     margin: 0 auto;
-*/
 }
 
 .flash-notice {
