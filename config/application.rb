@@ -89,7 +89,7 @@ module ACCMobileWebApp
       {
         :name => 'Hendrick Cary Auto Mall',
         :url => 'http://www.caryautomall.com',
-        :img => 'webapp/banner/Hendrick_Cary_Auto_Mall_320x50.svg'
+        :img => 'webapp/banner/Hendrick_Cary_Auto_Mall_320x50_Banner.png'
       },
       {
         :name => 'Hendrick Toyota Scion of Apex',
@@ -218,6 +218,11 @@ module ACCMobileWebApp
         :name => 'Kona-Ice',
         :url => 'http://www.kona-ice.com/find-a-kona/local-site/353',
         :img => 'webapp/splash/Kona_Ice_320x420_Splash.svg'
+      },
+      {
+        :name => 'Hendrick Cary Auto Mall',
+        :url => 'http://www.caryautomall.com',
+        :img => 'webapp/splash/Hendrick_Cary_Auto_Mall_320x420_Splash.png'
       },
       {
         :name => 'NC State Fair',
