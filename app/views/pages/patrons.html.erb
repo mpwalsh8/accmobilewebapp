@@ -1,0 +1,28 @@
+<% content_for :title do %>Patrons<% end %>
+<h3 class="ui-bar ui-bar-a ui-corner-none">Apex Cougar Club Patrons</h3>
+<div class="ui-body ui-body-a ui-corner-all">
+  <h4>Gold Patrons</h4>
+  <p>
+  <!-- Splash Ads -->
+  <% ACCMobileWebApp::Application::SPLASHADS.each do |splash| %>
+    <% logger.info(splash[:img]) %>
+    <% logger.info(splash[:img][-3,3]) %>
+    <div class="ui-content center-wrapper" id="splash-content-<%= splash[:img][-3,3] %>">
+      <a href="<%= splash[:url] %>" alt="<%= splash[:name] %>"><img style="border: 1px solid black;" src="<%= image_url(splash[:img]) %>"></a>
+    </div>
+  <% end %>
+  <!-- /Splash Ads -->
+  </p>
+  <h4>Black Patrons</h4>
+  <p>
+  <!-- Banner Ads -->
+  <% ACCMobileWebApp::Application::BANNERADS.each do |banner| %>
+    <% logger.info(banner[:img]) %>
+    <% logger.info(banner[:img][-3,3]) %>
+    <div class="ui-content center-wrapper" id="banner-content-<%= banner[:img][-3,3] %>">
+      <a href="<%= banner[:url] %>" alt="<%= banner[:name] %>"><img style="border: 1px solid black;" src="<%= image_url(banner[:img]) %>"></a>
+    </div>
+  <% end %>
+  <!-- /Banner Ads -->
+  </p>
+</div>
