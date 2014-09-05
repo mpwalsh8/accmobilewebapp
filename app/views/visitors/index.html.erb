@@ -6,9 +6,9 @@
 
 <!-- Splash Banner -->
 <% splash = ACCMobileWebApp::Application::SPLASHADS.sample %>
-<% logger.info(splash[:img]) %>
-<% logger.info(splash[:img][-3,3]) %>
-<div class="ui-content center-wrapper" id="splash-content-<%= splash[:img][-3,3] %>">
+<%# logger.info(splash[:img]) %>
+<%# logger.info(splash[:img][-3,3]) %>
+<div class="ui-content center-wrapper splash-content-<%= splash[:img][-3,3] %>" id="splash-content">
  <a href="<%= splash[:url] %>" alt="<%= splash[:name] %>"><img src="<%= image_url(splash[:img]) %>"></a>
 </div>
 <!-- /Splash Banner -->

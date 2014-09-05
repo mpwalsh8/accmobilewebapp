@@ -6,6 +6,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid black;
 }
 
 .collapsible-fix {
@@ -20,13 +21,13 @@
     text-shadow: 0 1px 0 #f3f3f3;
 }
 
-#splash-content-svg {
+.splash-content-svg {
     z-index: 999;
     width: 75%;
     margin: 0 auto;
 }
 
-#splash-content-png {
+.splash-content-png {
     z-index: 999;
     width: 90%;
     margin: 0 auto;
