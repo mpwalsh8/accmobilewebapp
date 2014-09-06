@@ -214,10 +214,15 @@ module ACCMobileWebApp
     ]
 
     SPLASHADS = [
+     # {
+     #   :name => 'Bojangles',
+     #   :url => 'http://www.bojangles.com',
+     #   :img => 'webapp/splash/Bojangles_320x420_Splash.png'
+     # },
       {
-        :name => 'Bojangles',
-        :url => 'http://www.bojangles.com',
-        :img => 'webapp/splash/Bojangles_320x420_Splash.png'
+        :name => 'Chick-Fil-a of Apex',
+        :url => 'http://www.chickfila.com',
+        :img => 'webapp/splash/Chick-fil-a_of_Apex_320x420_Splash.png'
       },
       {
         :name => 'Kona-Ice',
@@ -228,6 +233,11 @@ module ACCMobileWebApp
         :name => 'Hendrick Cary Auto Mall',
         :url => 'http://www.caryautomall.com',
         :img => 'webapp/splash/Hendrick_Cary_Auto_Mall_320x420_Splash.png'
+      },
+      {
+        :name => 'JD\'s Tavern',
+        :url => 'http://www.jdstavern.com',
+        :img => 'webapp/splash/JDs_Tavern_320x420_Splash.png'
       },
       {
         :name => 'NC State Fair',
