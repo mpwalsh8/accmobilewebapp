@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   resources :sports_venues
 
-  resources :coaches
+  resources :coaches do
+    collection { get :import }
+    collection { post :import }
+  end
 
   resources :teams
 

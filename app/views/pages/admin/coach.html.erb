@@ -4,6 +4,7 @@
     <h3 class="ui-bar ui-bar-a">Coach Administration</h3>
     <div data-role="controlgroup" data-type="vertical">
       <%= link_to 'Add Coach', new_coach_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+      <%= link_to 'Import Coaches', import_coaches_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Add Coach to Team', new_coaches_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
   </div>
@@ -14,6 +15,7 @@
     <% @coaches.each do |coach| %>
       <div data-role="collapsible" data-collapsed="true" data-iconpos="right">
         <h2><%= h coach.lastcommafirst %></h2>
+        <%= link_to 'Show', coach, :'data-role' => 'button', :'data-icon' => 'info', :'data-inline' => "true", :'data-mini' => "true" %>
         <%= link_to 'Edit', edit_coach_path(coach), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
         <%= link_to 'Delete', coach, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
       </div>

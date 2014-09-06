@@ -3,6 +3,9 @@
   <% if !@coach.email.blank? %>
     <li><a  href="<%= sprintf("mailto:%s", @coach.email) %>">Email Address</a><span class="ui-li-aside" data-rel="external""><%= @coach.email %></span></li>
   <% end %>
+  <% if !@coach.phone.blank? %>
+    <li><a  href="<%= sprintf("mailto:%s", @coach.phone) %>">Phone</a><span class="ui-li-aside" data-rel="external""><%= @coach.phone %></span></li>
+  <% end %>
   <% if !@coach.twitter.blank? %>
     <li><a  href="<%= sprintf("https://twitter.com/%s", @coach.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @coach.twitter %></span></li>
   <% end %>

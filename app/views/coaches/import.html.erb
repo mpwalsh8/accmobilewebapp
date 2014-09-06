@@ -1,0 +1,17 @@
+<h3 class="ui-bar ui-bar-a ui-corner-none">Import Coaches</h3>
+
+<%= simple_form_for :import, :url => import_coaches_path, :html => { :multipart => true, :'data-ajax' => false}, :class => 'Coach'  do |f| %>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :file, "CSV File" %>
+    <%= f.file_field :file %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Import Coaches" %>
+  </div>
+<% end %>
+
+<div data-role="controlgroup" data-type="horizontal">
+  <%= link_to 'Admin', page_path('admin'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+  <%= link_to 'Coach Admin', page_path('admin/coach'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
+</div>

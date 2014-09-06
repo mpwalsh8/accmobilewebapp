@@ -7,6 +7,19 @@ class CoachesController < ApplicationController
     @coaches = Coach.all.order(:lastname, :firstname)
   end
 
+  # POST /coaches/import
+  # POST /coaches/import.json
+  def import
+    if request.post?
+      begin
+        coaches = Coach.import(params[:import][:file])
+        redirect_to page_path('admin/coach'), notice: sprintf("Coaches:  %d imported, %d skipped", coaches[:imported], coaches[:skipped])
+      rescue
+        redirect_to page_path('admin/coach'), alert: "Invalid CSV file format."
+      end
+    end
+  end
+
   # GET /coaches/1
   # GET /coaches/1.json
   def show
@@ -69,6 +82,6 @@ class CoachesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coach_params
-      params.require(:coach).permit(:firstname, :middlename, :lastname, :nickname, :active, :email, :twitter)
+      params.require(:coach).permit(:firstname, :middlename, :lastname, :nickname, :active, :email, :phone, :twitter)
     end
 end
