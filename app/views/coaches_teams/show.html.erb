@@ -1,7 +1,7 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @coaches_team.team.formalname %>:  <%= @coaches_team.coach.fullname %></h3>
 
 <figure id="pictogram">
-  <%= image_tag(@coaches_team.team.sport.imageurl, alt: @coaches_team.team.formalname) %>
+<%= image_tag("pictograms/svg/#{@coaches_team.team.sport.imageurl}.svg", alt: @coaches_team.team.sport.name, style: "height: 80px;") %>
 </figure>
       
 <ul data-role="listview" data-inset="true">
