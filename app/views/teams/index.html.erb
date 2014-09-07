@@ -1,6 +1,20 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Teams</h3>
-<ul data-role="listview" data-inset="true" data-filter="true">
-  <% @teams.each do |team| %>
-    <li><%= link_to team.formalname, team %></li>
+<% seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' } %>
+<div data-role="collapsible-set" data-inset="true">
+  <% seasons.each do |key, value| %>
+    <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-inset="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+      <% @teams = Team.where(:season => key) %>
+      <h3 class="collapsible-fix"><%= key.camelize %> Sports<span class="ui-li-count-fix ui-li-count"><%= @teams.count %></span></h3>
+      <% if @teams.count > 0 %>
+      <ul data-role="listview" data-inset="true" data-filter="false">
+        <% @teams.each do |team| %>
+          <li><%= link_to team.formalname, team %></li>
+        <% end %>
+      </ul>
+      <% else %>
+        <p>No teams for <%= key.camelize %> season.</p>
+      <% end %>
+    </div>
   <% end %>
-</ul>
+</div>
+
