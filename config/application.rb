@@ -127,6 +127,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/320x50/LG_Jordan_Oil_Co_320x50_Banner.png'
       },
       {
+        :name => 'Locals Guitars',
+        :url => 'http://www.localsguitars.com/',
+        :img => 'webapp/banner/320x50/Locals_Guitar_320x50_Banner.png'
+      },
+      {
         :name => 'Luihn Food Systems KFC',
         :url => 'http://www.kfc.com',
         :img => 'webapp/banner/320x50/Luihn_Food_Systems_KFC_320x50_Banner.png'
@@ -243,6 +248,11 @@ module ACCMobileWebApp
         :name => 'NC State Fair',
         :url => 'http://www.ncstatefair.org/2014/index.htm',
         :img => 'webapp/splash/NCSF2014_320x420_Splash.png'
+      },
+      {
+        :name => 'T.MAC',
+        :url => 'http://tmacrestaurants.com/location/cary/',
+        :img => 'webapp/splash/TMAC_320x420_Splash.png'
       },
     ]
 
