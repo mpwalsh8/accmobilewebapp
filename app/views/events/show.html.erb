@@ -7,10 +7,13 @@
 <% team = Team.find_by(:id => @event.teamid) %>
 <% opponent = Opponent.find_by(:id => @event.opponentid) %>
 <%
+logger.info(@event.status)
    case @event.status
      when /^(scheduled|postponed|rescheduled|canceled)$/
+logger.info('111111111111111')
        status = @event.status.camelize
      else
+logger.info('22222222222222')
        status = 'scheduled'.camelize
    end
 %>
