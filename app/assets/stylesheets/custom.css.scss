@@ -44,6 +44,29 @@
 .center-wrapper{
 text-align: center;
 }
+
 .center-wrapper * {
 margin: 0 auto;
+}
+
+.event-scheduled {
+    color: green;
+    font-style: oblique;
+}
+
+.event-rescheduled {
+    color: green;
+    font-style: oblique;
+    font-weight: bold;
+}
+
+.event-postponed {
+    color: red;
+    font-style: oblique;
+}
+
+.event-canceled {
+    color: red;
+    font-weight: bold;
+    font-style: oblique;
 }

@@ -49,8 +49,25 @@
     <%= f.text_field :eventtime, :type => "time" %>
   </div>
   <div data-role="fieldcontain" class="field">
+    <%= f.label :status, "Status" %>
+    <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
+      <%= f.radio_button :status, 'scheduled' %>
+      <%= f.label :status, 'Scheduled', :value => 'scheduled' %>
+      <%= f.radio_button :status, 'rescheduled' %>
+      <%= f.label :status, 'Rescheduled', :value => 'rescheduled' %>
+      <%= f.radio_button :status, 'postponed' %>
+      <%= f.label :status, 'Postponed', :value => 'postponed' %>
+      <%= f.radio_button :status, 'canceled' %>
+      <%= f.label :status, 'Canceled', :value => 'canceled' %>
+    </fieldset>
+  </div>
+  <div data-role="fieldcontain" class="field">
     <%= f.label :eventduration, "Duration (minutes)" %>
     <%= f.text_field :eventduration, :type => "number", :value => "120" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
   </div>
 
   <div class="actions">

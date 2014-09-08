@@ -6,12 +6,24 @@
 <% venue = Venue.find_by(:id => @event.venueid) %>
 <% team = Team.find_by(:id => @event.teamid) %>
 <% opponent = Opponent.find_by(:id => @event.opponentid) %>
+<%
+   case @event.status
+     when /^(scheduled|postponed|rescheduled|canceled)$/
+       status = @event.status.camelize
+     else
+       status = 'scheduled'.camelize
+   end
+%>
 
 <ul data-role="listview" data-inset="true">
   <li data-role="list-divider">
     <h1><%= team.formalname %> vs <%= opponent.name %></h1>
     <p>Scheduled:  <%= @event.datetimelong %></p>
     <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
+    <p>Status:  <span class="event-<%= status.downcase %>"><%= status %></span></p>
+    <% if !@event.notes.blank? %>
+      <p>Notes:  <%= @event.notes %></p>
+    <% end %>
   </li>
   <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>
   <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
