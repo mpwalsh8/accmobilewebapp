@@ -50,14 +50,12 @@ margin: 0 auto;
 }
 
 .event-scheduled {
-    color: green;
     font-style: oblique;
 }
 
 .event-rescheduled {
     color: green;
     font-style: oblique;
-    font-weight: bold;
 }
 
 .event-postponed {
@@ -67,6 +65,5 @@ margin: 0 auto;
 
 .event-canceled {
     color: red;
-    font-weight: bold;
     font-style: oblique;
 }
