@@ -40,7 +40,7 @@
 
       <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
         <% events = Event.where(:eventdate => Time.now.strftime("%Y-%m-%d")).order(:eventdate, :eventtime) %>
-        <% thisweek = Date.today.beginning_of_week..Date.today.end_of_week %>
+        <% thisweek = Date.today.beginning_of_week(:sunday)..Date.today.end_of_week(:sunday) %>
         <% events = Event.where(eventdate: thisweek).order(:eventdate, :eventtime) %>
         <h3 class="ui-bar ui-bar-a ui-corner-none">This Week's Schedule<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
         <% if events.count > 0 %>
@@ -61,7 +61,7 @@
 
   <% seasons.each do |key, value| %>
     <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-inset="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-      <% @teams = Team.where(:season => key) %>
+      <% @teams = Team.where(:season => key).order(:gender, :varsity) %>
       <h3 class="collapsible-fix"><%= key.camelize %> Sports<span class="ui-li-count-fix ui-li-count"><%= @teams.count %></span></h3>
       <% if @teams.count > 0 %>
       <ul data-role="listview" data-inset="true" data-filter="false">
