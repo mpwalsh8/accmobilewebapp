@@ -202,6 +202,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/320x50/Sport_Clips_320x50_Banner.png'
       },
       {
+        :name => 'T.MAC',
+        :url => 'http://tmacrestaurants.com/location/cary/',
+        :img => 'webapp/banner/320x50/TMAC_320x50_Banner.png'
+      },
+      {
         :name => 'Triangle Eye Institute',
         :url => 'http://www.tei2020.com',
         :img => 'webapp/banner/320x50/Triangle_Eye_Institute_320x50_Banner.png'
