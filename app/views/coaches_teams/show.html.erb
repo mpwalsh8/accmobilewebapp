@@ -9,7 +9,8 @@
   <li><%= link_to @coaches_team.coach.fullname, coach_path(@coaches_team.coach_id) %></li>
 </ul> 
 
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Team Coaches', coaches_teams_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
-  <%= link_to 'Edit Team Coaches', edit_coaches_team_path(@coaches_team), :'data-role' => "button", :'data-icon' => "edit", :'data-inline' => "true" %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Team Coaches', coaches_teams_path, :'data-role' => "button", :'data-icon' => "back", :class => "ui-corner-all" %>
+  <%= link_to 'Edit Team Coaches', edit_coaches_team_path(@coaches_team), :'data-role' => "button", :'data-icon' => "edit", :class => "ui-corner-all" %>
 </div>

@@ -24,9 +24,11 @@
     Not currently on any coaching staff.
   <% end %>
 
-
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Coaches', coaches_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
-  <%#= link_to 'Edit Coach', edit_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
-  <%#= link_to 'Edit Teams', teams_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Coaches', coaches_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
+  <%# if current_user.try(:admin?) %>
+    <%#= link_to 'Edit Coach', edit_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+    <%##= link_to 'Edit Teams', teams_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+  <%# end %>
 </div>

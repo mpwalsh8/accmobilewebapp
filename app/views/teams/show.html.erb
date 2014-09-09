@@ -53,7 +53,7 @@
           <% athletes = @team.athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
           <% athletes.each do |a| %>
             <% tc = AthletesTeam.find_by(:athlete_id => a.id, :team_id => @team.id) %>
-            <% notes = tc.captain ? "Captain" : "" %>
+            <% notes = sprintf("%s %s", a.gradyear2class, tc.captain ? "Captain" : "") %>
             <% if !tc.position.blank? %>
                 <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.position) %>
             <% end %>
@@ -120,8 +120,7 @@
 <% end %>
 <% end %>
 
-
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Teams', teams_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
-  <%#= link_to 'Edit', edit_team_path(@team), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Teams', teams_path, :'data-icon' => "back", :'data-role' => "button", :'class' => "ui-corner-all" %>
 </div>

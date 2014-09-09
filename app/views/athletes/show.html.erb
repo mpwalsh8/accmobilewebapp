@@ -37,7 +37,7 @@
   <li>
     <div class="ui-grid-a">
       <div class="ui-block-a">Graduation Year:</div>
-      <div class="ui-block-b"><%= @athlete.gradyear %></div>
+      <div class="ui-block-b"><%= @athlete.gradyear %> / <%= @athlete.gradyear2class %></div>
     </div>
   </li>
   <% end %>
@@ -93,10 +93,7 @@
     <%= @athlete.firstname %> is not currently on any team roster.
   <% end %>
 
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
-  <%#= link_to 'Edit Athlete', edit_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
-  <%#= link_to 'Edit Teams', teams_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
-
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
 </div>
-

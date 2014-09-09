@@ -33,8 +33,9 @@
   <li><%= link_to sprintf("Home Venue:  %s", venue.name), venue_path(venue) %></li>
   </li>
 </ul>
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Opponents', opponents_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Opponents', opponents_path, :'data-role' => 'button', :'data-icon' => "back", :cllas => "ui-corner-all" %>
   <%#= link_to 'Edit', edit_opponent_path(@opponent), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
 </div>
 

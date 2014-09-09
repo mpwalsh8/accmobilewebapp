@@ -12,9 +12,7 @@
   <%#= content_tag(:li, fa_icon("check", text: "Bulleted list item")) %>
 </ul>
 
-
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Sports', sports_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true", :'data-inline' => "true" %>
-  <%#= link_to 'Edit Sport', edit_sport_path(@sport), :'data-role' => "button", :'data-icon' => "edit", :'data-inline' => "true", :'data-inline' => "true" %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Sports', sports_path, :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true", :class => "ui-corner-all" %>
 </div>
-

@@ -36,8 +36,7 @@ logger.info('22222222222222')
 <%# logger.info(@event.to_yaml) %>
 <%# logger.info(@team.to_yaml) %>
 
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true", :'data-mini' => "true" %>
-  <%#= link_to 'Edit', edit_event_path(@event), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
 </div>
-
