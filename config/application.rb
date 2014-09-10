@@ -267,7 +267,7 @@ module ACCMobileWebApp
       {
         :name => 'Leith Auto Park Chrysler-Jeep',
         :url => 'http://www.autoparkchryslerjeep.com',
-        :img => 'webapp/splash/Leith_AutoPark_320x50_Splash.png'
+        :img => 'webapp/splash/Leith_AutoPark_320x420_Splash.png'
       },
       {
         :name => 'NC State Fair',
