@@ -230,6 +230,11 @@ module ACCMobileWebApp
      #   :img => 'webapp/splash/Bojangles_320x420_Splash.png'
      # },
       {
+        :name => 'CiCi\'s Pizza of Apex',
+        :url => 'http://www.cicispizza.com',
+        :img => 'webapp/splash/CiCi_Pizza_of_Apex_320x420_Splash.png'
+      },
+      {
         :name => 'Chick-Fil-a of Apex',
         :url => 'http://www.chickfila.com',
         :img => 'webapp/splash/Chick-fil-a_of_Apex_320x420_Splash.png'
