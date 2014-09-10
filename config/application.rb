@@ -82,6 +82,11 @@ module ACCMobileWebApp
         :img => 'webapp/banner/320x50/CiCi_Pizza_of_Apex_320x50_Banner.png'
       },
       {
+        :name => 'Educational Outfitters',
+        :url => 'http://www.educationaloutfitters.com/',
+        :img => 'webapp/banner/320x50/Educational_Outfitters_320x50_Banner.png'
+      },
+      {
         :name => 'Fresh Coat Painters',
         :url => 'http://www.freshcoatpainters.net',
         :img => 'webapp/banner/320x50/Fresh_Coat_Painters_320x50_Banner.png'
@@ -144,6 +149,11 @@ module ACCMobileWebApp
       {
         :name => 'Mathnasium',
         :url => 'http://www.mathnasium.com/apex',
+        :img => 'webapp/banner/320x50/Mathnasium_320x50_Banner.png'
+      },
+      {
+        :name => 'Moe\'s of Apex',
+        :url => 'http://www.moes.com/',
         :img => 'webapp/banner/320x50/Mathnasium_320x50_Banner.png'
       },
       {
