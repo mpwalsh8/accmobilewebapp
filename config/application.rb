@@ -33,7 +33,7 @@ module ACCMobileWebApp
       },
       {
         :name => 'Apex Auto Works',
-        :url => 'http://www.apexautoworks.org',
+        :url => 'http://www.apexautoworks.com',
         :img => 'webapp/banner/320x50/Apex_Auto_Works_320x50_Banner.png'
       },
       {
@@ -154,7 +154,7 @@ module ACCMobileWebApp
       {
         :name => 'Moe\'s of Apex',
         :url => 'http://www.moes.com/',
-        :img => 'webapp/banner/320x50/Mathnasium_320x50_Banner.png'
+        :img => 'webapp/banner/320x50/Moes_320x50_Banner.png'
       },
       {
         :name => 'McDonalds of Apex',
