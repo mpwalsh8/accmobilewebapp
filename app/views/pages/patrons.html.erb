@@ -8,7 +8,7 @@
     <% logger.info(splash[:img]) %>
     <% logger.info(splash[:img][-3,3]) %>
     <div class="ui-content center-wrapper" id="splash-content-<%= splash[:img][-3,3] %>">
-      <a href="<%= splash[:url] %>" alt="<%= splash[:name] %>"><img style="border: 1px solid black;" src="<%= image_url(splash[:img]) %>"></a>
+      <a href="<%= splash[:url] %>" alt="<%= splash[:name] %>"><p class="sponsor-p center-wrapper"><img class="sponsor-image" src="<%= image_url(splash[:img]) %>"></p></a>
     </div>
   <% end %>
   <!-- /Splash Ads -->
@@ -20,7 +20,7 @@
     <% logger.info(banner[:img]) %>
     <% logger.info(banner[:img][-3,3]) %>
     <div class="ui-content center-wrapper" id="banner-content-<%= banner[:img][-3,3] %>">
-      <a href="<%= banner[:url] %>" alt="<%= banner[:name] %>"><img style="border: 1px solid black;" src="<%= image_url(banner[:img]) %>"></a>
+      <a href="<%= banner[:url] %>" alt="<%= banner[:name] %>"><p class="sponsor-p center-wrapper"><img class="sponsor-image" src="<%= image_url(banner[:img]) %>"></p></a>
     </div>
   <% end %>
   <!-- /Banner Ads -->
