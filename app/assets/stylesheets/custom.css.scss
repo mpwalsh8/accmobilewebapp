@@ -68,7 +68,12 @@ margin: 0 auto;
     font-style: oblique;
 }
 
+.framed-p {
+    margin-right: 1.0em;
+}
+
 .framed-image {
+    max-width: 100%;
     padding:0.692em;
     /*background:#F7EFDB;*/
     /*border-color: #E0D5BB;*/
