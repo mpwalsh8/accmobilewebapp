@@ -73,7 +73,11 @@
   </div>
   <div class="field">
     <%= f.label :url, "Team Web Site" %>
-    <%= f.text_field :url %>
+    <%= f.text_field :url, :type => "url" %>
+  </div>
+  <div class="field">
+    <%= f.label :teampicurl, "Team Picture URL" %>
+    <%= f.text_field :teampicurl, :type => "url" %>
   </div>
   <div class="field">
     <%= f.label :twitter, "Team Twitter Handle" %>
