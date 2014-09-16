@@ -26,14 +26,36 @@ class Athlete < ActiveRecord::Base
 
       if athlete_hash.has_key?("active")
         athlete_hash["active"] = to_boolean(athlete_hash["active"])
+      else
+        athlete_hash["active"] = true
       end
 
+      ##  First try a full match
       athlete = Athlete.where(athlete_hash)
+
+      ##  If no match, before creating a new athlete,
+      ##  try matching just the first and last name.
+      if athlete.count == 0
+        alt_athlete_hash = Hash.new
+        alt_athlete_hash["firstname"] = row["firstname"]
+        alt_athlete_hash["lastname"] = row["lastname"]
+        athlete = Athlete.where(alt_athlete_hash)
+        if athlete.count == 0
+          match = :none
+        else
+          match = :partial
+        end
+      else
+        match = :full
+      end
       
       ##  If the athlete exists, skip it otherwise,
       ##  create a new athlete with the provided info
-      if athlete.count == 0
+      if match == :none
         Athlete.create!(athlete_hash)
+        athletes[:imported] += 1
+      elsif match == :partial
+        Athlete.update(athlete.first.id, athlete_hash)
         athletes[:imported] += 1
       else
         athletes[:skipped] += 1
