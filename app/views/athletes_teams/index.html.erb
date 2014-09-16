@@ -8,16 +8,18 @@
         </div>
       <% end %>
       <% if tid != at.team.id %>
-        <div data-role="collapsible" data-mini="true" data-inset="true">
+        <div data-role="collapsible" data-mini="true" data-inset="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
           <h3><%= at.team.formalname %></h3>
-          <div data-role="collapsible-set" data-mini="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d">
+          <div data-role="collapsible-set" data-mini="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
       <% end %> 
       <div data-role="collapsible" data-collapsed="true" data-inset="true">
         <h1><%= at.athlete.fullname %></h1>
         <div data-role="controlgroup" data-type="horizontal" data-mini="true">
           <%= link_to 'Show', at, :'data-role' => 'button', :'data-icon' => "eye" %>
-          <%= link_to 'Edit', edit_athletes_team_path(at), :'data-role' => "button", :'data-icon' => "edit" %>
-          <%= link_to 'Destroy', at, method: :delete, data: { confirm: 'Are you sure?' }, :'data-role' => "button", :'data-icon' => "delete" %>
+          <% if current_user.try(:admin?) %>
+            <%= link_to 'Edit', edit_athletes_team_path(at), :'data-role' => "button", :'data-icon' => "edit" %>
+            <%= link_to 'Destroy', at, method: :delete, data: { confirm: 'Are you sure?' }, :'data-role' => "button", :'data-icon' => "delete" %>
+          <% end %>
         </div>
       </div>
       <% tid = at.team.id %>
@@ -25,7 +27,8 @@
     </div>
 </div>
     
-    
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'New Team Athletes', new_athletes_team_path, :'data-role' => "button", :'data-icon' => "plus", :'data-inline' => "true" %>
-</div>
+<% if current_user.try(:admin?) %>
+  <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <%= link_to 'New Team Athletes', new_athletes_team_path, :'data-role' => "button", :'data-icon' => "plus", :'data-inline' => "true" %>
+  </div>
+<% end %>
