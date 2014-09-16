@@ -10,8 +10,9 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @coaches = Coach.all
-    @athletes = Athlete.all
+    @coaches = CoachesTeam.select("*").joins(:coach).where(:team_id => params[:id])
+    @athletes = AthletesTeam.select("*").joins(:athlete).where(:team_id => params[:id])
+    @jerseycount = AthletesTeam.select("*").joins(:athlete).where(:team_id => params[:id]).where.not(jerseynumber: [nil, '']).count
   end
 
   # GET /teams/new

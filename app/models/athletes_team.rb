@@ -1,4 +1,5 @@
 class AthletesTeam < ActiveRecord::Base
+  include Utility
   belongs_to :athlete
   belongs_to :team
 

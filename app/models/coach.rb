@@ -1,4 +1,5 @@
 class Coach < ActiveRecord::Base
+  include Utility
   # a coach can coach more than one team
   has_and_belongs_to_many :teams, through: :coaches
   #has_and_belongs_to_many :sports, through: :teams
@@ -48,21 +49,21 @@ class Coach < ActiveRecord::Base
     !!(s =~ /^(true|t|yes|y|1)$/i)
   end
 
-  def fullname
-    firstname + " " + lastname
-  end
-
-  def lastcommafirst
-    lastname + ", " + firstname
-  end
-
-  def displayname
-    if nickname.blank? then
-      dn = sprintf("Coach %s %s", firstname, lastname)
-    else
-      dn = sprintf("Coach %s (%s) %s", firstname, nickname, lastname)
-    end
-  end
+##    def fullname
+##      firstname + " " + lastname
+##    end
+##  
+##    def lastcommafirst
+##      lastname + ", " + firstname
+##    end
+##  
+##    def displayname
+##      if nickname.blank? then
+##        dn = sprintf("Coach %s %s", firstname, lastname)
+##      else
+##        dn = sprintf("Coach %s (%s) %s", firstname, nickname, lastname)
+##      end
+##    end
 
   #  Is coach on staff?
   def is_on_staff?(team)

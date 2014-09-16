@@ -52,29 +52,46 @@
   <!--  Team Athlete Roster -->
     <!--<div data-role="collapsible-set" data-inset="true" data-mini="false">-->
       <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-        <h3 class="ui-bar ui-bar-a ui-corner-none">Roster<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
+        <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Name<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
         <% if @team.athletes.count > 0 %>
-        <%#= @team.athletes.collect {|c| link_to(c.fullname, c)}.join(", ").html_safe %>
         <ul data-role="listview" data-inset="false" data-filter="true" data-autodividers="true">
-          <% athletes = @team.athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
-          <% athletes.each do |a| %>
-            <% tc = AthletesTeam.find_by(:athlete_id => a.id, :team_id => @team.id) %>
-            <% notes = sprintf("%s %s", a.gradyear2class, tc.captain ? "Captain" : "") %>
-            <% if !tc.position.blank? %>
-                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", tc.position) %>
+          <% @athletes.each do |a| %>
+            <% notes = a.gradyear2class %>
+            <% if !a.position.blank? %>
+                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position) %>
             <% end %>
-            <% if !tc.jerseynumber.blank? %>
-                <% notes = sprintf("%s%s#%s", notes, notes.blank? ? "" : " / ", tc.jerseynumber) %>
+            <% if a.captain %>
+              <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
             <% end %>
-            <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, a) %></li>
+            <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, a) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
           <% end %>
         </ul>
         <% else %>
         <p>No athletes currently on roster.</p>
         <% end %>
       </div>
-    <!--</div>-->
- <!--  Team Athlete Roster -->
+      <!--  /Team Athlete Roster -->
+      <!--  Team Athlete Roster by jersey number -->
+      <% if @jerseycount > 0 %>
+        <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+          <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Jersey Number<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
+          <ul data-role="listview" data-inset="false" data-filter="false" data-autodividers="false">
+            <% @athletes = @athletes.sort_by { |a| [ a.jerseynumber.to_i, a.lastname, a.firstname ] } %>
+            <% @athletes.each do |a| %>
+              <% notes = a.gradyear2class %>
+              <% if !a.position.blank? %>
+                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position) %>
+              <% end %>
+              <% if a.captain %>
+                <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
+              <% end %>
+              <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, a) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <!--  /Team Athlete Roster by jersey number -->
+
     <!--<div data-role="collapsible-set" data-inset="true" data-mini="false">-->
 <% if Settings.Twitter.Enabled == "Yes" && !@team.twitter.blank? %>
   <% @TwitterClient.user(@team.twitter.delete("@")) %>

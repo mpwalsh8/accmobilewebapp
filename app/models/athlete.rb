@@ -1,4 +1,5 @@
 class Athlete < ActiveRecord::Base
+  include Utility
   # an athlete can be on more than one team
   has_and_belongs_to_many :teams, through: :athletes
 
@@ -47,44 +48,44 @@ class Athlete < ActiveRecord::Base
     !!(s =~ /^(true|t|yes|y|1)$/i)
   end
 
-  ##  Athlete full name
-  def fullname
-    firstname + " " + lastname
-  end
-
-  ##  Athlete full name, last, first
-  def lastcommafirst
-    lastname + ", " + firstname
-  end
-
-  ##  Athlete display name including nickname if present
-  def displayname
-    if nickname.blank? then
-      dn = sprintf("%s %s", firstname, lastname)
-    else
-      dn = sprintf("%s (%s) %s", firstname, nickname, lastname)
-    end
-  end
-
-  ##  Convert height in inches to feet and inches
-  def height2text
-    if height.blank? then
-      pec = "n/a"
-    else
-      divmod_output = height.divmod(12)
-      pec = sprintf("%d'%d\"", divmod_output[0], divmod_output[1])
-    end
-  end
-
-  ##  Convert grad year to class
-  def gradyear2class
-    if gradyear.is_a? Integer then
-      cgy = Date.today.month <= 6 ? Date.today.year : Date.today.next_year.year
-      gradclass = { cgy => 'Senior', cgy+1 => 'Junior', cgy+2 => 'Sophmore', cgy+3 => 'Freshman' }[gradyear]
-    else
-      gradclass = 'n/a'
-    end
-  end
+##    ##  Athlete full name
+##    def fullname
+##      firstname + " " + lastname
+##    end
+##  
+##    ##  Athlete full name, last, first
+##    def lastcommafirst
+##      lastname + ", " + firstname
+##    end
+##  
+##    ##  Athlete display name including nickname if present
+##    def displayname
+##      if nickname.blank? then
+##        dn = sprintf("%s %s", firstname, lastname)
+##      else
+##        dn = sprintf("%s (%s) %s", firstname, nickname, lastname)
+##      end
+##    end
+##  
+##    ##  Convert height in inches to feet and inches
+##    def height2text
+##      if height.blank? then
+##        pec = "n/a"
+##      else
+##        divmod_output = height.divmod(12)
+##        pec = sprintf("%d'%d\"", divmod_output[0], divmod_output[1])
+##      end
+##    end
+##  
+##    ##  Convert grad year to class
+##    def gradyear2class
+##      if gradyear.is_a? Integer then
+##        cgy = Date.today.month <= 6 ? Date.today.year : Date.today.next_year.year
+##        gradclass = { cgy => 'Senior', cgy+1 => 'Junior', cgy+2 => 'Sophmore', cgy+3 => 'Freshman' }[gradyear]
+##      else
+##        gradclass = 'n/a'
+##      end
+##    end
 
   #  Is athlete on roster?
   def is_on_roster?(team)
