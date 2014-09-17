@@ -90,8 +90,17 @@
         <h3 class="ui-bar ui-bar-a ui-corner-none">All Events<span class="ui-li-count-fix ui-li-count"><%= @events.count %></span></h3>
 
         <% if @events.count > 0 %>
+          <% previous = nil %>
           <ul data-role="listview" data-inset="true">
             <% @events.each do |event| %>
+              <% if !event.eventdate.blank? %>
+                <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+                <% logger.info(current) %>
+                <% if current != previous %>
+                  <li data-role="list-divider" data-theme="b"><%= current %></li>
+                <% end %>
+                <% previous = current %>
+              <% end %>
               <% venue = Venue.find_by(:id => event.venueid) %>
               <% team = Team.find_by(:id => event.teamid) %>
               <% opponent = Opponent.find_by(:id => event.opponentid) %>

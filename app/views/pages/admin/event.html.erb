@@ -7,10 +7,16 @@
       <%#= link_to 'Add Sport to Event', new_sports_event_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
     <!--  List of Existing Events -->
+    <% if false %>
+    <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Events</h4>
     <div data-role="collapsible-set" data-mini="true">
-      <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Events</h4>
+      <% previous = nil %>
       <% @events = Event.all.order(:eventdate) %>
       <% @events.each do |event| %>
+        <% if !event.eventdate.blank? %>
+          <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+          <% logger.info(current) %>
+        <% end %>
         <% team = Team.find_by(:id => event.teamid) %>
         <% opponent = Opponent.find_by(:id => event.opponentid) %>
         <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
@@ -20,6 +26,37 @@
           <%= link_to 'Edit', edit_event_path(event), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
           <%= link_to 'Delete', event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
         </div>
+      <% end %>
+    </div>
+    <% end %>
+    <!--  /List of Existing Events -->
+    <!--  List of Existing Events -->
+    <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Events</h4>
+    <div data-role="collapsible-set" data-mini="true">
+      <% previous = nil %>
+      <% @events = Event.all.order(:eventdate) %>
+      <% @events.each do |event| %>
+        <% if !event.eventdate.blank? %>
+          <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+          <% logger.info(current) %>
+          <% if current != previous %>
+            <% if !previous.nil? %>
+              </div>
+            <% end %>
+            <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+            <h2><%= current %></h2>
+          <% end %>
+          <% previous = current %>
+        <% team = Team.find_by(:id => event.teamid) %>
+        <% opponent = Opponent.find_by(:id => event.opponentid) %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+
+          <h2><%= h event.datetimeshort %>: <%= h team.formalname %> vs <%= opponent.name %></h2>
+          <%= link_to 'Show', event_path(event), :'data-role' => 'button', :'data-icon' => 'eye', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Edit', edit_event_path(event), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+        <% end %>
       <% end %>
     </div>
     <!--  /List of Existing Events -->
