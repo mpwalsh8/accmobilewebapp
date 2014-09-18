@@ -85,7 +85,69 @@
         <% end %>
       </div>
 
+      <!--  Future Events -->
+      <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <% events = Event.where(['eventdate >= ?', Date.today]).order(:eventdate) %>
+        <h3 class="ui-bar ui-bar-a ui-corner-none">Future Events<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
+        <% if events.count > 0 %>
+          <% previous = nil %>
+          <ul data-role="listview" data-inset="true">
+            <% events.each do |event| %>
+              <% if !event.eventdate.blank? %>
+                <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+                <% logger.info(current) %>
+                <% if current != previous %>
+                  <li data-role="list-divider" data-theme="b"><%= current %></li>
+                <% end %>
+                <% previous = current %>
+              <% end %>
+              <% venue = Venue.find_by(:id => event.venueid) %>
+              <% team = Team.find_by(:id => event.teamid) %>
+              <% opponent = Opponent.find_by(:id => event.opponentid) %>
+              <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s at %s</p>",
+                image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
+                opponent.name, event.datetime, venue.name).html_safe, event %>
+                <span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %> / <%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No events scheduled.</p>
+        <% end %>
+      </div>
+      <!--  /Future Events -->
 
+      <!--  Past Events -->
+      <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <% events = Event.where(['eventdate < ?', Date.today]).order(:eventdate) %>
+        <h3 class="ui-bar ui-bar-a ui-corner-none">Past Events<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
+        <% if events.count > 0 %>
+          <% previous = nil %>
+          <ul data-role="listview" data-inset="true">
+            <% events.each do |event| %>
+              <% if !event.eventdate.blank? %>
+                <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+                <% logger.info(current) %>
+                <% if current != previous %>
+                  <li data-role="list-divider" data-theme="b"><%= current %></li>
+                <% end %>
+                <% previous = current %>
+              <% end %>
+              <% venue = Venue.find_by(:id => event.venueid) %>
+              <% team = Team.find_by(:id => event.teamid) %>
+              <% opponent = Opponent.find_by(:id => event.opponentid) %>
+              <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s at %s</p>",
+                image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
+                opponent.name, event.datetime, venue.name).html_safe, event %>
+                <span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %> / <%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No events scheduled.</p>
+        <% end %>
+      </div>
+      <!--  /Past Events -->
+
+      <!-- All Events -->
       <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
         <h3 class="ui-bar ui-bar-a ui-corner-none">All Events<span class="ui-li-count-fix ui-li-count"><%= @events.count %></span></h3>
 
@@ -114,5 +176,6 @@
           <p>No events scheduled.</p>
         <% end %>
       </div>
+      <!-- /All Events -->
 
 </div>
