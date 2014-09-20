@@ -1,7 +1,7 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @sports_venue.sport.name %> at <%= @sports_venue.venue.name %></h3>
 
 <figure id="pictogram">
-  <%= image_tag(image_url("pictograms/svg/#{sports_venue.sport.imageurl}.svg"), alt: @sports_venue.sport.name) %>
+  <%= image_tag(image_url("pictograms/svg/#{@sports_venue.sport.imageurl}.svg"), alt: @sports_venue.sport.name, style: "height: 80px;") %>
 </figure>
 
 <ul data-role="listview" data-inset="true">
@@ -13,5 +13,5 @@
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
   <%= link_to 'Back to Sports Venues', sports_venues_path, :'data-role' => "button", :'data-icon' => "back", :class => "ui-corner-all" %>
-  <%= link_to 'Edit Sports Venue', edit_sports_venue_path(@sports_venue), :'data-role' => "button", :'data-icon' => "edit", :class => "ui-corner-all" %> %>
+  <%= link_to 'Edit Sports Venue', edit_sports_venue_path(@sports_venue), :'data-role' => "button", :'data-icon' => "edit", :class => "ui-corner-all" %>
 </div>
