@@ -51,7 +51,12 @@
         <% opponent = Opponent.find_by(:id => event.opponentid) %>
         <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
 
-          <h2><%= h event.datetimeshort %>: <%= h team.formalname %> vs <%= opponent.name %></h2>
+          <% title, subtitle = EventTitle(event, team, opponent) %>
+          <% if subtitle.blank? %>
+            <h2><%= h event.datetimeshort %>: <%= h title %></h2>
+          <% else %>
+            <h2><%= h event.datetimeshort %>: <%= h title %> - <%= subtitle %></h2>
+          <% end %>
           <%= link_to 'Show', event_path(event), :'data-role' => 'button', :'data-icon' => 'eye', :'data-inline' => "true", :'data-mini' => "true" %>
           <%= link_to 'Edit', edit_event_path(event), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
           <%= link_to 'Delete', event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
@@ -66,3 +71,23 @@
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
   </div>
 <% end %>
+<%
+  ##  Generic event, not connected to a team?
+  ##  Multi-team event?  Lots of possible scenarios ...
+  def EventTitle(event, team, opponent)
+    title = subtitle = ""
+    if event.teamid.blank?
+      title = event.description.blank? ? "N/A" : event.description
+    elsif event.opponentid.blank? && event.opponents.count != 1
+      title = "#{team.formalname} #{event.description}"
+    elsif !event.opponentid.blank?
+      title = "#{team.formalname} vs #{opponent.name}"
+      subtitle = event.description unless event.description.nil?
+    elsif !event.description.blank?
+      title = event.description unless event.description.nil?
+    else
+      title = "None"
+    end
+    return title.strip, subtitle.strip
+  end
+%>

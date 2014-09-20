@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  serialize :opponents
+
   #has_and_belongs_to_many :teams, through: :events
   #has_and_belongs_to_many :opponents, through: :events
 

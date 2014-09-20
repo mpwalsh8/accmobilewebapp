@@ -37,4 +37,14 @@ module Utility
       gradclass = 'n/a'
     end
   end
+
+  def QQQ
+    sprintf("%s", __FILE__)
+  end
+
+  module Event
+    def test
+      sprintf("%s", __FILE__)
+    end
+  end
 end

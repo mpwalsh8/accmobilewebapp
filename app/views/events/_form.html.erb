@@ -1,3 +1,25 @@
+<!--
+<script>
+    $(function(){
+
+    $('#event_eventtype_single').click(function(){
+        $('#event_opponentid').attr('disabled','disabled');
+        $('#event_multipleopponents').removeAttr('disabled');
+        $('#single-opponent').show();
+        $('#multiple-opponents').hide();
+    });
+
+    $('#event_eventtype_multiple').click(function(){
+        $('#event_opponentid').removeAttr('disabled');
+        $('#event_multipleopponents').attr('disabled','disabled');
+        $('#single-opponent').hide();
+        $('#multiple-opponents').show();
+    });
+
+    });
+</script>
+-->
+
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
 
@@ -21,9 +43,13 @@
     <%= f.label :teamid, "Team" %>
     <%= f.collection_select :teamid, Team.order(:gender, :varsity).all, :id, :formalname, {include_blank: true} %>
   </div>
-  <div data-role="fieldcontain" class="field">
+  <div id="single-opponent" data-role="fieldcontain" class="field">
     <%= f.label :opponentid, "Opponent" %>
     <%= f.collection_select :opponentid, Opponent.order(:name).all, :id, :name, {include_blank: true} %>
+  </div>
+  <div id="multiple-opponents" data-role="fieldcontain" class="field">
+    <%= f.label :opponents, "Opponents" %>
+    <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => true }, { :multiple => true, :'data-native-menu' => false } %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :venueid, "Venue" %>
@@ -64,6 +90,10 @@
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventduration, "Duration (minutes)" %>
     <%= f.text_field :eventduration, :type => "number", :value => "120" %>
+  </div>
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :notes %>

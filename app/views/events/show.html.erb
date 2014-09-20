@@ -1,26 +1,25 @@
-<!--
-<%#= link_to 'Edit', edit_event_path(@event) %> |
-<%#= link_to 'Back', events_path %>
--->
-
-<% venue = Venue.find_by(:id => @event.venueid) %>
-<% team = Team.find_by(:id => @event.teamid) %>
-<% opponent = Opponent.find_by(:id => @event.opponentid) %>
 <%
-logger.info(@event.status)
-   case @event.status
-     when /^(scheduled|postponed|rescheduled|canceled)$/
-logger.info('111111111111111')
-       status = @event.status.camelize
-     else
-logger.info('22222222222222')
-       status = 'scheduled'.camelize
-   end
+  venue = Venue.find_by(:id => @event.venueid) 
+  team = @event.teamid.blank? ? nil : Team.find_by(:id => @event.teamid)
+  opponent = @event.opponentid.blank? ? nil : Opponent.find_by(:id => @event.opponentid)
+
+  case @event.status
+    when /^(scheduled|postponed|rescheduled|canceled)$/
+      status = @event.status.camelize
+    else
+      status = 'scheduled'.camelize
+  end
 %>
 
 <ul data-role="listview" data-inset="true">
   <li data-role="list-divider">
-    <h1><%= team.formalname %> vs <%= opponent.name %></h1>
+    <% title = "title" %>
+    <% subtitle = "subtitle" %>
+    <% title, subtitle = EventTitle(@event, team, opponent) %>
+    <h1><%= title %></h1>
+    <% if !subtitle.blank? %>
+      <h4><%= subtitle %></h4>
+    <% end %>
     <p>Scheduled:  <%= @event.datetimelong %></p>
     <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
     <p>Status:  <span class="event-<%= status.downcase %>"><%= status %></span></p>
@@ -28,15 +27,43 @@ logger.info('22222222222222')
       <p>Notes:  <%= @event.notes %></p>
     <% end %>
   </li>
+  <% if !team.nil? %>
   <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>
-  <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+  <% end %>
+  <% if !@event.opponentid.blank? %>
+    <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+  <% end %>
+  <% if @event.opponents.count > 1 %>
+    <% @event.opponents.each do |o| %>
+      <% opponent = Opponent.find_by(:id => o) %>
+      <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+    <% end %>
+  <% end %>
   <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
 </ul>
-
-<%# logger.info(@event.to_yaml) %>
-<%# logger.info(@team.to_yaml) %>
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
   <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
 </div>
+
+<%
+  ##  Generic event, not connected to a team?
+  ##  Multi-team event?  Lots of possible scenarios ...
+  def EventTitle(event, team, opponent)
+    title = subtitle = ""
+    if event.teamid.blank?
+      title = event.description.blank? ? "N/A" : event.description
+    elsif event.opponentid.blank? && event.opponents.count != 1
+      title = "#{team.formalname} #{event.description}"
+    elsif !event.opponentid.blank?
+      title = "#{team.formalname} vs #{opponent.name}"
+      subtitle = event.description unless event.description.nil?
+    elsif !event.description.blank?
+      title = event.description unless event.description.nil?
+    else
+      title = "None"
+    end
+    return title.strip, subtitle.strip
+  end
+%>

@@ -25,13 +25,7 @@
         <% if events.count > 0 %>
         <ul data-role="listview" data-inset="true">
           <% events.each do |event| %>
-            <% venue = Venue.find_by(:id => event.venueid) %>
-            <% team = Team.find_by(:id => event.teamid) %>
-            <% opponent = Opponent.find_by(:id => event.opponentid) %>
-            <% status = event.status.blank? || event.status == 'scheduled' ? "" : sprintf("<span class=\"event-%s\">%s</span><br />", event.status, event.status.camelize) %>
-            <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s at %s</p>",
-              image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
-              opponent.name, status, event.datetime, venue.name).html_safe, event %><span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %> / <%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+            <%= EventOverviewLI(event) %>
           <% end %>
         </ul>
         <% else %>
@@ -47,13 +41,7 @@
         <% if events.count > 0 %>
         <ul data-role="listview" data-inset="true">
           <% events.each do |event| %>
-            <% venue = Venue.find_by(:id => event.venueid) %>
-            <% team = Team.find_by(:id => event.teamid) %>
-            <% opponent = Opponent.find_by(:id => event.opponentid) %>
-            <% status = event.status.blank? || event.status == 'scheduled' ? "" : sprintf("<span class=\"event-%s\">%s</span><br />", event.status, event.status.camelize) %>
-            <li><%= link_to sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s at %s</p>",
-              image_url("pictograms/svg/#{team.sport.imageurl}.svg"), team.sport.name, team.formalname,
-              opponent.name, status, event.datetime, venue.name).html_safe, event %><span class="ui-li-count-fix ui-li-count"><%= event.eventlocation.camelize[0] %> / <%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+            <%= EventOverviewLI(event) %>
           <% end %>
         </ul>
         <% else %>
@@ -119,3 +107,61 @@
 });
 </script>
 <!-- /Splash Banner -->
+<%
+  ##  Generic event, not connected to a team?
+  ##  Multi-team event?  Lots of possible scenarios ...
+  def EventTitle(event, team, opponent)
+    title = subtitle = ""
+    if event.teamid.blank?
+      title = event.description.blank? ? "N/A" : event.description
+    elsif event.opponentid.blank? && event.opponents.count != 1
+      title = "#{team.formalname} #{event.description}"
+    elsif !event.opponentid.blank?
+      title = "#{team.formalname} vs #{opponent.name}"
+      subtitle = event.description unless event.description.nil?
+    elsif !event.description.blank?
+      title = event.description unless event.description.nil?
+    else
+      title = "None"
+    end
+    return title.strip, subtitle.strip
+  end
+
+  ##  Construct the event content based on presence of opponents
+  def EventOverviewLI(event)
+    venue = Venue.find_by(:id => event.venueid)
+    team = event.teamid.blank? ? nil : Team.find_by(:id => event.teamid)
+    opponent = event.opponentid.blank? ? nil : Opponent.find_by(:id => event.opponentid)
+    status = event.status.blank? || event.status == 'scheduled' ? "" :
+      sprintf("<span class=\"event-%s\">%s</span><br />", event.status, event.status.camelize)
+
+    title, subtitle = EventTitle(event, team, opponent)
+    if team.nil?
+      span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s</span>",
+        event.eventlocation.camelize[0])
+      li = sprintf("<li>%s%s</li>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s at %s</p>",
+        image_url("pictograms/svg/Information-Blk.svg"),
+        "Information", title, status, event.datetime,
+        venue.name).html_safe, event), span)
+    elsif event.opponentid.blank?
+      span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s</span>",
+        event.eventlocation.camelize[0])
+      li = sprintf("<li>%s%s</li>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s at %s</p>",
+        image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
+        team.sport.name, team.formalname, status, event.datetime,
+        venue.name).html_safe, event), span)
+    else
+      span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s / %s</span>",
+        event.eventlocation.camelize[0], opponent.conferenceopponent ? "C" : "N")
+      li = sprintf("<li>%s%s</li>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s at %s</p>",
+        image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
+        team.sport.name, team.formalname, opponent.name, status, event.datetime,
+        venue.name).html_safe, event), span)
+     end
+
+     return li.html_safe
+  end
+%>
