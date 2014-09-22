@@ -1,6 +1,8 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Import Teams</h3>
 
 <%= simple_form_for :import, :url => import_athletes_teams_path, :html => { :multipart => true, :'data-ajax' => false}, :class => 'Team'  do |f| %>
+  <%= f.error_notification %>
+  <%= render 'layouts/error_messages', object: f.object %>
 
   <div data-role="fieldcontain" class="field">
     <%= f.label :team_id, "Team" %>

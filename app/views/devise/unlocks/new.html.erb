@@ -1,8 +1,9 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Resend Unlock Instructions</h3>
 
-<%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), :html => {:method => :post, :'data-ajax' => 'false'}) do |f| %>
   <%= f.error_notification %>
   <%= f.full_error :unlock_token %>
+  <%= render 'layouts/error_messages', object: f.object %>
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>

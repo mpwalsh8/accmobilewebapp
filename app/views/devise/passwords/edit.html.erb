@@ -1,7 +1,8 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Change Your Password</h3>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, :html => {:'data-ajax' => 'false'}) do |f| %>
   <%= f.error_notification %>
+  <%= render 'layouts/error_messages', object: f.object %>
 
   <%= f.input :reset_password_token, as: :hidden %>
   <%= f.full_error :reset_password_token %>

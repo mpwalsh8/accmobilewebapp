@@ -1,8 +1,10 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Resend Confirmation Instructions</h3>
 
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), :html => {:method => :post, :'data-ajax' => 'false'}) do |f| %>
   <%= f.error_notification %>
   <%= f.full_error :confirmation_token %>
+  <%= render 'layouts/error_messages', object: f.object %>
+
 
   <div data-role="fieldcontain" class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>

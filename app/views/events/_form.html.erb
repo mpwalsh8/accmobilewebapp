@@ -1,43 +1,6 @@
-<!--
-<script>
-    $(function(){
-
-    $('#event_eventtype_single').click(function(){
-        $('#event_opponentid').attr('disabled','disabled');
-        $('#event_multipleopponents').removeAttr('disabled');
-        $('#single-opponent').show();
-        $('#multiple-opponents').hide();
-    });
-
-    $('#event_eventtype_multiple').click(function(){
-        $('#event_opponentid').removeAttr('disabled');
-        $('#event_multipleopponents').attr('disabled','disabled');
-        $('#single-opponent').hide();
-        $('#multiple-opponents').show();
-    });
-
-    });
-</script>
--->
-
-<%= simple_form_for(@event) do |f| %>
+<%= simple_form_for(@event, :html => {:'data-ajax' => 'false'}) do |f| %>
   <%= f.error_notification %>
-
-<!--
-  <div class="form-inputs">
-    <%= f.input :teamid %>
-    <%= f.input :opponentid %>
-    <%= f.input :venueid %>
-    <%= f.input :eventlocation %>
-    <%= f.input :eventdate %>
-    <%= f.input :eventtime %>
-    <%= f.input :eventduration %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
--->
+  <%= render 'layouts/error_messages', object: f.object %>
 
   <div data-role="fieldcontain" class="field">
     <%= f.label :teamid, "Team" %>

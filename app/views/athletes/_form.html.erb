@@ -1,5 +1,6 @@
-<%= simple_form_for(@athlete) do |f| %>
+<%= simple_form_for(@athlete, :html => {:'data-ajax' => 'false'}) do |f| %>
   <%= f.error_notification %>
+  <%= render 'layouts/error_messages', object: f.object %>
 
 <!--
   <div class="form-inputs">
