@@ -6,10 +6,12 @@
     <%= f.label :teamid, "Team" %>
     <%= f.collection_select :teamid, Team.order(:gender, :varsity).all, :id, :formalname, {include_blank: true} %>
   </div>
+<!--
   <div id="single-opponent" data-role="fieldcontain" class="field">
-    <%= f.label :opponentid, "Opponent" %>
-    <%= f.collection_select :opponentid, Opponent.order(:name).all, :id, :name, {include_blank: true} %>
+    <%#= f.label :opponentid, "Opponent" %>
+    <%#= f.collection_select :opponentid, Opponent.order(:name).all, :id, :name, {include_blank: true} %>
   </div>
+-->
   <div id="multiple-opponents" data-role="fieldcontain" class="field">
     <%= f.label :opponents, "Opponents" %>
     <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => true }, { :multiple => true, :'data-native-menu' => false } %>
