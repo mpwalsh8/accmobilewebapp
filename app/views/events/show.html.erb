@@ -1,4 +1,23 @@
 <%
+  ##  Generic event, not connected to a team?
+  ##  Multi-team event?  Lots of possible scenarios ...
+  def EventTitle(event, team, opponent)
+    title = subtitle = ""
+    if event.teamid.blank?
+      title = event.description.blank? ? "N/A" : event.description
+    elsif event.opponentid.blank? && event.opponents.count != 1
+      title = "#{team.formalname} #{event.description}"
+    elsif !event.opponentid.blank?
+      title = "#{team.formalname} vs #{opponent.name}"
+      subtitle = event.description unless event.description.nil?
+    elsif !event.description.blank?
+      title = event.description unless event.description.nil?
+    else
+      title = "None"
+    end
+    return title.strip, subtitle.strip
+  end
+
   venue = Venue.find_by(:id => @event.venueid) 
   team = @event.teamid.blank? ? nil : Team.find_by(:id => @event.teamid)
   opponent = @event.opponentid.blank? ? nil : Opponent.find_by(:id => @event.opponentid)
@@ -46,24 +65,3 @@
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
   <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
 </div>
-
-<%
-  ##  Generic event, not connected to a team?
-  ##  Multi-team event?  Lots of possible scenarios ...
-  def EventTitle(event, team, opponent)
-    title = subtitle = ""
-    if event.teamid.blank?
-      title = event.description.blank? ? "N/A" : event.description
-    elsif event.opponentid.blank? && event.opponents.count != 1
-      title = "#{team.formalname} #{event.description}"
-    elsif !event.opponentid.blank?
-      title = "#{team.formalname} vs #{opponent.name}"
-      subtitle = event.description unless event.description.nil?
-    elsif !event.description.blank?
-      title = event.description unless event.description.nil?
-    else
-      title = "None"
-    end
-    return title.strip, subtitle.strip
-  end
-%>
