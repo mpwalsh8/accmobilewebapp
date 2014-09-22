@@ -1,3 +1,23 @@
+<%
+  ##  Generic event, not connected to a team?
+  ##  Multi-team event?  Lots of possible scenarios ...
+  def EventTitle(event, team, opponent)
+    title = subtitle = ""
+    if event.teamid.blank?
+      title = event.description.blank? ? "N/A" : event.description
+    elsif event.opponentid.blank? && event.opponents.count != 1
+      title = "#{team.formalname} #{event.description}"
+    elsif !event.opponentid.blank?
+      title = "#{team.formalname} vs #{opponent.name}"
+      subtitle = event.description unless event.description.nil?
+    elsif !event.description.blank?
+      title = event.description unless event.description.nil?
+    else
+      title = "None"
+    end
+    return title.strip, subtitle.strip
+  end
+%>
 <% content_for :title do %>Event Admin<% end %>
 <% if current_user.try(:admin?) %>
   <div data-role="container">
@@ -71,23 +91,3 @@
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
   </div>
 <% end %>
-<%
-  ##  Generic event, not connected to a team?
-  ##  Multi-team event?  Lots of possible scenarios ...
-  def EventTitle(event, team, opponent)
-    title = subtitle = ""
-    if event.teamid.blank?
-      title = event.description.blank? ? "N/A" : event.description
-    elsif event.opponentid.blank? && event.opponents.count != 1
-      title = "#{team.formalname} #{event.description}"
-    elsif !event.opponentid.blank?
-      title = "#{team.formalname} vs #{opponent.name}"
-      subtitle = event.description unless event.description.nil?
-    elsif !event.description.blank?
-      title = event.description unless event.description.nil?
-    else
-      title = "None"
-    end
-    return title.strip, subtitle.strip
-  end
-%>
