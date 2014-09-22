@@ -54,8 +54,10 @@
   <% end %>
   <% if @event.opponents.count > 1 %>
     <% @event.opponents.each do |o| %>
-      <% opponent = Opponent.find_by(:id => o) %>
-      <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+      <% if !o.blank? %>
+        <% opponent = Opponent.find_by(:id => o) %>
+        <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
+      <% end %>
     <% end %>
   <% end %>
   <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
