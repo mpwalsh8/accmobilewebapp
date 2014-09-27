@@ -1,11 +1,11 @@
 <%
-  venue = Venue.find_by(:id => @event.venueid) 
-  team = @event.teamid.blank? ? nil : Team.find_by(:id => @event.teamid)
-  opponent = @event.opponentid.blank? ? nil : Opponent.find_by(:id => @event.opponentid)
+  venue = Venue.find_by(:id => @result.event.venueid) 
+  team = @result.event.teamid.blank? ? nil : Team.find_by(:id => @result.event.teamid)
+  opponent = @result.event.opponentid.blank? ? nil : Opponent.find_by(:id => @result.event.opponentid)
 
-  case @event.status
+  case @result.event.status
     when /^(scheduled|postponed|rescheduled|canceled)$/
-      status = @event.status.camelize
+      status = @result.event.status.camelize
     else
       status = 'scheduled'.camelize
   end
@@ -15,36 +15,37 @@
   <li data-role="list-divider">
     <% title = "title" %>
     <% subtitle = "subtitle" %>
-    <% title, subtitle = @event.formalname %>
+    <% title, subtitle = @result.event.formalname %>
     <h1><%= title %></h1>
     <% if !subtitle.blank? %>
       <h4><%= subtitle %></h4>
     <% end %>
-    <p>Scheduled:  <%= @event.datetimelong %></p>
-    <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
-    <p>Status:  <span class="event-<%= status.downcase %>"><%= status %></span></p>
-    <% if !@event.notes.blank? %>
-      <p>Notes:  <%= @event.notes %></p>
+    <h4>Result:  <%= @result.resulttext[0] %></h4>
+    <% if !@result.notes.blank? %>
+      <p>Notes:  <%= @result.notes %></p>
     <% end %>
+    <p>Scheduled:  <%= @result.event.datetimelong %></p>
+    <p>Duration (est):  <%= distance_of_time_in_words(@result.event.eventduration * 60) %></p>
+    <p>Status:  <span class="event-<%= status.downcase %>"><%= status %></span></p>
   </li>
   <% if !team.nil? %>
   <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>
   <% end %>
-  <% if !@event.opponentid.blank? %>
+  <% if !@result.event.opponentid.blank? %>
     <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
   <% end %>
-  <% if @event.opponents.count > 1 %>
-    <% @event.opponents.each do |o| %>
+  <% if @result.event.opponents.count > 1 %>
+    <% @result.event.opponents.each do |o| %>
       <% if !o.blank? %>
         <% opponent = Opponent.find_by(:id => o) %>
         <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
       <% end %>
     <% end %>
   <% end %>
-  <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
+  <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @result.event.eventlocation.camelize[0] %></span></li>
 </ul>
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
-  <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
+  <%= link_to 'Back to Results', results_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
 </div>

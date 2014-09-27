@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  eventid: 1
+  result: MyString
+  place: 1
+  teamscore: 1.5
+  opponentscore: 1.5
+
+two:
+  eventid: 1
+  result: MyString
+  place: 1
+  teamscore: 1.5
+  opponentscore: 1.5

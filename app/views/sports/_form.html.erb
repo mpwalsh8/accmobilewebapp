@@ -23,6 +23,21 @@
     <%= f.text_field :imageurl %>
   </div>
   <div data-role="fieldcontain" class="field">
+    <%= f.label :resulttype, "Results" %>
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+      <%= f.radio_button :resulttype, 'win-loss' %>
+      <%= f.label :resulttype, 'Win-Loss', :value => 'win-loss' %>
+      <%= f.radio_button :resulttype, 'win-loss-tie' %>
+      <%= f.label :resulttype, 'Win-Loss-Tie', :value => 'win-loss-tie' %>
+      <%= f.radio_button :resulttype, 'place' %>
+      <%= f.label :resulttype, 'Place', :value => 'place' %>
+      <%= f.radio_button :resulttype, 'other' %>
+      <%= f.label :resulttype, 'Other', :value => 'other' %>
+      <%= f.radio_button :resulttype, 'none' %>
+      <%= f.label :resulttype, 'None', :value => 'none' %>
+    </fieldset>
+  </div>
+  <div data-role="fieldcontain" class="field">
     <%= f.label :active, "Active Sport" %>
     <%= f.check_box :active %>
   </div>

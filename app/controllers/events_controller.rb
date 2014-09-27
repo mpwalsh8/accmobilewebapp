@@ -13,17 +13,17 @@ class EventsController < ApplicationController
   def show
 #logger.info(@event[:opponents].to_yaml)
 #logger.info(@event[:opponents].count)
-    @event.opponents.each do |o|
-      if !o.blank?
-        logger.info(o)
-      end
-    end
+    #@event.opponents.each do |o|
+      #if !o.blank?
+        #logger.info(o)
+      #end
+    #end
 
-    x = @event.opponents.compact
-    logger.info(x.count)
-    x = @event.opponents.delete_if(&:blank?)
-    logger.info(x.count)
-logger.info(@event.to_yaml)
+    #x = @event.opponents.compact
+    #logger.info(x.count)
+    #x = @event.opponents.delete_if(&:blank?)
+    #logger.info(x.count)
+#logger.info(@event.to_yaml)
   end
 
   # GET /events/new

@@ -1,0 +1,74 @@
+<% content_for :title do %>Result Admin<% end %>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <h3 class="ui-bar ui-bar-a">Result Administration</h3>
+    <div data-role="controlgroup" data-type="vertical">
+      <%= link_to 'Add Result', new_result_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+      <%#= link_to 'Add Sport to Result', new_sports_result_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+    </div>
+    <!--  List of Existing Results -->
+    <% if false %>
+    <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Results</h4>
+    <div data-role="collapsible-set" data-mini="true">
+      <% previous = nil %>
+      <% @results = Result.all.order(:event.eventdate) %>
+      <% @results.each do |result| %>
+        <% if !result.event.eventdate.blank? %>
+          <% current = Date::strptime(result.event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+          <% logger.info(current) %>
+        <% end %>
+        <% team = Team.find_by(:id => result.teamid) %>
+        <% opponent = Opponent.find_by(:id => result.opponentid) %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+
+          <h2><%= h result.datetimeshort %>: <%= h team.formalname %> vs <%= opponent.name %></h2>
+          <%= link_to 'Show', result_path(result), :'data-role' => 'button', :'data-icon' => 'eye', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Edit', edit_result_path(result), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', result, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+    <!--  /List of Existing Results -->
+    <!--  List of Existing Results -->
+    <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Results</h4>
+    <div data-role="collapsible-set" data-mini="true">
+      <% previous = nil %>
+      <%# @results = Result.all.order(:event.eventdate) %>
+      <% @results = Result.joins(:event).where("events.id = results.event_id").order("eventdate, eventtime") %>
+      <% @results.each do |result| %>
+        <% if !result.event.eventdate.blank? %>
+          <% current = Date::strptime(result.event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
+          <% logger.info(current) %>
+          <% if current != previous %>
+            <% if !previous.nil? %>
+              </div>
+            <% end %>
+            <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+            <h2><%= current %></h2>
+          <% end %>
+          <% previous = current %>
+        <% team = Team.find_by(:id => result.event.teamid) %>
+        <% opponent = Opponent.find_by(:id => result.event.opponentid) %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+
+          <% title, subtitle = result.event.formalname %>
+          <% if subtitle.blank? %>
+            <h2><%= h title %> (<%= result.resulttext[1] %>)</span></h2>
+          <% else %>
+            <h2><%= h title %> - <%= subtitle %> (<%=result.resulttext[1] %>)</h2>
+          <% end %>
+          <%= link_to 'Show', result_path(result), :'data-role' => 'button', :'data-icon' => 'eye', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Edit', edit_result_path(result), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', result, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <!--  /List of Existing Results -->
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>

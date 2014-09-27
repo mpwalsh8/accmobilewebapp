@@ -1,0 +1,63 @@
+<%= simple_form_for(@result, :html => {:'data-ajax' => 'false'}) do |f| %>
+  <%= f.error_notification %>
+  <%= render 'layouts/error_messages', object: f.object %>
+
+<!--
+  <div class="form-inputs">
+    <%#= f.input :event_id %>
+    <%#= f.input :result %>
+    <%#= f.input :place %>
+    <%#= f.input :teamscore %>
+    <%#= f.input :opponentscore %>
+  </div>
+-->
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :event_id, "Event" %>
+    <%= f.collection_select :event_id, Event.order(:eventdate, :eventtime).all, :id, :formalname, {include_blank: true} %>
+  </div>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :result, "Result" %>
+    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+      <%= f.radio_button :result, 'win' %>
+      <%= f.label :result, 'Win', :value => 'win' %>
+      <%= f.radio_button :result, 'loss' %>
+      <%= f.label :result, 'Loss', :value => 'loss' %>
+      <%= f.radio_button :result, 'tie' %>
+      <%= f.label :result, 'Tie', :value => 'tie' %>
+      <%= f.radio_button :result, 'place' %>
+      <%= f.label :result, 'Place', :value => 'place' %>
+      <%= f.radio_button :result, 'other' %>
+      <%= f.label :result, 'Other', :value => 'other' %>
+      <%= f.radio_button :result, 'none' %>
+      <%= f.label :result, 'None', :value => 'none' %>
+    </fieldset>
+  </div>
+
+    <%#= f.select :teamscore, (Time.zone.now.year - 2)..(Time.zone.now.year + 4), {include_blank: true} %>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :teamscore, "Team Score" %>
+    <%= f.text_field :teamscore, :type => "number" %>
+  </div>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :opponentscore, "Opponent Score" %>
+    <%= f.text_field :opponentscore, :type => "number" %>
+  </div>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :place, "Place" %>
+    <%= f.select :place, 1..100, {include_blank: true} %>
+  </div>
+
+  <div data-role="fieldcontain" class="field">
+    <%= f.label :notes, "Notes" %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
