@@ -33,7 +33,7 @@
   <% if !@event.opponentid.blank? %>
     <li><%= link_to sprintf("Opponent:  %s", opponent.name), opponent_path(opponent) %><span class="ui-li-count-fix ui-li-count"><%= opponent.conferenceopponent ? "C" : "N" %></span></li>
   <% end %>
-  <% if @event.opponents.count > 1 %>
+  <% if !@event.opponentid.blank? && @event.opponents.count > 1 %>
     <% @event.opponents.each do |o| %>
       <% if !o.blank? %>
         <% opponent = Opponent.find_by(:id => o) %>
