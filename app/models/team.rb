@@ -12,7 +12,7 @@ class Team < ActiveRecord::Base
       sprintf("%s's %s%s %s", gender.camelize,
         varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}", sport.name)
     else
-      sprintf("%s %s%s",
+      sprintf("%s%s %s",
         varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}", sport.name)
     end
   end
