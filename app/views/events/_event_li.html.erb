@@ -14,7 +14,7 @@
       span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s%s</span>",
         rs, event.eventlocation.camelize[0])
       li = sprintf("<li>%s%s</li>",
-        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s at %s</p>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s<br />%s</p>",
         image_url("pictograms/svg/Information-Blk.svg"),
         "Information", title, status, event.datetime,
         venue.name).html_safe, event), span)
@@ -22,7 +22,7 @@
       span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s%s</span>",
         rs, event.eventlocation.camelize[0])
       li = sprintf("<li>%s%s</li>",
-        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s at %s</p>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s<br /> %s</p>",
         image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
         team.sport.name, team.formalname, status, event.datetime,
         venue.name).html_safe, event), span)
@@ -30,7 +30,7 @@
       span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s%s / %s</span>",
         rs, event.eventlocation.camelize[0], opponent.conferenceopponent ? "C" : "N")
       li = sprintf("<li>%s%s</li>",
-        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s at %s</p>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s<br /> %s</p>",
         image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
         team.sport.name, team.formalname, opponent.name, status, event.datetime,
         venue.name).html_safe, event), span)
