@@ -2,6 +2,7 @@
   venue = Venue.find_by(:id => @event.venueid) 
   team = @event.teamid.blank? ? nil : Team.find_by(:id => @event.teamid)
   opponent = @event.opponentid.blank? ? nil : Opponent.find_by(:id => @event.opponentid)
+  result = Result.find_by(:event_id => @event.id) 
 
   case @event.status
     when /^(scheduled|postponed|rescheduled|canceled)$/
@@ -19,6 +20,12 @@
     <h1><%= title %></h1>
     <% if !subtitle.blank? %>
       <h4><%= subtitle %></h4>
+    <% end %>
+    <% if !result.nil? %>
+      <h4>Result:  <%= result.resulttext[0] %></h4>
+      <% if !result.notes.blank? %>
+        <p>Notes:  <%= result.notes %></p>
+      <% end %>
     <% end %>
     <p>Scheduled:  <%= @event.datetimelong %></p>
     <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
