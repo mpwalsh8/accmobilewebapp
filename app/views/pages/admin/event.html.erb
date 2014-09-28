@@ -15,7 +15,7 @@
       <% @events.each do |event| %>
         <% if !event.eventdate.blank? %>
           <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
-          <% logger.info(current) %>
+          <%# logger.info(current) %>
         <% end %>
         <% team = Team.find_by(:id => event.teamid) %>
         <% opponent = Opponent.find_by(:id => event.opponentid) %>
@@ -38,7 +38,7 @@
       <% @events.each do |event| %>
         <% if !event.eventdate.blank? %>
           <% current = Date::strptime(event.eventdate, "%Y-%m-%d").strftime("%B %Y") %>
-          <% logger.info(current) %>
+          <%# logger.info(current) %>
           <% if current != previous %>
             <% if !previous.nil? %>
               </div>

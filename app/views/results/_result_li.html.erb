@@ -2,7 +2,7 @@
   ##  Construct the event content based on presence of opponents
   def ResultOverviewLI(result)
     rl, rs = result.resulttext
-logger.info(sprintf("RESULT:  %s", result.resulttext.to_yaml))
+#logger.info(sprintf("RESULT:  %s", result.resulttext.to_yaml))
     event = result.event
     venue = Venue.find_by(:id => event.venueid)
     team = event.teamid.blank? ? nil : Team.find_by(:id => event.teamid)

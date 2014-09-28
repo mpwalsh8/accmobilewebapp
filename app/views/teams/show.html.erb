@@ -115,7 +115,7 @@
             <% if a.captain %>
               <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
             <% end %>
-<% logger.info(a.to_yaml) %>
+<%# logger.info(a.to_yaml) %>
             <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, send(:athlete_path, a)) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
           <% end %>
         </ul>

@@ -7,7 +7,7 @@
 <%# logger.info(object.errors.to_yaml) %>
 <%# logger.info(object.errors.values.to_yaml) %>
    <% object.errors.values.each do |msg| %>
-<% logger.info(msg.to_yaml) %>
+<%# logger.info(msg.to_yaml) %>
     <li><%= msg.first %></li>
    <% end %>
  </ul>
