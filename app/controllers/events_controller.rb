@@ -79,6 +79,12 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+      if @event.status.blank?
+        @event.status = 'scheduled'
+      end
+      if !@event.opponentid.blank? && @event.opponents.blank?
+        @event.opponents = [@event.opponentid]
+      end
     end
 
     def set_opponentid
