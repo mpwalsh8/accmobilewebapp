@@ -8,7 +8,7 @@ class Team < ActiveRecord::Base
   #  the sport name, and varsity or jv designation. 
 
   def formalname
-    if (gender != 'co-ed')
+    if gender != 'co-ed' && showgender
       sprintf("%s's %s%s %s", gender.camelize,
         varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}", sport.name)
     else

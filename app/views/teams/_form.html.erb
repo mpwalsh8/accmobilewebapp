@@ -47,7 +47,7 @@
       </fieldset>
     </div>
   </div>
-</div>
+  <div class="ui-block-a">
   <div class="field">
     <%= f.label :suffix, "Team Name Suffix" %>
     <fieldset data-role="controlgroup" data-type="horizontal">
@@ -61,6 +61,15 @@
       <%= f.label :suffix, 'C', :value => 'c' %>
     </fieldset>
   </div>
+  </div>
+  <div class="ui-block-b">
+  <div class="field">
+    <br />
+    <%= f.label :showgender, "Show Gender in Team Name" %>
+    <%= f.check_box :showgender %>
+  </div>
+  </div>
+</div>
   <div class="field">
     <%= f.label :season, "Season" %>
     <fieldset data-role="controlgroup" data-type="vertical">
