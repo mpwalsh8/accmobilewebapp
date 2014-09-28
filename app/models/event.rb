@@ -9,6 +9,7 @@ class Event < ActiveRecord::Base
   validates_format_of :eventtime, :message => 'Time must be HH:MM format.', :with => /([01]?[0-9]|2[0-3]):[0-5][0-9]/
   has_one :result
 
+  after_initialize :init
 
   #has_and_belongs_to_many :teams, through: :events
   #has_and_belongs_to_many :opponents, through: :events
@@ -99,4 +100,13 @@ class Event < ActiveRecord::Base
 ##       return li.html_safe
 ##    end
 
+  private
+  def init
+    if self.new_record? && self.status.nil?
+      self.status = 'scheduled'
+    end
+    if self.new_record? && self.eventlocation.nil?
+      self.eventlocation = 'home'
+    end
+  end
 end

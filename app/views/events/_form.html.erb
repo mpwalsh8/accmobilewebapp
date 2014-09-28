@@ -23,12 +23,7 @@
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventlocation, "Location" %>
     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-      <%= f.radio_button :eventlocation, 'home' %>
-      <%= f.label :eventlocation, 'Home', :value => 'home' %>
-      <%= f.radio_button :eventlocation, 'away' %>
-      <%= f.label :eventlocation, 'Away', :value => 'away' %>
-      <%= f.radio_button :eventlocation, 'neutral' %>
-      <%= f.label :eventlocation, 'Neutral', :value => 'neutral' %>
+      <%= f.input :eventlocation, as: :radio_buttons, :label => false, :collection => [ ['Home', 'home'], ['Away', 'away'], ['Nuetral', 'nuetral' ] ] %>
     </fieldset>
   </div>
   <div data-role="fieldcontain" class="field">
@@ -42,14 +37,7 @@
   <div data-role="fieldcontain" class="field">
     <%= f.label :status, "Status" %>
     <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
-      <%= f.radio_button :status, 'scheduled' %>
-      <%= f.label :status, 'Scheduled', :value => 'scheduled' %>
-      <%= f.radio_button :status, 'rescheduled' %>
-      <%= f.label :status, 'Rescheduled', :value => 'rescheduled' %>
-      <%= f.radio_button :status, 'postponed' %>
-      <%= f.label :status, 'Postponed', :value => 'postponed' %>
-      <%= f.radio_button :status, 'canceled' %>
-      <%= f.label :status, 'Canceled', :value => 'canceled' %>
+      <%= f.input :status, as: :radio_buttons, :label => false, :collection => [ ['Scheduled', 'scheduled'], ['Rescheduled', 'rescheduled'], ['Postponed', 'postponed'], ['Canceled', 'canceled'] ] %>
     </fieldset>
   </div>
   <div data-role="fieldcontain" class="field">
