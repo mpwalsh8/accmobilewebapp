@@ -50,6 +50,7 @@
         <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Name<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
         <% if @team.athletes.count > 0 %>
         <ul data-role="listview" data-inset="false" data-filter="true" data-autodividers="true" data-count-theme="b">
+          <% @athletes = @athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
           <% @athletes.each do |a| %>
             <% notes = a.gradyear2class %>
             <% if !a.position.blank? %>
