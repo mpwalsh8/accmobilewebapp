@@ -12,9 +12,12 @@
   </div>
 -->
 
+  <% eventfilter = Result.select(:event_id).map { |i| i.event_id } %>
+  <% logger.info(eventfilter.to_yaml) %>
   <div data-role="fieldcontain" class="field">
     <%= f.label :event_id, "Event" %>
-    <%= f.collection_select :event_id, Event.order(:eventdate, :eventtime).all, :id, :formalname, {include_blank: true} %>
+    <%#= f.collection_select :event_id, Event.order(:eventdate, :eventtime).all, :id, :formalname, {include_blank: true} %>
+    <%= f.collection_select :event_id, Event.order(:eventdate, :eventtime).where.not(id: eventfilter), :id, :formalname, {include_blank: true} %>
   </div>
 
   <div data-role="fieldcontain" class="field">
