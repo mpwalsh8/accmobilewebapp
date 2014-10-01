@@ -16,4 +16,17 @@ class Team < ActiveRecord::Base
         varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}", sport.name)
     end
   end
+
+  #  The "sport name" is derived from the gender,
+  #  the sport name, and varsity or jv designation. 
+
+  def sportname
+    if gender != 'co-ed' && showgender
+      sprintf("%s %s%s - %s", sport.name,
+        varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}",  gender.camelize)
+    else
+      sprintf("%s %s%s", sport.name,
+        varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}")
+    end
+  end
 end
