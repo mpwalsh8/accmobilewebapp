@@ -7,10 +7,12 @@
     status = event.status.blank? || event.status == 'scheduled' ? "" :
       sprintf("<span class=\"event-%s\">%s</span><br />", event.status, event.status.camelize)
     result = Result.find_by(:event_id => event.id)
-    rs = result.nil? ? "" :sprintf("%s<br />", result.resulttext[1])
+    rs = result.nil? ? "" : sprintf("%s<br />", result.resulttext[1])
 
     title, subtitle = event.formalname
     if team.nil?
+#logger.info('=================================================')
+#logger.info(__LINE__)
       span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s%s</span>",
         rs, event.eventlocation.camelize[0])
       li = sprintf("<li>%s%s</li>",
@@ -19,23 +21,28 @@
         "Information", title, status, event.datetime,
         venue.name).html_safe, event), span)
     elsif event.opponentid.blank?
+#logger.info('=================================================')
+#logger.info(event.eventtitle)
+#logger.info(__LINE__)
       span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s%s</span>",
         rs, event.eventlocation.camelize[0])
       li = sprintf("<li>%s%s</li>",
         link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s<br /> %s</p>",
         image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
-        team.sport.name, team.formalname, status, event.datetime,
+        team.sport.name, event.eventtitle[0], status, event.datetime,
         venue.name).html_safe, event), span)
     else
+#logger.info('=================================================')
+#logger.info(__LINE__)
       span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s%s / %s</span>",
         rs, event.eventlocation.camelize[0], opponent.conferenceopponent ? "C" : "N")
       li = sprintf("<li>%s%s</li>",
-        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s<br /> %s</p>",
+        link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s<br /> %s</p>",
         image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
-        team.sport.name, team.formalname, opponent.name, status, event.datetime,
+        team.sport.name, event.eventtitle[0], status, event.datetime,
         venue.name).html_safe, event), span)
-     end
+    end
 
-     return li.html_safe
+    return li.html_safe
   end
 %>
