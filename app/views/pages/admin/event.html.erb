@@ -51,7 +51,7 @@
         <% opponent = Opponent.find_by(:id => event.opponentid) %>
         <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
 
-          <% title, subtitle = event.formalname %>
+          <% title, subtitle = event.eventtitle %>
           <% if subtitle.blank? %>
             <h2><%= h event.datetimeshort %>: <%= h title %></h2>
           <% else %>
