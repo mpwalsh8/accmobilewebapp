@@ -53,3 +53,6 @@ gem 'rails-assets-jquery-cycle2'
 
 ##  Unicorn support for Heroku deployment
 gem 'unicorn'
+
+##  Add-To-Home-Screen
+gem 'add-to-homescreen-rails'

@@ -28,6 +28,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    add-to-homescreen-rails (3.0.8)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
@@ -200,6 +201,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  add-to-homescreen-rails
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)

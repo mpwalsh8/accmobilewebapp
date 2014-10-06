@@ -11,7 +11,13 @@
   <%= render :partial => 'layouts/ios' %>
   <%= render :partial => 'layouts/android' %>
   <!--  /Meta Tags to allow app to run as a mobile web app on IOS and Android -->
-
+<script>
+addToHomescreen({
+    startDelay: 5,
+    skipFirstVisit: false,
+    maxDisplayCount: 3
+});
+</script>
 </head>
 <body class='<%= controller.controller_name %>'>
   <!--<div data-role="page" data-add-back-btn="true">-->
