@@ -16,7 +16,7 @@ class ResultsController < ApplicationController
 
   # GET /results/new
   def new
-    @result = Result.new
+    @result = Result.new(preset_params)
   end
 
   # GET /results/1/edit
@@ -67,10 +67,16 @@ class ResultsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_result
       @result = Result.find(params[:id])
+logger.info(@result.to_yaml)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def result_params
       params.require(:result).permit(:event_id, :result, :place, :teamscore, :opponentscore, :notes)
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def preset_params
+      params.permit(:event_id, :result, :place, :teamscore, :opponentscore, :notes)
     end
 end

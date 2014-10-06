@@ -61,44 +61,10 @@ class Event < ActiveRecord::Base
     return title.strip, subtitle.strip
   end
 
-
-##    ##  Construct the event content based on presence of opponents
-##    def EventOverviewLI(event)
-##      venue = Venue.find_by(:id => event.venueid)
-##      team = event.teamid.blank? ? nil : Team.find_by(:id => event.teamid)
-##      opponent = event.opponentid.blank? ? nil : Opponent.find_by(:id => event.opponentid)
-##      status = event.status.blank? || event.status == 'scheduled' ? "" :
-##        sprintf("<span class=\"event-%s\">%s</span><br />", event.status, event.status.camelize)
-##  
-##      title, subtitle = EventTitle(event, team, opponent)
-##      if team.nil?
-##        span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s</span>",
-##          event.eventlocation.camelize[0])
-##        li = sprintf("<li>%s%s</li>",
-##          link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s at %s</p>",
-##          image_url("pictograms/svg/Information-Blk.svg"),
-##          "Information", title, status, event.datetime,
-##          venue.name).html_safe, event), span)
-##      elsif event.opponentid.blank?
-##        span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s</span>",
-##          event.eventlocation.camelize[0])
-##        li = sprintf("<li>%s%s</li>",
-##          link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s</h2><p>%s%s at %s</p>",
-##          image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
-##          team.sport.name, team.formalname, status, event.datetime,
-##          venue.name).html_safe, event), span)
-##      else
-##        span = sprintf("<span class=\"ui-li-count-fix ui-li-count\">%s / %s</span>",
-##          event.eventlocation.camelize[0], opponent.conferenceopponent ? "C" : "N")
-##        li = sprintf("<li>%s%s</li>",
-##          link_to(sprintf("<img src=\"%s\" alt=\"%s\"><h2>%s vs %s</h2><p>%s%s at %s</p>",
-##          image_url("pictograms/svg/#{team.sport.imageurl}.svg"),
-##          team.sport.name, team.formalname, opponent.name, status, event.datetime,
-##          venue.name).html_safe, event), span)
-##       end
-##  
-##       return li.html_safe
-##    end
+  ##  Does event have a result?
+  def getresult
+    Result.find_by(:event_id => id)
+  end
 
   private
   def init

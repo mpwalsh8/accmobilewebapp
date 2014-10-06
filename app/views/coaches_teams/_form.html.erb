@@ -15,7 +15,7 @@
 -->
   <div data-role="fieldcontain" class="field">
     <%= f.label :team_id, "Team" %>
-    <%= f.collection_select :team_id, Team.order(:gender, :varsity).all, :id, :formalname, {include_blank: true} %>
+    <%= f.collection_select :team_id, Team.all.sort { |a,b| a.sportname <=> b.sportname }, :id, :sportname, {include_blank: true} %>
   </div>
 
   <div data-role="fieldcontain" class="field">

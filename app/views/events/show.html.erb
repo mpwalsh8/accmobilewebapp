@@ -54,4 +54,13 @@
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
   <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Update Event', edit_event_path(@event), :'data-role' => 'button', :'data-icon' => 'edit', :class => 'ui-corner-all' %>
+    <% result = @event.getresult %>
+    <% if result.nil? %>
+      <%= link_to 'Report Result', new_result_path(:event_id => @event.id), :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => 'false' %>
+    <% else %>
+      <%= link_to 'Update Result', edit_result_path(:event_id => @event.id, :id => result.id), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => 'false' %>
+    <% end %>
+  <% end %>
 </div>
