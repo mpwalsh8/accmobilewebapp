@@ -101,7 +101,8 @@
     <% @tweets.each do |tweet| %>
       <%#= link_to(sprintf("<h4>@%s</h4><p>%s</p>", tweet.user.screen_name, auto_link_with_json(tweet.text, tweet.to_h[:entities])).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}") %>
         <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
-        <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, twitter_text(tweet.text)).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
+        <!--<li><%#= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, twitter_text(tweet.text)).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>-->
+        <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
     <% end %>
 </ul>
       <!--</div>-->
