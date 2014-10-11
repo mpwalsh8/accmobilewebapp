@@ -4,8 +4,6 @@ class ResultsController < ApplicationController
   # GET /results
   # GET /results.json
   def index
-    #@results = Result.select("*").joins(:event)
-    #@results = Result.select("*").joins(:event).order(:eventdate, :eventtime)
     @results = Result.joins(:event).where("events.id = results.event_id").order("eventdate, eventtime")
   end
 
@@ -67,7 +65,6 @@ class ResultsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_result
       @result = Result.find(params[:id])
-logger.info(@result.to_yaml)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

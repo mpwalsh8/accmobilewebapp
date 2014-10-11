@@ -7,6 +7,14 @@
   <% if !@team.url.blank? %> 
     <li><a data-rel="external" href="<%= sprintf("%s", @team.url) %>">Team Web Site<p><%= @team.url %></p></a></li>
   <% end %>
+          <% record = @team.record(false) %>
+          <% if !record.blank? %>
+            <li data-role="list-divider" data-theme="a">Overall Record:  <%= record %></li>
+          <% end %>
+          <% record = @team.record(true) %>
+          <% if !record.blank? %>
+            <li data-role="list-divider" data-theme="a">Conference Record:  <%= record %></li>
+          <% end %>
 </ul>
   <!--  Team Coaching Staff -->
   <div data-role="collapsible-set" data-inset="true">
@@ -21,6 +29,14 @@
         <h3 class="ui-bar ui-bar-a ui-corner-none">Schedule / Results<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
         <% if events.count > 0 %>
         <ul data-role="listview" data-inset="true">
+          <% record = @team.record(false) %>
+          <% if !record.blank? %>
+            <li data-role="list-divider" data-theme="b">Overall:  <%= record %></li>
+          <% end %>
+          <% record = @team.record(true) %>
+          <% if !record.blank? %>
+            <li data-role="list-divider" data-theme="b">Conference:  <%= record %></li>
+          <% end %>
           <% events.each do |event| %>
             <%= EventOverviewLI(event) %>
           <% end %>
