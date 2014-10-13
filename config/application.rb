@@ -234,6 +234,11 @@ module ACCMobileWebApp
     ]
 
     SPLASHADS = [
+     {
+       :name => 'Apex Homecoming',
+       :url => 'http://www.apexcougarclub.org',
+       :img => 'webapp/splash/Food-Truck-Rodeo_320x420_Splash.png'
+     },
      # {
      #   :name => 'Bojangles',
      #   :url => 'http://www.bojangles.com',
