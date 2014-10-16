@@ -72,9 +72,13 @@ class Event < ActiveRecord::Base
     if self.new_record? && self.status.nil?
       self.status = 'scheduled'
     end
-    ##  Default to Home for venues if none set
+    ##  Default to Home for location if none set
     if self.new_record? && self.eventlocation.nil?
       self.eventlocation = 'home'
+    end
+    ##  Default to HomeVenueId for venue if none set
+    if self.new_record? && self.venueid.nil?
+      self.venueid = Settings.School.HomeVenueId
     end
     ##  Force event to be at home if venueid is home venue id
     self.eventlocation = 'home' if self.venueid == Settings.School.HomeVenueId
