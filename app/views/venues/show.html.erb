@@ -6,23 +6,35 @@
   <% if !@venue.url.blank? %>
     <li><a  href="<%= sprintf("%s", @venue.url) %>">Web Site</a><span class="ui-li-aside" data-rel="external""><%= @venue.url %></span></li>
   <% end %>
-  <% if !@venue.twitter.blank? %>
-    <li><a  href="<%= sprintf("https://twitter.com/%s", @venue.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @venue.twitter %></span></li>
-  <% end %>
   <% if !@venue.googlemapsurl.blank? %>
-    <li><a  href="<%= sprintf("%s", @venue.googlemapsurl) %>">Google Maps</a><span class="ui-li-aside" data-rel="external""><%= @venue.googlemapsurl %></span></li>
+    <li><a  href="<%= sprintf("%s", @venue.googlemapsurl) %>">Map to <%= @venue.name %></a><span class="ui-li-aside" data-rel="external""><%= @venue.googlemapsurl %></span></li>
   <% end %>
+  <% if Settings.GoogleMaps.Enabled == "Yes" && !@venue.latlong.blank? %>
+<%# logger.info(@hash) %>
+    <li>
+      <div class="ui-body ui-body-a ui-corner-none" style="width: auto; height: 300px;" id="venuemap"></div>
+    </li>
+  <% end %>
+  <% if !@venue.twitter.blank? %>
+    <li><a  href="<%= sprintf("https://twitter.com/%s", @venue.twitter.delete("@")) %>" data-rel="external"><%= @venue.name %> on Twitter</a><span class="ui-li-aside"><%= @venue.twitter %></span></li>
+  <% end %>
+  <!--  Venue Twitter Feed -->
+  <% if Settings.Twitter.Enabled == "Yes" && !@venue.twitter.blank? %>
+    <% @TwitterClient.user(@venue.twitter.delete("@")) %>
+    <% @tweets = @TwitterClient.user_timeline(@venue.twitter.delete("@"))[0..2] %>
+    <div class="ui-body ui-body-a ui-corner-none">
+      <ul data-role="listview" data-inset="true">
+        <% @tweets.each do |tweet| %>
+          <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
+          <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--  /Venue Twitter Feed -->
   <li data-role="list-divider">
-    <h1>Sports</h1>
+    <h2>Sports at <%= @venue.name %></h2>
   </li>
-<!--
-  <%# @sportsatvenue.each do |s| %>
-    <li><%#= s.sport.name %></li>
-  <%# end %>
-  <li data-role="list-divider">
-    <h1>Sports</h1>
-  </li>
--->
   <li>
     <div class="ui-grid-b">
       <% c = 0 %>
@@ -40,9 +52,38 @@
     </div>
   </li>
 </ul>
-<%#= debug(@sportsatvenue) %>
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
   <%= link_to 'Back to Venues', venues_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
-  <%#= link_to 'Edit', edit_venue_path(@venue), :'data-role' => 'button', :'data-icon' => "edit", :'data-inline' => "true" %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Edit Venue', edit_venue_path(@venue), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+  <% end %>
 </div>
+
+<% if Settings.GoogleMaps.Enabled == "Yes" && !@venue.latlong.blank? %>
+<script type="text/javascript">
+jQuery("div:jqmData(role='page'):last").bind('pageshow', function(){
+  //console.log('here-1');
+  handler = Gmaps.build('Google');
+  //console.log('here-2');
+  handler.buildMap({
+  //    provider: {
+  //      //disableDefaultUI: false
+  //      // pass in other Google Maps API options here
+  //    },
+    internal: {
+      id: 'venuemap'
+    }
+  },
+  function(){
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(15);
+    //console.log('here-6');
+  }
+  );
+  //console.log('here-3');
+});
+</script>
+<% end %>

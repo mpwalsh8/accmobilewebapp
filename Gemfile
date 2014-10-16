@@ -56,3 +56,7 @@ gem 'unicorn'
 
 ##  Add-To-Home-Screen
 gem 'add-to-homescreen-rails'
+
+##  Google Maps
+gem 'gmaps4rails'
+gem 'underscore-rails'

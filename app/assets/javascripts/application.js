@@ -16,3 +16,5 @@
 //= require_tree .
 //= require jquery.mobile
 //= require addtohomescreen
+//= require underscore
+//= require gmaps/google

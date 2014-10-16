@@ -1,6 +1,7 @@
 <h3 class="ui-bar ui-bar-a ui-corner-all">Venues</h3>
 <ul data-role="listview" data-inset="true" data-autodividers="true" data-filter="true">
+<%# logger.info(@hash.to_yaml) %>
   <% @venues.each do |venue| %>
-    <li><%= link_to venue.name, venue %></li>
+    <li><%= link_to venue.name, venue, :'data-ajax' => "true" %></li>
   <% end %>
 </ul> 

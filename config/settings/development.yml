@@ -18,7 +18,10 @@ School:
   PrincipalEmail:  "mwight@wcpss.net"
   AthleticDirector:  "Del Philips"
   AthleticDirectorEmail:  "wphillips@wcpss.net"
+  HomeVenueId:  1
 
+GoogleMaps:
+  Enabled:  "Yes"
 
 Twitter:
   Enabled:  "Yes"

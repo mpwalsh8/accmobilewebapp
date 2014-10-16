@@ -16,151 +16,108 @@
             <li data-role="list-divider" data-theme="a">Conference Record:  <%= record %></li>
           <% end %>
 </ul>
-  <!--  Team Coaching Staff -->
-  <div data-role="collapsible-set" data-inset="true">
-      <% if !@team.teampicurl.blank? %> 
-        <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-        <h3>Team Picture</h3>
-          <p class="framed-p center-wrapper"><img class="framed-image" src="<%= @team.teampicurl %>"></p>
-        </div>
-      <% end %>
-      <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-        <% events = Event.where(:teamid => @team.id).order(:eventdate, :eventtime) %>
-        <h3 class="ui-bar ui-bar-a ui-corner-none">Schedule / Results<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
-        <% if events.count > 0 %>
-        <ul data-role="listview" data-inset="true">
-          <% record = @team.record(false) %>
-          <% if !record.blank? %>
-            <li data-role="list-divider" data-theme="b">Overall:  <%= record %></li>
-          <% end %>
-          <% record = @team.record(true) %>
-          <% if !record.blank? %>
-            <li data-role="list-divider" data-theme="b">Conference:  <%= record %></li>
-          <% end %>
-          <% events.each do |event| %>
-            <%= EventOverviewLI(event) %>
-          <% end %>
-        </ul>
-        <% else %>
-          <p>No events scheduled.</p>
-        <% end %>
-      </div>
-      <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-        <h3 class="ui-bar ui-bar-a ui-corner-none">Coaching Staff<span class="ui-li-count-fix ui-li-count"><%= @team.coaches.count %></span></h3>
-        <% if @team.coaches.count > 0 %>
-        <ul data-role="listview" data-inset="false" data-filter="false" data-mini="false">
-          <% coaches = @team.coaches.sort_by { |c| [ c.lastname, c.firstname ] } %>
-          <% coaches.each do |c| %>
-            <% hc = CoachesTeam.find_by(:coach_id => c.id, :team_id => @team.id) %>
-            <li><%= link_to(c.lastcommafirst, c) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
-          <% end %>
-        </ul>
-        <% else %>
-        <p>No coaches currently on staff.</p>
-        <% end %>
-      </div>
-    <!--</div>-->
-  <!--  Team Athlete Roster -->
-    <!--<div data-role="collapsible-set" data-inset="true" data-mini="false">-->
-      <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-        <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Name<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
-        <% if @team.athletes.count > 0 %>
-        <ul data-role="listview" data-inset="false" data-filter="true" data-autodividers="true" data-count-theme="b">
-          <% @athletes = @athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
-          <% @athletes.each do |a| %>
-            <% notes = a.gradyear2class %>
-            <% if !a.position.blank? %>
-                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position) %>
-            <% end %>
-            <% if a.captain %>
-              <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
-            <% end %>
-<%# logger.info(a.to_yaml) %>
-            <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, send(:athlete_path, a)) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
-          <% end %>
-        </ul>
-        <% else %>
-        <p>No athletes currently on roster.</p>
-        <% end %>
-      </div>
-      <!--  /Team Athlete Roster -->
-      <!--  Team Athlete Roster by jersey number -->
-      <% if @jerseycount > 0 %>
-        <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-          <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Jersey Number<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
-          <ul data-role="listview" data-inset="false" data-filter="false" data-autodividers="false" data-count-theme="b">
-            <% @athletes = @athletes.sort_by { |a| [ a.jerseynumber.to_i, a.lastname, a.firstname ] } %>
-            <% @athletes.each do |a| %>
-              <% notes = a.gradyear2class %>
-              <% if !a.position.blank? %>
-                <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position) %>
-              <% end %>
-              <% if a.captain %>
-                <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
-              <% end %>
-              <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, send(:athlete_path, a)) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    <!--  /Team Athlete Roster by jersey number -->
-
-    <!--<div data-role="collapsible-set" data-inset="true" data-mini="false">-->
-<% if 1 == 1 %>
-<% if Settings.Twitter.Enabled == "Yes" && !@team.twitter.blank? %>
-  <% @TwitterClient.user(@team.twitter.delete("@")) %>
-  <% @tweets = @TwitterClient.user_timeline(@team.twitter.delete("@"))[0..2] %>
-      <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-        <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %> on Twitter</h3>
-      <!--<div class="ui-body ui-body-a" data-mini="true">-->
-  <ul data-role="listview" data-inset="true">
-    <% @tweets.each do |tweet| %>
-      <%#= link_to(sprintf("<h4>@%s</h4><p>%s</p>", tweet.user.screen_name, auto_link_with_json(tweet.text, tweet.to_h[:entities])).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}") %>
-        <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
-        <!--<li><%#= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, twitter_text(tweet.text)).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>-->
-        <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
-    <% end %>
-</ul>
-      <!--</div>-->
-
-      </div>
+<div data-role="collapsible-set" data-inset="true">
+  <% if !@team.teampicurl.blank? %> 
+    <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+    <h3>Team Picture</h3>
+      <p class="framed-p center-wrapper"><img class="framed-image" src="<%= @team.teampicurl %>"></p>
     </div>
-<% end %>
-<% end %>
-
-<!--  Team Twitter Feed -->
-<% if 0 == 1 %>
-<% if !@team.twitter.blank? %>
-  <% @TwitterClient.user(@team.twitter.delete("@")) %>
-  <% @tweets = @TwitterClient.user_timeline(@team.twitter.delete("@"))[0..2] %>
-  <ul data-role="listview" data-inset="true">
-    <li data-role="list-divider"><%= @team.formalname %> on Twitter (2)</li>
-    <% @tweets.each do |tweet| %>
-      <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
-      <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, twitter_text(tweet.text)).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
-    <% end %>
-  </ul>
-<% end %>
-<% end %>
-
-<% if 0 == 1 %>
-<% if !@team.twitter.blank? %>
-<div data-role="content">
-  <% @TwitterClient.user(@team.twitter.delete("@")) %>
-  <% @tweets = @TwitterClient.user_timeline(@team.twitter.delete("@"))[0..2] %>
-  <div class="ui-corner-all custom-corners" data-inset="true">
-    <div class="ui-bar ui-bar-a" data-mini="true">
-      <h3><%= @team.formalname %> on Twitter (3)</h3>
-    </div>
-    <% @tweets.each do |tweet| %>
-      <div class="ui-body ui-body-a" data-mini="true">
-      <%= link_to(sprintf("<img src=\"%s\"><h4>@%s</h4><p>%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, auto_link_with_json(tweet.text, tweet.to_h[:entities])).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}") %>
-      </div>
+  <% end %>
+  <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+    <% events = Event.where(:teamid => @team.id).order(:eventdate, :eventtime) %>
+    <h3 class="ui-bar ui-bar-a ui-corner-none">Schedule / Results<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
+    <% if events.count > 0 %>
+    <ul data-role="listview" data-inset="true">
+      <% record = @team.record(false) %>
+      <% if !record.blank? %>
+        <li data-role="list-divider" data-theme="b">Overall:  <%= record %></li>
+      <% end %>
+      <% record = @team.record(true) %>
+      <% if !record.blank? %>
+        <li data-role="list-divider" data-theme="b">Conference:  <%= record %></li>
+      <% end %>
+      <% events.each do |event| %>
+        <%= EventOverviewLI(event) %>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No events scheduled.</p>
     <% end %>
   </div>
+  <!--  Team Coaching Staff -->
+  <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+    <h3 class="ui-bar ui-bar-a ui-corner-none">Coaching Staff<span class="ui-li-count-fix ui-li-count"><%= @team.coaches.count %></span></h3>
+    <% if @team.coaches.count > 0 %>
+      <ul data-role="listview" data-inset="false" data-filter="false" data-mini="false">
+        <% coaches = @team.coaches.sort_by { |c| [ c.lastname, c.firstname ] } %>
+        <% coaches.each do |c| %>
+          <% hc = CoachesTeam.find_by(:coach_id => c.id, :team_id => @team.id) %>
+          <li><%= link_to(c.lastcommafirst, c) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No coaches currently on staff.</p>
+    <% end %>
+  </div>
+  <!--  /Team Coaching Staff -->
+  <!--  Team Athlete Roster -->
+  <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+    <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Name<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
+    <% if @team.athletes.count > 0 %>
+      <ul data-role="listview" data-inset="false" data-filter="true" data-autodividers="true" data-count-theme="b">
+        <% @athletes = @athletes.sort_by { |a| [ a.lastname, a.firstname ] } %>
+        <% @athletes.each do |a| %>
+          <% notes = a.gradyear2class %>
+          <% if !a.position.blank? %>
+            <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position) %>
+          <% end %>
+          <% if a.captain %>
+            <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
+          <% end %>
+          <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, send(:athlete_path, a)) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No athletes currently on roster.</p>
+    <% end %>
+  </div>
+  <!--  /Team Athlete Roster -->
+  <!--  Team Athlete Roster by jersey number -->
+  <% if @jerseycount > 0 %>
+    <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+      <h3 class="ui-bar ui-bar-a ui-corner-none">Roster by Jersey Number<span class="ui-li-count-fix ui-li-count"><%= @team.athletes.count %></span></h3>
+      <ul data-role="listview" data-inset="false" data-filter="false" data-autodividers="false" data-count-theme="b">
+        <% @athletes = @athletes.sort_by { |a| [ a.jerseynumber.to_i, a.lastname, a.firstname ] } %>
+        <% @athletes.each do |a| %>
+          <% notes = a.gradyear2class %>
+          <% if !a.position.blank? %>
+            <% notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position) %>
+          <% end %>
+          <% if a.captain %>
+            <% notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain") %>
+          <% end %>
+          <li><%= link_to(sprintf("%s<p>%s</p>", a.lastcommafirst, notes).html_safe, send(:athlete_path, a)) %><% if !a.jerseynumber.blank? %><span class="ui-li-count-fix ui-li-count">#<%= a.jerseynumber %></span><% end %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--  /Team Athlete Roster by jersey number -->
+  <!--  Team Twitter Feed -->
+  <% if Settings.Twitter.Enabled == "Yes" && !@team.twitter.blank? %>
+    <% @TwitterClient.user(@team.twitter.delete("@")) %>
+    <% @tweets = @TwitterClient.user_timeline(@team.twitter.delete("@"))[0..2] %>
+    <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+      <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %> on Twitter</h3>
+      <ul data-role="listview" data-inset="true">
+        <% @tweets.each do |tweet| %>
+          <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
+          <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <!--  /Team Twitter Feed -->
 </div>
-<% end %>
-<% end %>
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>

@@ -5,6 +5,10 @@ class VenuesController < ApplicationController
   # GET /venues.json
   def index
     @venues = Venue.all.order(:name)
+    @hash = Gmaps4rails.build_markers(@venues) do |v, marker|
+      marker.lat v.latlong.split(',')[0].strip if v.latlong.include? ','
+      marker.lng v.latlong.split(',')[1].strip if v.latlong.include? ','
+    end
   end
 
   # GET /venues/1
@@ -12,6 +16,11 @@ class VenuesController < ApplicationController
   def show
     #  Load all of the sports at the venue
     @sportsatvenue = SportsVenue.where(:venue_id => params[:id])
+    @hash = Gmaps4rails.build_markers(@venue) do |v, marker|
+      marker.lat v.latlong.split(',')[0].strip.to_f if v.latlong.include? ','
+      marker.lng v.latlong.split(',')[1].strip.to_f if v.latlong.include? ','
+      #marker.marker v.name
+    end
   end
 
   # GET /venues/new
