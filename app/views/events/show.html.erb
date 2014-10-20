@@ -64,5 +64,6 @@
     <% else %>
       <%= link_to 'Update Result', edit_result_path(:event_id => @event.id, :id => result.id), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => 'false' %>
     <% end %>
+    <%= link_to 'Add Event', new_event_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
   </div>
 <% end %>
