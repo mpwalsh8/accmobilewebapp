@@ -274,11 +274,11 @@ module ACCMobileWebApp
         :url => 'http://www.autoparkchryslerjeep.com',
         :img => 'webapp/splash/Leith_AutoPark_320x420_Splash.png'
       },
-      {
-        :name => 'NC State Fair',
-        :url => 'http://www.ncstatefair.org/2014/index.htm',
-        :img => 'webapp/splash/NCSF2014_320x420_Splash.png'
-      },
+#      {
+#        :name => 'NC State Fair',
+#        :url => 'http://www.ncstatefair.org/2014/index.htm',
+#        :img => 'webapp/splash/NCSF2014_320x420_Splash.png'
+#      },
       {
         :name => 'T.MAC',
         :url => 'http://tmacrestaurants.com/location/cary/',
