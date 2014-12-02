@@ -4,10 +4,10 @@
     <h1><%= @venue.name %><br /><%= simple_format h @venue.address %><br /><%= @venue.phone %></h1>
   </li> 
   <% if !@venue.url.blank? %>
-    <li><a  href="<%= sprintf("%s", @venue.url) %>">Web Site</a><span class="ui-li-aside" data-rel="external""><%= @venue.url %></span></li>
+    <li data-icon="forward"><a  href="<%= sprintf("%s", @venue.url) %>">Web Site<p><%= @venue.url %></p></a></li>
   <% end %>
   <% if !@venue.googlemapsurl.blank? %>
-    <li><a  href="<%= sprintf("%s", @venue.googlemapsurl) %>">Map to <%= @venue.name %></a><span class="ui-li-aside" data-rel="external""><%= @venue.googlemapsurl %></span></li>
+    <li data-icon="forward"><a  href="<%= sprintf("%s", @venue.googlemapsurl) %>">Map to <%= @venue.name %><p><%= @venue.googlemapsurl %></p></a></li>
   <% end %>
   <% if Settings.GoogleMaps.Enabled == "Yes" && !@venue.latlong.blank? %>
 <%# logger.info(@hash) %>
@@ -16,7 +16,7 @@
     </li>
   <% end %>
   <% if !@venue.twitter.blank? %>
-    <li><a  href="<%= sprintf("https://twitter.com/%s", @venue.twitter.delete("@")) %>" data-rel="external"><%= @venue.name %> on Twitter</a><span class="ui-li-aside"><%= @venue.twitter %></span></li>
+    <li data-icon="forward"><a  href="<%= sprintf("https://twitter.com/%s", @venue.twitter.delete("@")) %>" data-rel="external"><%= @venue.name %> on Twitter<p><%= @venue.twitter %></p></a></li>
   <% end %>
   <!--  Venue Twitter Feed -->
   <% if Settings.Twitter.Enabled == "Yes" && !@venue.twitter.blank? %>
