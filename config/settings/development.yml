@@ -21,7 +21,7 @@ School:
   HomeVenueId:  1
 
 GoogleMaps:
-  Enabled:  "No"
+  Enabled:  "Yes"
 
 Twitter:
   Enabled:  "Yes"

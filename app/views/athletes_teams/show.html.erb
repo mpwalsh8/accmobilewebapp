@@ -32,7 +32,7 @@
 </ul>
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
-  <a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>
+  <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
   <%= link_to 'Back to Team Athletes', athletes_teams_path, :'data-role' => "button", :'data-icon' => "back", :class => "ui-corner-all" %>
   <% if current_user.try(:admin?) %>
     <%= link_to 'Edit Team Athlete', edit_athletes_team_path(@athletes_team), :'data-role' => "button", :'data-icon' => "edit", :class => "ui-corner-all" %>
