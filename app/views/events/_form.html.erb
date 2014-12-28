@@ -1,4 +1,4 @@
-<%= simple_form_for(@event, :html => {:'data-ajax' => 'false'}) do |f| %>
+<%= simple_form_for(@event, :html => {:'data-ajax' => 'true'}) do |f| %>
   <%= f.error_notification %>
   <%= render 'layouts/error_messages', object: f.object %>
 
@@ -12,9 +12,15 @@
     <%#= f.collection_select :opponentid, Opponent.order(:name).all, :id, :name, {include_blank: true} %>
   </div>
 -->
+<!--
+  <div id="multiple-opponents" data-role="fieldcontain" class="field">
+    <%#= f.label :opponents, "Opponents" %>
+    <%#= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => true }, { :multiple => true, :'data-native-menu' => true } %>
+  </div>
+-->
   <div id="multiple-opponents" data-role="fieldcontain" class="field">
     <%= f.label :opponents, "Opponents" %>
-    <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => true }, { :multiple => true, :'data-native-menu' => false } %>
+    <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => false }, { :size => 1, :multiple => true, :'data-role' => "none" } %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :venueid, "Venue" %>
@@ -59,3 +65,14 @@
 
 
 <% end %>
+<script>
+/*
+    $(document).ready(function () {
+        $('#event_opponents').SumoSelect({
+            placeholder: 'Select Opponents',
+            csvDispCount: 2,
+            floatWidth: 500
+        });
+    });
+*/
+</script>
