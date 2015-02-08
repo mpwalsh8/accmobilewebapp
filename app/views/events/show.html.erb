@@ -27,11 +27,19 @@
         <p>Notes:  <%= result.notes %></p>
       <% end %>
     <% end %>
-    <p>Scheduled:  <%= @event.datetimelong %></p>
-    <p>Duration (est):  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
-    <p>Status:  <span class="event-<%= status.downcase %>"><%= status %></span></p>
+    <% record = team.record(false) %>
+    <% if !record.blank? %>
+      <p><b>Overall Record:</b>  <%= record %></p>
+    <% end %>
+    <% record = team.record(true) %>
+    <% if !record.blank? %>
+      <p><b>Conference Record:</b>  <%= record %></p>
+    <% end %>
+    <p><b>Scheduled:</b>  <%= @event.datetimelong %></p>
+    <p><b>Duration (est):</b>  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
+    <p><b>Status:</b>  <span class="event-<%= status.downcase %>"><%= status %></span></p>
     <% if !@event.notes.blank? %>
-      <p>Notes:  <%= @event.notes %></p>
+      <p><b>Notes:</b>  <%= @event.notes %></p>
     <% end %>
   </li>
   <% if !team.nil? %>
@@ -65,5 +73,7 @@
       <%= link_to 'Update Result', edit_result_path(:event_id => @event.id, :id => result.id), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => 'false' %>
     <% end %>
     <%= link_to 'Add Event', new_event_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+    <%= link_to 'Delete Event', @event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+
   </div>
 <% end %>
