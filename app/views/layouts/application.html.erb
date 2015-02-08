@@ -6,6 +6,8 @@
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
+  <%#= stylesheet_link_tag    'sumoselect' %>
+  <%#= javascript_include_tag 'jquery.sumoselect.min' %>
   <%= csrf_meta_tags %>
   <!--  Meta Tags to allow app to run as a mobile web app on IOS and Android -->
   <%= render :partial => 'layouts/ios' %>
@@ -21,7 +23,7 @@ addToHomescreen({
 </head>
 <body class='<%= controller.controller_name %>'>
   <!--<div data-role="page" data-add-back-btn="true">-->
-  <div data-role="page" data-dom-cache="false" data-ajax="false">
+  <div data-role="page" data-dom-cache="false" data-ajax="true">
     <!-- "header" -->
     <%= render :partial => 'layouts/header' %>
     <!-- "header" -->
