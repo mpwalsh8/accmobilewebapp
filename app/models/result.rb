@@ -1,5 +1,5 @@
 class Result < ActiveRecord::Base
-  belongs_to :event
+  belongs_to :event, :dependent => :destroy
   validates :result, :presence => { :message => 'Result must be specified.' }
 
   ##  Generic event, not connected to a team?
@@ -8,7 +8,9 @@ class Result < ActiveRecord::Base
 #logger.info(self.to_yaml)
 
     rs = rl = ""
-    rl = result.camelize
+    if !result.nil? then
+        rl = result.camelize
+    end
 
     ##  Need to drop decimal if score is whole
     ##  number which will typically be the case
