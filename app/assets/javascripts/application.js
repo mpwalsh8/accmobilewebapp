@@ -18,3 +18,4 @@
 //= require addtohomescreen
 //= require underscore
 //= require gmaps/google
+//= require jquery.sumoselect.min

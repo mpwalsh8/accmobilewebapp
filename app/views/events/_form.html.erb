@@ -13,9 +13,9 @@
   </div>
 -->
 <!--
-  <div id="multiple-opponents" data-role="fieldcontain" class="field">
+  <div id="multiple-opponents" class="ui-field-contain field" data-role="fieldcontain">
     <%#= f.label :opponents, "Opponents" %>
-    <%#= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => true }, { :multiple => true, :'data-native-menu' => true } %>
+    <%#= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => true }, { :multiple => true, :'data-native-menu' => false, :class => 'multiselect', :'data-history' => false } %>
   </div>
 -->
   <div id="multiple-opponents" data-role="fieldcontain" class="field">
@@ -66,7 +66,6 @@
 
 <% end %>
 <script>
-/*
     $(document).ready(function () {
         $('#event_opponents').SumoSelect({
             placeholder: 'Select Opponents',
@@ -74,5 +73,4 @@
             floatWidth: 500
         });
     });
-*/
 </script>
