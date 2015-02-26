@@ -79,6 +79,7 @@ GEM
       thor (~> 0.14)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    gmaps4rails (2.1.2)
     high_voltage (2.2.1)
     hike (1.2.3)
     http (0.6.3)
@@ -232,6 +233,7 @@ DEPENDENCIES
   devise
   devise_invitable
   figaro (>= 1.0.0.rc1)
+  gmaps4rails
   high_voltage
   jbuilder (~> 2.0)
   jquery-rails
