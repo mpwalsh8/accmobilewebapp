@@ -1,4 +1,4 @@
-<%= simple_form_for(@event, :html => {:'data-ajax' => 'true'}) do |f| %>
+<%= simple_form_for(@event, :html => {:'data-ajax' => 'false'}) do |f| %>
   <%= f.error_notification %>
   <%= render 'layouts/error_messages', object: f.object %>
 
@@ -20,7 +20,7 @@
 -->
   <div id="multiple-opponents" data-role="fieldcontain" class="field">
     <%= f.label :opponents, "Opponents" %>
-    <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => false }, { :size => 1, :multiple => true, :'data-role' => "none" } %>
+    <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => false }, { :size => 1, :multiple => true, :'data-native-menu' => false, :'data-role' => "none" } %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :venueid, "Venue" %>
@@ -73,5 +73,28 @@
             floatWidth: 500,
             nativeOnDevice: ['Android', 'BlackBerry', 'iPhone', 'iPad', 'iPod', 'Opera Mini', 'IEMobile', 'Silk'],
         });
+        //$("div.SumoSelect").wrap("<div>").parent().css("border", "2px dashed blue");
+        $("div.SumoSelect").wrap("<div>").parent().addClass("ui-select");
+        $("div.SumoSelect p").css("width", "auto");
+        $("div.SumoSelect p").css("border-width", "0px");
+        //$("div.SumoSelect p").css("border", "2px solid red");
+        $("div.SumoSelect p").css('background-color', 'transparent');
+        //$("div.SumoSelect p").css('background-color', 'pink');
+        //$("div.SumoSelect p").css({ 'border' : '', 'background-color' : '', 'opacity' : '' });
+        //$("div.SumoSelect").addClass("ui-btn ui-corner-all ui-shadow");
+        $("div.SumoSelect").css("width", "100%");
+        //$("div.SumoSelect").css("border", "2px solid blue");
+        $("div.SumoSelect").addClass("ui-corner-all ui-shadow");
+        //$("div.SumoSelect").addClass("ui-btn ui-corner-all ui-shadow");
+        //$("div.SumoSelect").css('width', 'auto');
+        $("div.SumoSelect").css('overflow', 'inherit');
+        //$("div.SumoSelect").css('background-color', '#eee');
+        //$("div.SumoSelect:hover").css('background-color', 'pink');
+        //$("div.SumoSelect:visited").css('background-color', 'blue');
     });
 </script>
+<style>
+.SumoSelect > .CaptionCont {
+    /*width: auto;*/
+}
+</style>
