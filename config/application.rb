@@ -237,7 +237,7 @@ module ACCMobileWebApp
       {
         :name => 'Coach D 5K',
         :url => 'http://itsyourrace.com/event.aspx?id=474',
-        :img => 'webapp/splash/CoachD2015_320x420.png.png'
+        :img => 'webapp/splash/CoachD2015_320x420.png'
       },
      #{
      #  :name => 'Apex Homecoming',
