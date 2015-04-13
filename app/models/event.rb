@@ -92,7 +92,7 @@ class Event < ActiveRecord::Base
 
   def duplicate_event?
     errors.add(:teamid, "Event already scheduled for this team on this date and time.") if
-      Event.where("teamid = ? and eventdate = ? and eventtime = ?", self.teamid, self.eventdate, self.eventtime).any?
+      Event.where("teamid = ? and eventdate = ? and eventtime = ?", self.teamid, self.eventdate, self.eventtime).any? and new_record?
   end
 
 end
