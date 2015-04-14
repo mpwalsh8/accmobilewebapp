@@ -7,14 +7,12 @@ class Event < ActiveRecord::Base
   validates :eventtime, :presence => { :message => 'Event Time is required.' }
   validates_format_of :eventdate, :message => 'Date must be YYYY-MM-DD format.', :with => /(19|20)\d\d-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/
   validates_format_of :eventtime, :message => 'Time must be HH:MM format.', :with => /([01]?[0-9]|2[0-3]):[0-5][0-9]/
-  #validates_uniqueness_of :teamid, :presence => { :message => 'Venue name must be unique.' }
-  #validates_uniqueness_of :teamid, :uniqueness => { :scope => [ :eventdate, :eventtime ] }, :message => 'Event cannot be scheduled at same day and time as existing event.'
+  validates_uniqueness_of :teamid, :scope => [ :eventdate, :eventtime ], :message => 'Event cannot be scheduled at same day and time as existing event.'
 
-  validate :duplicate_event?
+  #validate :duplicate_event?
 
   has_one :result
 
-  #before_save :check_for_duplicates?
   after_initialize :init
 
   #has_and_belongs_to_many :teams, through: :events
