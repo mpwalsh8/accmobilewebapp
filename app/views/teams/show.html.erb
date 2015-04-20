@@ -104,17 +104,24 @@
   <!--  /Team Athlete Roster by jersey number -->
   <!--  Team Twitter Feed -->
   <% if Settings.Twitter.Enabled == "Yes" && !@team.twitter.blank? %>
-    <% @TwitterClient.user(@team.twitter.delete("@")) %>
-    <% @tweets = @TwitterClient.user_timeline(@team.twitter.delete("@"))[0..2] %>
-    <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
-      <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %> on Twitter</h3>
-      <ul data-role="listview" data-inset="true">
-        <% @tweets.each do |tweet| %>
-          <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
-          <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% begin %>
+      <% @TwitterClient.user(@team.twitter.delete("@")) %>
+      <% @tweets = @TwitterClient.user_timeline(@team.twitter.delete("@"))[0..2] %>
+      <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %> on Twitter</h3>
+        <ul data-role="listview" data-inset="true">
+          <% @tweets.each do |tweet| %>
+            <% dt = tweet.created_at.strftime("%b %-d %Y @ %l:%M %p") %>
+            <li><%= link_to(sprintf("<img src=\"%s\">@%s<p>%s<br />%s</p>", tweet.user.profile_image_url, tweet.user.screen_name, dt, tweet.text).html_safe, "https://www.twitter.com/#{tweet.user.screen_name}/status/#{tweet.id}") %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% rescue %>
+      <div data-role="collapsible" data-collapsed="false" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+        <h3 class="ui-bar ui-bar-a ui-corner-none"><%= @team.formalname %> on Twitter</h3>
+        <p>Cannot connect to Twitter:  <%= link_to(@team.twitter, sprintf("https://twitter.com/%s", @team.twitter.delete("@"))) %></p>
+      </div>
+    <% end %>
   <% end %>
   <!--  /Team Twitter Feed -->
 </div>
