@@ -1,6 +1,7 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Coaches</h3>
-<ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
+<ul data-role="listview" data-count-theme="a" data-inset="true" data-filter="true" data-autodividers="true">
   <% @coaches.each do |coach| %>
-    <li><%= link_to coach.lastcommafirst, coach %></li>
+    <li><%= link_to sprintf("%s<span class=\"ui-li-count\">%s</span>", coach.lastcommafirst, coach.teams.count).html_safe, coach %></li>
+
   <% end %>
 </ul>   

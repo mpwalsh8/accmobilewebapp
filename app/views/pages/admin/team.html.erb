@@ -10,6 +10,8 @@
       <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
       <%= link_to 'Edit Athlete on Team', athletes_teams_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
+<!--  Disable listing of teams, to be deleted later -->
+<% if false then %>
     <!--  List of Existing Teams -->
     <div data-role="collapsible-set">
       <h4 class="ui-bar ui-bar-a ui-corner-none">Existing Teams</h4>
@@ -26,7 +28,33 @@
       <% end %>
     </div>
     <!--  /List of Existing Teams -->
+<% end %>
+<!--  /Disable listing of teams, to be deleted later -->
   </div>
+<% seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' } %>
+<div data-role="collapsible-set" data-inset="true">
+  <% seasons.each do |key, value| %>
+    <div data-role="collapsible" data-collapsed="true" data-iconpos="right" data-inset="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">
+      <%# @teams = Team.where(:season => key).order(:gender, :varsity) %>
+      <% @teams = Team.where(:season => key).sort { |a,b| a.sportname <=> b.sportname } %>
+      <h3 class="collapsible-fix"><%= key.camelize %> Sports<span class="ui-li-count-fix ui-li-count"><%= @teams.count %></span></h3>
+      <% if @teams.count > 0 %>
+      <ul data-role="listview" data-inset="true" data-filter="false">
+        <% @teams.each do |team| %>
+        <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
+          <h2><%= h team.formalname %></h2>
+          <%= link_to 'Show', team, :'data-role' => 'button', :'data-icon' => 'info', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Edit', edit_team_path(team), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
+          <%= link_to 'Delete', team, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+        </div>
+        <% end %>
+      </ul>
+      <% else %>
+        <p>No teams for <%= key.camelize %> season.</p>
+      <% end %>
+    </div>
+  <% end %>
+
 <% else %>
   <div data-role="container">
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>

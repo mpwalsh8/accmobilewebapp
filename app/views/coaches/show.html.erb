@@ -1,4 +1,4 @@
-<h3 class="ui-bar ui-bar-a ui-corner-none"><%=h @coach.displayname %></h3>
+<h3 class="ui-bar ui-bar-a ui-corner-all"><%=h @coach.displayname %></h3>
 <ul data-role="listview" data-inset="true">
   <% if !@coach.email.blank? %>
     <li><a  href="<%= sprintf("mailto:%s", @coach.email) %>">Email Address</a><span class="ui-li-aside" data-rel="external""><%= @coach.email %></span></li>
@@ -11,24 +11,31 @@
   <% end %>
 </ul>
 
-  <h4 class="ui-bar ui-bar-a">Coaching Staffs:</h4>
+<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a">
+    <h3>Coaching Staffs:</h3>
+  </div>
+  <div class="ui-body ui-body-a">
   <% if @coach.teams.count > 0 %>
     <%#= @coach.teams.collect {|t| link_to(t.formalname, t)}.join(", ").html_safe %>
-    <ul data-role="listview" data-inset="true" data-filter="true">
+    <ul data-role="listview" data-inset="true" data-filter="false">
       <% @coach.teams.each do |t| %>
         <% hc = CoachesTeam.find_by(:team_id => t.id, :coach_id => @coach.id) %>
         <li><%= link_to(t.formalname, t) %><span class="ui-li-aside"><%= hc.headcoach ? "Head Coach" : "" %></span></li>
       <% end %>
     </ul>
   <% else %>
-    Not currently on any coaching staff.
+    <p>Not currently on any coaching staff.</p>
   <% end %>
+  </div>
+ </div>
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
   <%= link_to 'Back to Coaches', coaches_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
-  <%# if current_user.try(:admin?) %>
-    <%#= link_to 'Edit Coach', edit_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-    <%##= link_to 'Edit Teams', teams_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-  <%# end %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Edit Coach', edit_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+    <%= link_to 'Delete Coach', @coach, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+    <%#= link_to 'Edit Teams', teams_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+  <% end %>
 </div>
