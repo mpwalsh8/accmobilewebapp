@@ -8,6 +8,8 @@
       <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     </div>
   </div>
+
+<% if false then %>
   <!--  List of Existing Athletes -->
   <h3 class="ui-bar ui-bar-a ui-corner-none">Existing Athletes</h3>
   <div data-role="collapsible-set" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-mini="true" data-autodividers="true" data-filter="true">
@@ -22,6 +24,17 @@
     <% end %>
   </div>
   <!--  /List of Existing Athletes -->
+<% end %>
+  <!--  List of Existing Athletes -->
+  <h3 class="ui-bar ui-bar-a ui-corner-none">Coaches</h3>
+  <ul data-role="listview" data-count-theme="a" data-inset="true" data-filter="true" data-autodividers="true">
+    <% @athletes = Athlete.all.order(:lastname, :firstname) %>
+    <% @athletes.each do |athlete| %>
+      <li><%= link_to sprintf("%s<span class=\"ui-li-count\">%s</span>", athlete.lastcommafirst, athlete.teams.count).html_safe, athlete %><%= link_to 'Edit', edit_athlete_path(athlete), :'data-icon' => 'edit' %></li>
+    <% end %>
+  </ul>
+  <!--  /List of Existing Athletes -->
+
 <% else %>
   <div data-role="container">
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>

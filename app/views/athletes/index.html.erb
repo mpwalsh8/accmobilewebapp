@@ -1,7 +1,6 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Athletes</h3>
 <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
   <% @athletes.each do |athlete| %>
-    <li><%= link_to athlete.lastcommafirst, athlete %></li>
+    <li><%= link_to sprintf("%s<span class=\"ui-li-count\">%s</span>", athlete.lastcommafirst, athlete.teams.count).html_safe, athlete %></li>
   <% end %>
-  <%#= content_tag(:li, fa_icon("check", text: "Bulleted list item")) %>
 </ul>

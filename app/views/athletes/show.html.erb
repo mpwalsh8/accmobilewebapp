@@ -77,12 +77,16 @@
     <li><a  href="<%= sprintf("mailto:%s", @athlete.email) %>">Email Address</a><span class="ui-li-aside" data-rel="external""><%= @athlete.email %></span></li>
   <% end %>
   <% if !@athlete.twitter.blank? %>
-    <li><a  href="<%= sprintf("https://twitter.com/%s", @athlete.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @athlete.twitter %></span></li>
+    <li><a href="<%= sprintf("https://twitter.com/%s", @athlete.twitter.delete("@")) %>" data-rel="external">Twitter Handle</a><span class="ui-li-aside"><%= @athlete.twitter %></span></li>
   <% end %>
 </ul>
 
+<div class="ui-corner-all custom-corners">
+  <div class="ui-bar ui-bar-a">
+    <h3>Rosters:</h3>
+  </div>
+  <div class="ui-body ui-body-a">
   <% if @athlete.teams.count > 0 %>
-  <h4 class="ui-bar ui-bar-a">Team Rosters:</h4>
     <ul data-role="listview" data-inset="true" data-filter="false">
       <% @athlete.teams.each do |t| %>
         <% tc = AthletesTeam.find_by(:team_id => t.id, :athlete_id => @athlete.id) %>
@@ -90,10 +94,18 @@
       <% end %>
     </ul>
   <% else %>
-    <%= @athlete.firstname %> is not currently on any team roster.
+    <p>Not currently on any team roster.</p>
   <% end %>
+  </div>
+</div>
 
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
   <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Edit Athlete', edit_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+    <%= link_to 'Delete Athlete', @athlete, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+    <%#= link_to 'Edit Teams', teams_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
+  <% end %>
 </div>
+
