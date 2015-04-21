@@ -34,13 +34,13 @@ class Team < ActiveRecord::Base
     if (conference)
       opponents = Opponent.select("id").where(:conferenceopponent => true)
       opponents = opponents.map{|opponent| opponent.id}
-    logger.info(opponents.to_yaml)
+    #logger.info(opponents.to_yaml)
       results = Result.select("result").joins(:event).where("result IN ('win', 'loss', 'tie') AND results.event_id = events.id AND events.teamid = ? AND events.opponentid IN (?)", id, opponents)
     else
       results = Result.select("result").joins(:event).where("result IN ('win', 'loss', 'tie') AND results.event_id = events.id AND events.opponentid IS NOT NULL AND events.teamid = ?", id)
     end
-    logger.info('============')
-    logger.info(results.to_yaml)
+    #logger.info('============')
+    #logger.info(results.to_yaml)
     results = results.map{|result| result.result}
     if results.count > 0 && results.count('tie') > 0
       #results = sprintf("W: %d L: %d T: %d", results.count('win'),

@@ -77,7 +77,7 @@ class AthletesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_athlete
-      logger.info(sprintf("set_athlete - %s::%s", __FILE__, __LINE__))
+      #logger.info(sprintf("set_athlete - %s::%s", __FILE__, __LINE__))
       @athlete = Athlete.find(params[:id])
     end
 
