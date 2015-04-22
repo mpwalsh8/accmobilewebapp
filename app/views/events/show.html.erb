@@ -10,23 +10,31 @@
     else
       status = 'scheduled'.camelize
   end
+
+  title = "title"
+  subtitle = "subtitle"
+  title, subtitle = @event.formalname
 %>
 
 <ul data-role="listview" data-inset="true">
   <li data-role="list-divider">
-    <% title = "title" %>
-    <% subtitle = "subtitle" %>
-    <% title, subtitle = @event.formalname %>
-    <h1><%= title %></h1>
+    <h3><%= title %></h3>
     <% if !subtitle.blank? %>
       <h4><%= subtitle %></h4>
     <% end %>
-    <% if !result.nil? %>
+  </li>
+  <% if !result.nil? %>
+    <li>
       <h4>Result:  <%= result.resulttext[0] %></h4>
       <% if !result.notes.blank? %>
-        <p>Notes:  <%= result.notes %></p>
+        <p><b>Notes:</b>  <%= result.notes %></p>
       <% end %>
-    <% end %>
+    </li>
+  <% end %>
+  <% if !@event.notes.blank? %>
+    <li><b>Notes:</b>  <%= @event.notes %></li>
+  <% end %>
+  <li data-role="list-divider">
     <% record = team.record(false) %>
     <% if !record.blank? %>
       <p><b>Overall Record:</b>  <%= record %></p>
@@ -36,12 +44,11 @@
       <p><b>Conference Record:</b>  <%= record %></p>
     <% end %>
     <p><b>Scheduled:</b>  <%= @event.datetimelong %></p>
-    <p><b>Duration (est):</b>  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
     <p><b>Status:</b>  <span class="event-<%= status.downcase %>"><%= status %></span></p>
-    <% if !@event.notes.blank? %>
-      <p><b>Notes:</b>  <%= @event.notes %></p>
-    <% end %>
+    <p><b>Duration (est):</b>  <%= distance_of_time_in_words(@event.eventduration * 60) %></p>
   </li>
+</ul>
+<ul data-role="listview" data-inset="true">
   <% if !team.nil? %>
   <li><%= link_to sprintf("Team:  %s", team.formalname), team_path(team) %></li>
   <% end %>
