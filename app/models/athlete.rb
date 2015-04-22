@@ -103,7 +103,7 @@ class Athlete < ActiveRecord::Base
 ##    def gradyear2class
 ##      if gradyear.is_a? Integer then
 ##        cgy = Date.today.month <= 6 ? Date.today.year : Date.today.next_year.year
-##        gradclass = { cgy => 'Senior', cgy+1 => 'Junior', cgy+2 => 'Sophmore', cgy+3 => 'Freshman' }[gradyear]
+##        gradclass = { cgy => 'Senior', cgy+1 => 'Junior', cgy+2 => 'Sophomore', cgy+3 => 'Freshman' }[gradyear]
 ##      else
 ##        gradclass = 'n/a'
 ##      end
