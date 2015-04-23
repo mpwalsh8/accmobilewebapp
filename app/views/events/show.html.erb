@@ -94,15 +94,15 @@
 </div>
 
 <% if current_user.try(:admin?) %>
-  <div class="ui-grid-c ui-responsive">
-    <div class="ui-block-a"><%= link_to 'Update Event', edit_event_path(@event), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini" %></div>
+  <div class="ui-grid-c">
+    <div class="ui-block-a"><%= link_to 'Update Event', edit_event_path(@event), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
     <% result = @event.getresult %>
     <% if result.nil? %>
-      <div class="ui-block-b"><%= link_to 'Report Result', new_result_path(:event_id => @event.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Report Result', new_result_path(:event_id => @event.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
     <% else %>
-      <div class="ui-block-b"><%= link_to 'Update Result', edit_result_path(:event_id => @event.id, :id => result.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Update Result', edit_result_path(:event_id => @event.id, :id => result.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
     <% end %>
-    <div class="ui-block-c"><%= link_to 'Add Event', new_event_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus ui-mini" %></div>
-    <div class="ui-block-d"><%= link_to 'Delete Event', @event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete ui-mini" %></div>
+    <div class="ui-block-c"><%= link_to 'Add Event', new_event_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+    <div class="ui-block-d"><%= link_to 'Delete Event', @event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
   </div>
 <% end %>
