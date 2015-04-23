@@ -35,6 +35,7 @@
     <li><b>Notes:</b>  <%= @event.notes %></li>
   <% end %>
   <li data-role="list-divider">
+    <% if !team.nil? %>
     <% record = team.record(false) %>
     <% if !record.blank? %>
       <p><b>Overall Record:</b>  <%= record %></p>
@@ -42,6 +43,7 @@
     <% record = team.record(true) %>
     <% if !record.blank? %>
       <p><b>Conference Record:</b>  <%= record %></p>
+    <% end %>
     <% end %>
     <p><b>Scheduled:</b>  <%= @event.datetimelong %></p>
     <p><b>Status:</b>  <span class="event-<%= status.downcase %>"><%= status %></span></p>
@@ -66,6 +68,7 @@
   <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
 </ul>
 
+<% if false then %>
 <div data-role="controlgroup" data-type="horizontal" data-mini="true">
   <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
   <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
@@ -82,5 +85,24 @@
     <%= link_to 'Add Event', new_event_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
     <%= link_to 'Delete Event', @event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
 
+  </div>
+<% end %>
+<% end %>
+
+<div class="ui-grid-solo">
+  <div class="ui-block-a"><%= link_to 'Back to Events', events_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back" %></div>
+</div>
+
+<% if current_user.try(:admin?) %>
+  <div class="ui-grid-c ui-responsive">
+    <div class="ui-block-a"><%= link_to 'Update Event', edit_event_path(@event), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini" %></div>
+    <% result = @event.getresult %>
+    <% if result.nil? %>
+      <div class="ui-block-b"><%= link_to 'Report Result', new_result_path(:event_id => @event.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus ui-mini" %></div>
+    <% else %>
+      <div class="ui-block-b"><%= link_to 'Update Result', edit_result_path(:event_id => @event.id, :id => result.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini" %></div>
+    <% end %>
+    <div class="ui-block-c"><%= link_to 'Add Event', new_event_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus ui-mini" %></div>
+    <div class="ui-block-d"><%= link_to 'Delete Event', @event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete ui-mini" %></div>
   </div>
 <% end %>
