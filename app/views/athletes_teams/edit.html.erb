@@ -7,3 +7,11 @@
   <%= link_to 'Team Admin', page_path('admin/team'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
   <%= link_to 'Show Team Athletes', @athletes_team, :'data-role' => "button", :'data-icon' => "eye", :'data-inline' => "true" %>
 </div>
+
+<br />
+<div class="ui-grid-b">
+  <div class="ui-block-a"><%= link_to 'Admin<br />&nbsp;'.html_safe, page_path('admin'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+  <div class="ui-block-b"><%= link_to 'Team<br />Admin'.html_safe, page_path('admin/team'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+  <div class="ui-block-c"><%= link_to 'Show Team<br />Athletes'.html_safe, @athletes_team, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
+</div>
+<br />

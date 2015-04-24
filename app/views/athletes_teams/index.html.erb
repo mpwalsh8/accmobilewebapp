@@ -13,7 +13,8 @@
           <div data-role="collapsible-set" data-mini="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
       <% end %> 
       <div data-role="collapsible" data-collapsed="true" data-inset="true">
-        <h1><%= at.athlete.fullname %></h1>
+<% logger.info(at.athlete.to_yaml) %>
+        <h1><%= at.athlete.nil? ? "N/A" : at.athlete.displayname %></h1>
         <div data-role="controlgroup" data-type="horizontal" data-mini="true">
           <%= link_to 'Show', at, :'data-role' => 'button', :'data-icon' => "eye" %>
           <% if current_user.try(:admin?) %>

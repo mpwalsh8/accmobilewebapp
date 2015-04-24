@@ -2,7 +2,8 @@
     
 <%= render 'form' %>
 
-<div data-role="controlgroup" data-type="horizontal">
-  <%= link_to 'Admin', page_path('admin'), :'data-role' => "button", :'data-icon' => "back", :'data-inline' => "true" %>
-  <%= link_to 'Team Admin', page_path('admin/team'), :'data-role' => 'button', :'data-icon' => "back", :'data-inline' => "true" %>
+<br />
+<div class="ui-grid-a">
+  <div class="ui-block-a"><%= link_to 'Admin<br />&nbsp;'.html_safe, page_path('admin'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+  <div class="ui-block-b"><%= link_to 'Team<br />Admin'.html_safe, page_path('admin/team'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
 </div>

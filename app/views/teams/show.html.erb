@@ -126,7 +126,15 @@
   <!--  /Team Twitter Feed -->
 </div>
 
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-  <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
-  <%= link_to 'Back to Teams', teams_path, :'data-icon' => "back", :'data-role' => "button", :'class' => "ui-corner-all" %>
+<div class="ui-grid-solo">
+  <div class="ui-block-a"><%= link_to 'Back to Teams', teams_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back" %></div>
 </div>
+
+<% if current_user.try(:admin?) %>
+  <div class="ui-grid-b">
+    <div class="ui-block-a"><%= link_to 'Update<br />Team'.html_safe, edit_team_path(@team), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+    <div class="ui-block-b"><%= link_to 'Add<br />Team'.html_safe, new_team_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+    <div class="ui-block-c"><%= link_to 'Delete<br />Team'.html_safe, @team, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+  </div>
+<% end %>
+

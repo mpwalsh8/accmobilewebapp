@@ -1,4 +1,4 @@
-<h3 class="ui-bar ui-bar-a ui-corner-none"><%= @athletes_team.team.formalname %>:  <%= @athletes_team.athlete.fullname %></h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none"><%= @athletes_team.team.formalname %>:  <%= @athletes_team.athlete.nil? ? "N/A" : @athletes_team.athlete.fullname %></h3>
     
 <figure id="pictogram">
 <%= image_tag("pictograms/svg/#{@athletes_team.team.sport.imageurl}.svg", alt: @athletes_team.team.sport.name, style: "height: 80px;") %>
@@ -24,17 +24,23 @@
   <li>
     <div class="ui-grid-a">
       <div class="ui-block-a">Graduation Year:</div>
-      <div class="ui-block-b"><%= @athletes_team.athlete.gradyear %>
+      <div class="ui-block-b"><%= @athletes_team.athlete.nil? ? "N/A" : @athletes_team.athlete.gradyear %>
     </div>
   </li>
   <li><%= link_to @athletes_team.team.formalname, team_path(@athletes_team.team_id) %></li>
-  <li><%= link_to @athletes_team.athlete.fullname, athlete_path(@athletes_team.athlete_id) %></li>
+  <li><%= link_to @athletes_team.athlete.nil? ? "N/A" : @athletes_team.athlete.fullname, athlete_path(@athletes_team.athlete_id) %></li>
 </ul>
 
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-  <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
-  <%= link_to 'Back to Team Athletes', athletes_teams_path, :'data-role' => "button", :'data-icon' => "back", :class => "ui-corner-all" %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to 'Edit Team Athlete', edit_athletes_team_path(@athletes_team), :'data-role' => "button", :'data-icon' => "edit", :class => "ui-corner-all" %>
-  <% end %>
+<div class="ui-grid-solo">
+  <div class="ui-block-a"><%= link_to 'Back to Team Athletes', athletes_teams_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back" %></div>
 </div>
+
+<% if current_user.try(:admin?) %>
+  <br />
+  <div class="ui-grid-a">
+    <div class="ui-block-a"><%= link_to 'Update Team<br />Athlete'.html_safe, edit_athletes_team_path(@athletes_team), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+    <div class="ui-block-b"><%= link_to 'Delete Team<br />Athlete'.html_safe, @athletes_team, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+  </div>
+  <br />
+<% end %>
+

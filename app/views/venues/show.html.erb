@@ -52,14 +52,21 @@
     </div>
   </li>
 </ul>
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-  <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
-  <%= link_to 'Back to Events', events_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
-  <%= link_to 'Back to Venues', venues_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to 'Edit Venue', edit_venue_path(@venue), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-  <% end %>
+
+<div class="ui-grid-solo">
+  <div class="ui-block-a"><%= link_to 'Back to Venues', venues_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
 </div>
+
+<% if current_user.try(:admin?) %>
+  <br />
+  <div class="ui-grid-a">
+    <div class="ui-block-a"><%= link_to 'Edit<br />Venue'.html_safe, edit_venue_path(@venue), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+    <div class="ui-block-b"><%= link_to 'Delete<br />Venue'.html_safe, @venue, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+  </div>
+  <br />
+<% end %>
+
+
 
 <% if Settings.GoogleMaps.Enabled == "Yes" && !@venue.latlong.blank? %>
 <script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" type="text/javascript"></script>

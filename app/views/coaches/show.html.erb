@@ -30,12 +30,16 @@
   </div>
 </div>
 
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-  <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
-  <%= link_to 'Back to Coaches', coaches_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to 'Edit Coach', edit_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-    <%= link_to 'Delete Coach', @coach, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
-    <%#= link_to 'Edit Teams', teams_coach_path(@coach), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-  <% end %>
+<div class="ui-grid-solo">
+  <div class="ui-block-a"><%= link_to 'Back to Coaches', coaches_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
 </div>
+
+<% if current_user.try(:admin?) %>
+  <br />
+  <div class="ui-grid-a">
+    <div class="ui-block-a"><%= link_to 'Edit<br />Coach'.html_safe, edit_coach_path(@coach), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+    <div class="ui-block-b"><%= link_to 'Delete<br />Coach'.html_safe, @coach, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+  </div>
+  <br />
+<% end %>
+
