@@ -99,20 +99,8 @@
   </div>
 </div>
 
-<% if false then %>
-<div data-role="controlgroup" data-type="horizontal" data-mini="true">
-  <!--<a data-icon="back" data-role="button" class="ui-corner-all" data-rel="back">Back</a>-->
-  <%= link_to 'Back to Athletes', athletes_path, :'data-role' => 'button', :'data-icon' => "back", :class => "ui-corner-all" %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to 'Edit Athlete', edit_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-    <%= link_to 'Delete Athlete', @athlete, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
-    <%#= link_to 'Edit Teams', teams_athlete_path(@athlete), :'data-role' => 'button', :'data-icon' => "edit", :class => "ui-corner-all" %>
-  <% end %>
-</div>
-<% end %>
-
 <div class="ui-grid-solo">
-  <div class="ui-block-a"><%= link_to 'Back to Athletes', athletes_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+  <div class="ui-block-a"><%= link_to 'Back to Athletes', athletes_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
 </div>
 
 <% if current_user.try(:admin?) %>
