@@ -2,14 +2,18 @@
 <% if current_user.try(:admin?) %>
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Team Administration</h3>
-    <div data-role="controlgroup" data-type="vertical">
-      <%= link_to 'Add Team', new_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
-      <%= link_to 'Import Team', import_athletes_teams_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
-
-      <%= link_to 'Add Coach to Team', new_coaches_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
-      <%= link_to 'Add Athlete to Team', new_athletes_team_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
-      <%= link_to 'Edit Athlete on Team', athletes_teams_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+    <div class="ui-grid-b">
+      <div class="ui-block-a"><%= link_to 'Add<br />Team'.html_safe, new_team_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Import<br />Teams'.html_safe, import_athletes_teams_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-c"><%= link_to 'Add Coach<br />to Team'.html_safe, new_coaches_team_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
     </div>
+
+    <div class="ui-grid-a">
+      <div class="ui-block-a"><%= link_to 'Add Athlete<br />to Team'.html_safe, new_athletes_team_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Edit Athlete<br />on Team'.html_safe, athletes_teams_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+    </div>
+
+
 <!--  Disable listing of teams, to be deleted later -->
 <% if false then %>
     <!--  List of Existing Teams -->

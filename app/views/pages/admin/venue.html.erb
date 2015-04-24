@@ -2,9 +2,9 @@
 <% if current_user.try(:admin?) %>
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Venue Administration</h3>
-    <div data-role="controlgroup" data-type="vertical">
-      <%= link_to 'Add Venue', new_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
-      <%= link_to 'Add Sport to Venue', new_sports_venue_path, :'data-role' => 'button', :'data-icon' => 'plus', :'data-inline' => "false" %>
+    <div class="ui-grid-a">
+      <div class="ui-block-a"><%= link_to 'Add<br />Venue'.html_safe, new_venue_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Add Sport<br />to Venue'.html_safe, new_sports_venue_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
     </div>
     <!--  List of Existing Venues -->
     <div data-role="collapsible-set" data-mini="true">
