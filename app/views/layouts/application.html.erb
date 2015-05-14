@@ -30,8 +30,10 @@ if (localStorage.currentURL && location.currentURL != location.href) {
     location.href = localStorage.currentURL;
 }
 </script>
+<!--  Output optional  header content -->
+<%= yield :head %>
 </head>
-<body class='<%= controller.controller_name %>'>
+<body class="<%= controller.controller_name %> <%= action_name %>">
   <!--<div data-role="page" data-add-back-btn="true">-->
   <div data-role="page" data-dom-cache="false" data-ajax="true">
     <!-- "header" -->
