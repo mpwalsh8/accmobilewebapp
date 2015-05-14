@@ -21,14 +21,14 @@ addToHomescreen({
 });
 
 //  Save current page to local storage
-$('a').on('click', function(){          
-    localStorage.currentURL = this.href
-});
+//$('a').on('click', function(){          
+//    localStorage.currentURL = this.href
+//});
 
 //  If app reload, try and return to prior page
-if (localStorage.currentURL && location.currentURL != location.href) {
-    location.href = localStorage.currentURL;
-}
+//if (localStorage.currentURL && location.currentURL != location.href) {
+//    location.href = localStorage.currentURL;
+//}
 </script>
 <!--  Output optional  header content -->
 <%= yield :head %>
