@@ -2,6 +2,6 @@
 <ul data-role="listview" data-inset="true" data-autodividers="true" data-filter="true">
 <%# logger.info(@hash.to_yaml) %>
   <% @venues.each do |venue| %>
-    <li><%= link_to venue.name, venue, :'data-ajax' => true, :'data-no-turbolink' => true %></li>
+    <li><%= link_to venue.name, venue, :'data-ajax' => false, :'data-no-turbolink' => true %></li>
   <% end %>
 </ul> 
