@@ -81,7 +81,7 @@
 <script type="text/javascript">
 //  Make sure Google Maps is loaded and available ...
 if (typeof google === 'object' && typeof google.maps === 'object') {
-    jQuery("div:jqmData(role='page'):last").bind('pageshow', function(){
+    jQuery("div:jqmData(role='page'):last").bind('pageinit', function(){
         handler = Gmaps.build('Google');
         handler.buildMap({
         //    provider: {
