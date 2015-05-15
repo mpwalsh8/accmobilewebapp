@@ -24,7 +24,7 @@ GoogleMaps:
   Enabled:  "Yes"
 
 Twitter:
-  Enabled:  "No"
+  Enabled:  "Yes"
   Username: "apexcougarclub"
   ConsumerKey: "YOUR_CONSUMER_KEY"
   ConsumerSecret: "YOUR_CONSUMER_SECRET"

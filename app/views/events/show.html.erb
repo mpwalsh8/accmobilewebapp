@@ -65,7 +65,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <li><%= link_to sprintf("Venue:  %s", venue.name), venue_path(venue) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
+  <li><%= link_to(sprintf("Venue:  %s", venue.name), venue_path(venue) , :'data-no-turbolink' => true) %><span class="ui-li-count-fix ui-li-count"><%= @event.eventlocation.camelize[0] %></span></li>
 </ul>
 
 <% if false then %>

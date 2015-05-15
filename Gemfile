@@ -1,5 +1,15 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
+#source 'https://rails-assets.org' do
+#  %w(
+#    jquery jquery-ujs bootstrap jquery-icheck select2 zeroclipboard
+#    font-awesome modernizer dropzone seiyria-bootstrap-slider jquery-masonry
+#    jquery-infinite-scroll imagesloaded markitup livestampjs datetimepicker
+#    videojs jquery.lazyload magnific-popup
+#  ).each do |asset_source|
+#    gem "rails-assets-#{asset_source}"
+#  end
+#end
+#source 'https://rails-assets.org'
 ruby '2.2.0'
 gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 4.0.3'
@@ -60,3 +70,6 @@ gem 'add-to-homescreen-rails'
 ##  Google Maps
 gem 'gmaps4rails'
 gem 'underscore-rails'
+
+##  Segment.IO
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
