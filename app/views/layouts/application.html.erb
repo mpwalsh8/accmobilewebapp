@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= Settings.Header.AppName %></title>
+  <%= javascript_include_tag "//www.google.com/jsapi" %>
   <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application' %>
@@ -33,7 +34,7 @@ addToHomescreen({
 <!--  Output optional  header content -->
 <%= yield :head %>
 </head>
-<body class="<%= controller.controller_name %> <%= action_name %>">
+<body data-no-turbolink class="<%= controller.controller_name %> <%= action_name %>">
   <!--<div data-role="page" data-add-back-btn="true">-->
   <div data-role="page" data-dom-cache="false" data-ajax="true">
     <!-- "header" -->

@@ -12,7 +12,7 @@
   <% if Settings.GoogleMaps.Enabled == "Yes" && !@venue.latlong.blank? %>
 <%# logger.info(@hash) %>
     <li>
-      <div class="ui-body ui-body-a ui-corner-none" style="width: auto; height: 300px;" id="venuemap"></div>
+      <div data-no-turbolink="true" class="ui-body ui-body-a ui-corner-none" style="width: auto; height: 300px;" id="venuemap-<%= @venue.id %>"></div>
     </li>
   <% end %>
   <% if !@venue.twitter.blank? %>
@@ -79,8 +79,18 @@
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>
 <% end %>
 <script type="text/javascript">
+var map;
 //  Make sure Google Maps is loaded and available ...
 if (typeof google === 'object' && typeof google.maps === 'object') {
+    showVenueMap();
+}
+else {
+    console.log("Google Maps not ready.");
+    //  Try and load Google Maps again and then generate the map.
+    google.load("maps", "3", {callback: showVenueMap});
+}
+
+function showVenueMap() {
     jQuery("div:jqmData(role='page'):last").bind('pageinit', function(){
         handler = Gmaps.build('Google');
         handler.buildMap({
@@ -89,7 +99,7 @@ if (typeof google === 'object' && typeof google.maps === 'object') {
         //      // pass in other Google Maps API options here
         //    },
           internal: {
-            id: 'venuemap'
+            id: "venuemap-<%= @venue.id %>"
           }
         },
         function(){
@@ -99,9 +109,6 @@ if (typeof google === 'object' && typeof google.maps === 'object') {
           handler.getMap().setZoom(15);
       });
     });
-}
-else {
-    console.log("Google Maps not ready.");
 }
 </script>
 <% end %>
