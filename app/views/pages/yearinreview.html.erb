@@ -1,5 +1,5 @@
 <% render 'events/event_li' %>
-<h3 class="ui-bar ui-bar-a ui-corner-none">Year in Review</h3>
+<h2 class="ui-bar ui-bar-a ui-corner-all">Year in Review</h2>
 <% seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' } %>
 
 <% seasons.each do |key, value| %>
@@ -8,7 +8,7 @@
   <% @teams.each do |team| %>
     <div class="ui-body ui-body-a ui-corner-all">
       <figure id="pictogram-<%= team.id %>">
-        <%= image_tag("pictograms/svg/#{team.sport.imageurl}.svg", alt: team.sport.name, style: "height: 50px; float: right;") %>
+        <%= image_tag("pictograms/svg/#{team.sport.imageurl}.svg", alt: team.sport.name, style: "height: 45px; float: right;") %>
       </figure>
       <h3><%= team.sportname %></h3>
 
