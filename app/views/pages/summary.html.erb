@@ -1,0 +1,36 @@
+<h3 class="ui-bar ui-bar-a ui-corner-none">Summary</h3>
+<% seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' } %>
+
+<% seasons.each do |key, value| %>
+  <% @teams = Team.where(:season => key).sort { |a,b| a.sportname <=> b.sportname } %>
+  <h3 class="ui-bar ui-bar-a ui-corner-all"><%= key.camelize %> Sports<span class="ui-li-count-fix ui-li-count"><%= @teams.count %></span></h3>
+  <% @teams.each do |team| %>
+    <div class="ui-body ui-body-a ui-corner-all">
+      <figure id="pictogram-<%= team.id %>">
+        <%= image_tag("pictograms/svg/#{team.sport.imageurl}.svg", alt: team.sport.name, style: "height: 50px; float: right;") %>
+      </figure>
+      <h3><%= team.sportname %></h3>
+
+    <% events = Event.where(:teamid => team.id).order(:eventdate, :eventtime) %>
+    <h3 class="ui-bar ui-bar-a ui-corner-none">Schedule / Results<span class="ui-li-count-fix ui-li-count"><%= events.count %></span></h3>
+    <% if events.count > 0 %>
+    <ul data-role="listview" data-inset="true">
+      <% record = team.record(false) %>
+      <% if !record.blank? %>
+        <li data-role="list-divider" data-theme="a">Overall:  <%= record %></li>
+      <% end %>
+      <% record = team.record(true) %>
+      <% if !record.blank? %>
+        <li data-role="list-divider" data-theme="a">Conference:  <%= record %></li>
+      <% end %>
+      <% events.each do |event| %>
+        <%= EventOverviewLI(event) %>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No events scheduled.</p>
+    <% end %>
+    </div>
+    <br />
+  <% end %>
+<% end %>
