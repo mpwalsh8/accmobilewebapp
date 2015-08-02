@@ -73,3 +73,7 @@ gem 'underscore-rails'
 
 ##  Segment.IO
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
+
+##  Prawn for PDF generation
+gem 'prawn'
+gem 'prawn-table'

@@ -5,6 +5,16 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     @teams = Team.all.order(:gender, :varsity)
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        pdf = TeamsPdf.new(@teams, { :skip_page_creation => :true, :margin => [75, 50, 25, 50] })
+        send_data pdf.render, filename: "teams.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
+
   end
 
   # GET /teams/1
@@ -13,6 +23,14 @@ class TeamsController < ApplicationController
     @coaches = CoachesTeam.select("*").joins(:coach).where(:team_id => params[:id])
     @athletes = AthletesTeam.select("*").joins(:athlete).where(:team_id => params[:id])
     @jerseycount = AthletesTeam.select("*").joins(:athlete).where(:team_id => params[:id]).where.not(jerseynumber: [nil, '']).count
+    @team = Team.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TeamPdf.new(@team)
+        send_data pdf.render, filename: "team_#{@team.id}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   # GET /teams/new
