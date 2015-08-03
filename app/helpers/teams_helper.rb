@@ -89,16 +89,23 @@ module TeamsHelper
   end
 
   def TeamEvents(team)
+    rows = []
     events = Event.where(:teamid => team.id).order(:eventdate, :eventtime)
     text "Schedule / Results (#{events.count})", :size => 18
     if events.count > 0
       record = team.record(false)
       if !record.blank?
-        text "Overall:  #{record}"
+        #text "Overall:  #{record}"
+        rows.push(["Overall:",  record])
       end
       record = team.record(true)
       if !record.blank?
-        text "Confernece:  #{record}"
+        #text "Conference:  #{record}"
+        rows.push(["Conference:",  record])
+      end
+      if rows.count > 0
+        table(rows, :cell_style => { :borders => [], :size => 14 }, :column_widths => [100, 50])
+        move_down(SECTION_SPACING)
       end
       TeamEventsTable(events, team.formalname)
     else
@@ -148,7 +155,7 @@ module TeamsHelper
           rows.unshift(["Head Coach:", c.fullname])
         end
       end
-      table(rows, :cell_style => { :borders => [], :column_widths => [10, 50, 50] })
+      table(rows, :cell_style => { :borders => [], :size => 14 }, :column_widths => [125, 250])
     else
       text "No coaches currently on staff."
     end
