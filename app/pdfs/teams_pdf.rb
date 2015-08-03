@@ -6,6 +6,9 @@ class TeamsPdf < Prawn::Document
     super(options)
     #@teams = teams
 
+    start_new_page
+    CoverPage(self, Settings.School.Name + " Yearbook")
+
     ##  Pull the teams based on the season - discard the teams passed in
     seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' }
     seasons.each do |key, value|
@@ -32,7 +35,7 @@ Rails.logger.info("++++++++++>" + @jerseycount.to_s)
     end
 
     ## Generate the header and footer for each page
-    PDFHeader(self, Settings.School.Name + " Team Summary")
+    PDFHeader(self, Settings.School.Name + " Yearbook")
     PDFFooter(self)
 
   end

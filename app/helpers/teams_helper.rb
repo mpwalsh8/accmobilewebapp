@@ -6,6 +6,22 @@ module TeamsHelper
   INNER_BOUNDING_BOX_MARGIN_LEFT = 25
   SECTION_SPACING = 8
 
+  def CoverPage(pdf, title)
+    10.times do
+      move_down(SECTION_SPACING)
+    end
+    bounding_box([50, cursor], :position => :center, :width => 430) do
+      svg File.read("#{Rails.root}/app/assets/images/BigALogoYellow.svg"), :position => :center, :fit => [600, 600]
+    3.times do
+      move_down(SECTION_SPACING)
+    end
+    text Settings.School.SchoolYear, :align => :center, :size => 32
+    text Settings.School.Name, :align => :center, :size => 20
+    text Settings.School.Address, :align => :center
+    text "#{Settings.School.City}, #{Settings.School.State}  #{Settings.School.ZipCode}", :align => :center
+    end
+  end
+
   ##  Construct the header of a PDF document
   def PDFHeader(pdf, title)
     #This inserts an image in the pdf file and sets the size of the image
@@ -218,4 +234,22 @@ module TeamsHelper
     return rows
   end
 
+  ##  Sponsor page(s)
+  def Sponsors(pdf, title)
+    start_new_page
+    text "Black Patrons", :size => 20
+    ACCMobileWebApp::Application::SPLASHADS.each do |splash|
+      path = Pathname.new("#{Rails.root}/app/assets/images/#{splash[:img]}")
+      path = File.join(File.dirname(path), File.basename(path, File.extname(path)))
+      move_down(SECTION_SPACING)
+      #bounding_box([50, cursor], :position => :center, :width => 400) do
+        image open("#{path}.jpg"), :position => :center, :fit => [250,250]
+        #stroke_bounds
+      #end
+    end
+    text "Gold Patrons", :size => 20
+    ACCMobileWebApp::Application::BANNERADS.each do |banner|
+      #image image_url(banner[:img])
+    end 
+  end
 end
