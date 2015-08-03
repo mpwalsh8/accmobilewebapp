@@ -5,6 +5,10 @@ class TeamPdf< Prawn::Document
   def initialize(team, options={})
     super(options)
     @team = team
+    @coaches = CoachesTeam.select("*").joins(:coach).where(:team_id => team)
+    @athletes = AthletesTeam.select("*").joins(:athlete).where(:team_id => team)
+    @jerseycount = AthletesTeam.select("*").joins(:athlete).where(:team_id => team).where.not(jerseynumber: [nil, '']).count
+
 
     ##  Create a bounding box within the default bounding box which is slightly smaller.
     self.bounding_box([ self.bounds.left + INNER_BOUNDING_BOX_MARGIN_LEFT,

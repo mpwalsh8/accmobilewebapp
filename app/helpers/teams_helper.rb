@@ -46,28 +46,46 @@ module TeamsHelper
   end
 
   def TeamReport(team)
-    #text "Id:  ##{@team.id}"
-    #text "#{@team.formalname}", :size => 20
-    #move_down(SECTION_SPACING)
-    Rails.logger.info("pictograms/svg/#{team.sport.imageurl}.svg")
     svg File.read("#{Rails.root}/app/assets/images/pictograms/svg/#{team.sport.imageurl}.svg"), :width => 80, :height => 80
     move_down(SECTION_SPACING)
+
+    ## Team Picture?
+    if !team.teampicurl.blank?
+      move_down(SECTION_SPACING)
+      bounding_box([50, cursor], :position => :center, :width => 400) do
+        image open(team.teampicurl), :position => :center, :fit => [400,400]
+        stroke_bounds
+      end
+      3.times do
+        move_down(SECTION_SPACING)
+      end
+    end
+
     TeamEvents(team)
-    move_down(SECTION_SPACING)
-    text "TBD"
-    move_down(SECTION_SPACING)
-    text "Coaching Staff", :size => 18
-    move_down(SECTION_SPACING)
-    text "TBD"
-    move_down(SECTION_SPACING)
-    text "Roster by Name", :size => 18
-    move_down(SECTION_SPACING)
-    text "TBD"
-    move_down(SECTION_SPACING)
-    text "Roster by Jersey Number", :size => 18
-    move_down(SECTION_SPACING)
-    text "TBD"
-    move_down(SECTION_SPACING)
+    3.times do
+      move_down(SECTION_SPACING)
+    end
+
+    TeamCoaches(team)
+    3.times do
+      move_down(SECTION_SPACING)
+    end
+
+    ##  Generate a roster sortd by name
+    TeamAthletes(team, :name)
+    3.times do
+      move_down(SECTION_SPACING)
+    end
+
+    ##  Only generate a roster sorted by jersey number
+    ##  when the team actually assigns jersey numbers.
+    if @jerseycount > 0
+      TeamAthletes(team, :jerseynumber)
+      3.times do
+        move_down(SECTION_SPACING)
+      end
+    end
+
   end
 
   def TeamEvents(team)
@@ -82,18 +100,14 @@ module TeamsHelper
       if !record.blank?
         text "Confernece:  #{record}"
       end
-      #events.each do |event|
-        #text event.to_yaml
-      #end 
-      TeamEventsTable(events)
+      TeamEventsTable(events, team.formalname)
     else
       text "No events scheduled."
     end
-
   end
 
-  def TeamEventsTable(events)
-    table TeamEventsRows(events) do
+  def TeamEventsTable(events, fn)
+    table TeamEventsRows(events, fn) do
       row(0).font_style = :bold
        self.header = true
        self.row_colors = ['DDDDDD', 'FFFFFF']
@@ -102,33 +116,78 @@ module TeamsHelper
 
   end
 
-  def TeamEventsRows(events)
+  ##  Build an array of rows for the team's events and results
+  def TeamEventsRows(events, fn)
     rows = [['Date', 'Opponent', 'Location', 'Result']]
-      events.map do |event|
-      venue = Venue.find_by(:id => event.venueid)
-      team = event.teamid.blank? ? nil : Team.find_by(:id => event.teamid)
+    events.map do |event|
       opponent = event.opponentid.blank? ? nil : Opponent.find_by(:id => event.opponentid)
-      status = event.status.blank? || event.status == 'scheduled' ? "" :
-        sprintf("%s", event.status, event.status.camelize)
       result = Result.find_by(:event_id => event.id)
       rs = result.nil? ? "" : sprintf("%s", result.resulttext[1])
-      title, subtitle = event.formalname
 
-        #row = [event.eventdate]
-        #opponent = event.opponentid.blank? ? nil : Opponent.find_by(:id => event.opponentid)
-        #rows += [[event.eventdate, event.eventtitle, event.eventlocation, "TBD"]]
-#Rails.logger.info("1+++++++++++++++++++++++++++++++++++")
-#Rails.logger.info(event.eventtitle.to_yaml)
-#Rails.logger.info("2+++++++++++++++++++++++++++++++++++")
-#Rails.logger.info(event.formalname.to_yaml)
-#Rails.logger.info("3+++++++++++++++++++++++++++++++++++")
-        rows += [[event.datetimeshort, event.eventtitle[0], event.eventlocation.camelize, rs]]
-#Rails.logger.info("1+++++++++++++++++++++++++++++++++++")
-#Rails.logger.info(opponent.to_yaml)
-#Rails.logger.info(rs)
+      rows += [[event.datetimeshort,
+        event.eventtitle[0].remove!(fn).strip.remove!("vs ").strip,
+        event.eventlocation.camelize, rs]]
     end
     return rows
   end
 
+  ##  Output the coaches for the specified team
+  def TeamCoaches(team)
+    text "Coaching Staff (#{team.coaches.count})", :size => 18
+    if team.coaches.count > 0
+      @coaches = @coaches.sort_by { |c| [ c.lastname, c.firstname ] }
+      @coaches.each do |c|
+        hc = CoachesTeam.find_by(:coach_id => c.id, :team_id => team.id)
+        text c.lastcommafirst + (hc.headcoach.blank? ? "" : " (Head Coach)")
+      end
+    else
+      text "No coaches currently on staff."
+    end
+  end
+
+  def TeamAthletes(team, sort = :name)
+    if sort == :jerseynumber
+      text "Roster by Jersey Number (#{team.athletes.count})", :size => 18
+    else
+      text "Roster by Name (#{team.athletes.count})", :size => 18
+    end
+
+    if team.athletes.count > 0
+      TeamAthletesTable(team, sort)
+    else
+      text "No athletes currently on roster."
+    end
+  end
+
+  def TeamAthletesTable(team, sort)
+    table TeamAthletesRows(team, sort) do
+      row(0).font_style = :bold
+       self.header = true
+       self.row_colors = ['DDDDDD', 'FFFFFF']
+       self.column_widths = [210, 200, 80]
+    end
+
+  end
+
+  ##  Build an array of rows for the team's athletes and results
+  def TeamAthletesRows(team, sort = :name)
+    rows = [['Name', 'Notes', 'Number']]
+    if sort == :jerseynumber
+      @athletes = @athletes.sort_by { |a| [ a.jerseynumber.to_i, a.lastname, a.firstname ] }
+    else
+      @athletes = @athletes.sort_by { |a| [ a.lastname, a.firstname ] }
+    end
+    @athletes.each do |a|
+      notes = a.gradyear2class
+      if !a.position.blank?
+        notes = sprintf("%s%s%s", notes, notes.blank? ? "" : " / ", a.position)
+      end
+      if a.captain
+        notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain")
+      end
+      rows += [[a.lastcommafirst, notes, a.jerseynumber.blank? ? "" : a.jerseynumber]]
+    end
+    return rows
+  end
 
 end
