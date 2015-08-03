@@ -22,6 +22,7 @@ class TeamsPdf < Prawn::Document
           @coaches = CoachesTeam.select("*").joins(:coach).where(:team_id => team.id)
           @athletes = AthletesTeam.select("*").joins(:athlete).where(:team_id => team.id)
           @jerseycount = AthletesTeam.select("*").joins(:athlete).where(:team_id => team.id).where.not(jerseynumber: [nil, '']).count
+Rails.logger.info("++++++++++>" + @jerseycount.to_s)
           start_new_page
           text "#{team.formalname} (#{team.season.camelize})", :size => 20
           move_down(SECTION_SPACING)

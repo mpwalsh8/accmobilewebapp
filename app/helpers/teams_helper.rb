@@ -133,13 +133,22 @@ module TeamsHelper
 
   ##  Output the coaches for the specified team
   def TeamCoaches(team)
+    rows = []
     text "Coaching Staff (#{team.coaches.count})", :size => 18
     if team.coaches.count > 0
       @coaches = @coaches.sort_by { |c| [ c.lastname, c.firstname ] }
       @coaches.each do |c|
         hc = CoachesTeam.find_by(:coach_id => c.id, :team_id => team.id)
-        text c.lastcommafirst + (hc.headcoach.blank? ? "" : " (Head Coach)")
+        #text c.lastcommafirst + (hc.headcoach.blank? ? "" : " (Head Coach)")
+        if hc.headcoach.blank?
+          #rows.push(["\u2022", c.fullname, "Assistant Coach:"])
+          rows.push(["Assistant Coach:", c.fullname])
+        else
+          #rows.unshift(["\u2022", c.fullname, "Head Coach:"])
+          rows.unshift(["Head Coach:", c.fullname])
+        end
       end
+      table(rows, :cell_style => { :borders => [], :column_widths => [10, 50, 50] })
     else
       text "No coaches currently on staff."
     end
@@ -162,16 +171,24 @@ module TeamsHelper
   def TeamAthletesTable(team, sort)
     table TeamAthletesRows(team, sort) do
       row(0).font_style = :bold
-       self.header = true
-       self.row_colors = ['DDDDDD', 'FFFFFF']
-       self.column_widths = [210, 200, 80]
+      self.header = true
+      self.row_colors = ['DDDDDD', 'FFFFFF']
+      if row(0).count == 3
+        self.column_widths = [210, 200, 80]
+      else
+        self.column_widths = [250, 240]
+      end
     end
-
   end
 
   ##  Build an array of rows for the team's athletes and results
   def TeamAthletesRows(team, sort = :name)
-    rows = [['Name', 'Notes', 'Number']]
+    if @jerseycount > 0
+      rows = [['Name', 'Notes', 'Number']]
+    else
+      rows = [['Name', 'Notes']]
+    end
+
     if sort == :jerseynumber
       @athletes = @athletes.sort_by { |a| [ a.jerseynumber.to_i, a.lastname, a.firstname ] }
     else
@@ -185,7 +202,11 @@ module TeamsHelper
       if a.captain
         notes = sprintf("%s%s", notes, notes.blank? ? "Captain" : " / Captain")
       end
-      rows += [[a.lastcommafirst, notes, a.jerseynumber.blank? ? "" : a.jerseynumber]]
+      if @jerseycount > 0
+        rows += [[a.lastcommafirst, notes, a.jerseynumber.blank? ? "" : a.jerseynumber]]
+      else
+        rows += [[a.lastcommafirst, notes]]
+      end
     end
     return rows
   end
