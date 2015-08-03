@@ -76,4 +76,5 @@ gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 ##  Prawn for PDF generation
 gem 'prawn'
+gem 'prawn-svg'
 gem 'prawn-table'

@@ -10,7 +10,8 @@ class TeamsController < ApplicationController
       format.html
       format.json
       format.pdf do
-        pdf = TeamsPdf.new(@teams, { :skip_page_creation => :true, :margin => [75, 50, 25, 50] })
+        #pdf = TeamPdf.new(@teams, { :skip_page_creation => :true })
+        pdf = TeamsPdf.new(@teams, { :skip_page_creation => :true })
         send_data pdf.render, filename: "teams.pdf", type: "application/pdf", disposition: "inline"
       end
     end
@@ -28,6 +29,7 @@ class TeamsController < ApplicationController
       format.html
       format.pdf do
         pdf = TeamPdf.new(@team)
+        #pdf = TeamsPdf.new(@team, { :skip_page_creation => :false, :margin => [75, 50, 25, 50] })
         send_data pdf.render, filename: "team_#{@team.id}.pdf", type: "application/pdf", disposition: "inline"
       end
     end
