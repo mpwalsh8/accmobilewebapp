@@ -11,6 +11,7 @@ class TeamsPdf < Prawn::Document
     seasons.each do |key, value|
       @teams = Team.where(:season => key).sort { |a,b| a.sportname <=> b.sportname }
 
+
       ##  Create a bounding box within the default bounding box which is slightly smaller.
       self.bounding_box([self.bounds.left + INNER_BOUNDING_BOX_MARGIN_LEFT,
         self.bounds.top - INNER_BOUNDING_BOX_MARGIN_TOP],
@@ -18,6 +19,9 @@ class TeamsPdf < Prawn::Document
         :height => self.bounds.height - INNER_BOUNDING_BOX_HEIGHT) do
 
         @teams.map do |team|
+          @coaches = CoachesTeam.select("*").joins(:coach).where(:team_id => team.id)
+          @athletes = AthletesTeam.select("*").joins(:athlete).where(:team_id => team.id)
+          @jerseycount = AthletesTeam.select("*").joins(:athlete).where(:team_id => team.id).where.not(jerseynumber: [nil, '']).count
           start_new_page
           text "#{team.formalname} (#{team.season.camelize})", :size => 20
           move_down(SECTION_SPACING)
