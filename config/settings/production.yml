@@ -14,11 +14,12 @@ School:
   Phone:  "+1-919-387-2208"
   WebSite:  "http://www.apexhigh.com"
   Twitter:  "@ApexHighSchool"
-  Principal:  "Matt Wight"
-  PrincipalEmail:  "mwight@wcpss.net"
+  Principal:  "Dr. Diann Kearney"
+  PrincipalEmail:  "dkearney@wcpss.net"
   AthleticDirector:  "Del Philips"
   AthleticDirectorEmail:  "wphillips@wcpss.net"
   HomeVenueId:  1
+  SchoolYear:  "2014-2015"
 
 GoogleMaps:
   Enabled:  "No"
