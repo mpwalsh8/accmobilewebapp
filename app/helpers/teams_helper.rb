@@ -133,6 +133,7 @@ module TeamsHelper
 
   ##  Output the coaches for the specified team
   def TeamCoaches(team)
+Rails.logger.info(">>>> " + team.id.to_s)
     text "Coaching Staff (#{team.coaches.count})", :size => 18
     if team.coaches.count > 0
       @coaches = @coaches.sort_by { |c| [ c.lastname, c.firstname ] }
