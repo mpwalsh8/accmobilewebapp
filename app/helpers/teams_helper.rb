@@ -237,19 +237,66 @@ module TeamsHelper
   ##  Sponsor page(s)
   def Sponsors(pdf, title)
     start_new_page
-    text "Black Patrons", :size => 20
-    ACCMobileWebApp::Application::SPLASHADS.each do |splash|
-      path = Pathname.new("#{Rails.root}/app/assets/images/#{splash[:img]}")
-      path = File.join(File.dirname(path), File.basename(path, File.extname(path)))
-      move_down(SECTION_SPACING)
-      #bounding_box([50, cursor], :position => :center, :width => 400) do
-        image open("#{path}.jpg"), :position => :center, :fit => [250,250]
-        #stroke_bounds
-      #end
+    SplashTable()
+    start_new_page
+    BannerTable()
+  end
+
+  def SplashTable
+    table SplashRows() do
+      self.cell_style = { :padding => 5, :borders => [] }
+      columns(0).width = 240
+      columns(1).width = 240
+      self.header = true
     end
-    text "Gold Patrons", :size => 20
-    ACCMobileWebApp::Application::BANNERADS.each do |banner|
-      #image image_url(banner[:img])
-    end 
+  end
+
+  def SplashRows
+    rows = [[{:content => Settings.School.SchoolYear + " Black Patrons", :colspan => 2, :size => 24}]]
+    s = ACCMobileWebApp::Application::SPLASHADS
+    (0...s.length).step(2) do |splash|
+      lpath = Pathname.new("#{Rails.root}/app/assets/images/#{s[splash][:img]}")
+      lpath = File.join(File.dirname(lpath), File.basename(lpath, File.extname(lpath))) + ".jpg"
+      if !s[splash+1].nil?
+        rpath = Pathname.new("#{Rails.root}/app/assets/images/#{s[splash+1][:img]}")
+        rpath = File.join(File.dirname(rpath), File.basename(rpath, File.extname(rpath))) + ".jpg"
+     
+        row = [ {:image => lpath, :fit => [400, 240], :height => 280, :position => :center, :vposition => :center},
+          {:image => rpath, :fit => [400, 240], :position => :center, :vposition => :center}, ""]
+      else
+        row = [ {:image => lpath, :fit => [400, 240], :height => 280, :position => :center, :vposition => :center}, ""]
+      end
+      rows.push row
+    end
+    return rows
+  end
+
+  def BannerTable
+    table BannerRows() do
+      self.cell_style = { :padding => 5, :borders => [] }
+      columns(0).width = 240
+      columns(1).width = 240
+      self.header = true
+    end
+  end
+
+  def BannerRows
+    rows = [[{:content => Settings.School.SchoolYear + " Gold Patrons", :colspan => 2, :size => 24}]]
+    b = ACCMobileWebApp::Application::BANNERADS
+    (0...b.length).step(2) do |banner|
+      lpath = Pathname.new("#{Rails.root}/app/assets/images/#{b[banner][:img]}")
+      lpath = File.join(File.dirname(lpath), File.basename(lpath, File.extname(lpath))) + ".jpg"
+      if !b[banner+1].nil?
+        rpath = Pathname.new("#{Rails.root}/app/assets/images/#{b[banner+1][:img]}")
+        rpath = File.join(File.dirname(rpath), File.basename(rpath, File.extname(rpath))) + ".jpg"
+     
+        row = [ {:image => lpath, :fit => [230, 80], :height => 75, :position => :center, :vposition => :center},
+          {:image => rpath, :fit => [230, 80], :position => :center, :vposition => :center}, ""]
+      else
+        row = [ {:image => lpath, :fit => [230, 80], :height => 75, :position => :center, :vposition => :center}, ""]
+      end
+      rows.push row
+    end
+    return rows
   end
 end
