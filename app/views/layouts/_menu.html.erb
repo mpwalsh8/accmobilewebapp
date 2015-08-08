@@ -14,7 +14,10 @@
       <li><%= link_to 'Sports', sports_path, :'data-role' => "button", :'data-icon' => 'info', :'data-transition' => 'slide' %></li>
       <li><%= link_to 'Venues', venues_path, :'data-role' => "button", :'data-icon' => 'location', :'data-transition' => 'slide' %></li>
       <li><%= link_to 'Patrons', page_path('patrons'), :'data-role' => "button", :'data-icon' => "info" %></li>
-      <li><%= link_to 'Yearbook', page_path('yearbook'), :'data-role' => "button", :'data-icon' => "info" %></li>
+<!--
+      <li><#%= link_to 'Yearbook', page_path('yearbook'), :'data-role' => "button", :'data-icon' => "info" %></li>
+-->
+      <li><a href="/teams.pdf" data-ajax="false" data-role="button" data-icon="info" data-iconpos="left">Yearbook</a></li>
       <li><%= link_to 'About', page_path('about'), :'data-role' => "button", :'data-icon' => "info" %></li>
 
       <li data-role="list-divider">Access</li>
