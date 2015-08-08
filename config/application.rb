@@ -26,11 +26,11 @@ module ACCMobileWebApp
     # config.i18n.default_locale = :de
 
     BANNERADS = [
-      {
-        :name => 'Apex Cougar Club',
-        :url => 'http://www.apexcougarclub.org/corporate-sponsorship',
-        :img => 'webapp/banner/320x50/Apex_Cougar_Club_320x50_Banner.png'
-      },
+      #{
+      #  :name => 'Apex Cougar Club',
+      #  :url => 'http://www.apexcougarclub.org/corporate-sponsorship',
+      #  :img => 'webapp/banner/320x50/Apex_Cougar_Club_320x50_Banner.png'
+      #},
       {
         :name => 'Apex Auto Works',
         :url => 'http://www.apexautoworks.com',
