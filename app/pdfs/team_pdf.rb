@@ -20,7 +20,6 @@ class TeamPdf< Prawn::Document
       TeamReport(team)
     end
 
-    #Sponsors(self, "Title Page")
 
     PDFHeader(self, Settings.School.Name + " " + @team.formalname)
     PDFFooter(self)
