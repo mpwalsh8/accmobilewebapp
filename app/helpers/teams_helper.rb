@@ -235,7 +235,7 @@ module TeamsHelper
   end
 
   ##  Sponsor page(s)
-  def Sponsors(pdf, title)
+  def Sponsors(pdf)
     start_new_page
     SplashTable()
     start_new_page
