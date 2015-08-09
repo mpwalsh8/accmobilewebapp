@@ -136,7 +136,7 @@ module TeamsHelper
       row(0).font_style = :bold
        self.header = true
        self.row_colors = ['DDDDDD', 'FFFFFF']
-       self.column_widths = [80, 250, 80, 80]
+       self.column_widths = [80, 250, 60, 100]
     end
 
   end
@@ -147,7 +147,7 @@ module TeamsHelper
     events.map do |event|
       opponent = event.opponentid.blank? ? nil : Opponent.find_by(:id => event.opponentid)
       result = Result.find_by(:event_id => event.id)
-      rs = result.nil? ? "" : sprintf("%s", result.resulttext[1])
+      rs = result.nil? ? "" : sprintf("%s%s", result.resulttext[1], result.notes.blank? ? "" : "\n#{result.notes}")
 
       rows += [[event.datetimeshort,
         event.eventtitle[0].remove!(fn).strip.remove!("vs ").strip,
