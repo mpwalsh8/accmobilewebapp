@@ -254,7 +254,7 @@ module TeamsHelper
   end
 
   def SplashRows
-    rows = [[{:content => Settings.School.SchoolYear + " Black Patrons", :colspan => 2, :size => 24}]]
+    rows = [[{:content => Settings.School.SchoolYear + " Gold Patrons", :colspan => 2, :size => 24}]]
     s = ACCMobileWebApp::Application::SPLASHADS
     (0...s.length).step(2) do |splash|
       lpath = Pathname.new("#{Rails.root}/app/assets/images/#{s[splash][:img]}")
@@ -283,7 +283,7 @@ module TeamsHelper
   end
 
   def BannerRows
-    rows = [[{:content => Settings.School.SchoolYear + " Gold Patrons", :colspan => 2, :size => 24}]]
+    rows = [[{:content => Settings.School.SchoolYear + " Black Patrons", :colspan => 2, :size => 24}]]
     b = ACCMobileWebApp::Application::BANNERADS
     (0...b.length).step(2) do |banner|
       lpath = Pathname.new("#{Rails.root}/app/assets/images/#{b[banner][:img]}")
