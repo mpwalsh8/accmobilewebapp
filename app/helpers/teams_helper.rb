@@ -7,7 +7,7 @@ module TeamsHelper
   SECTION_SPACING = 8
 
   def CoverPage(pdf, title)
-    10.times do
+    8.times do
       move_down(SECTION_SPACING)
     end
     bounding_box([50, cursor], :position => :center, :width => 430) do
@@ -15,7 +15,9 @@ module TeamsHelper
     3.times do
       move_down(SECTION_SPACING)
     end
+    #text "#{Settings.School.SchoolYear} #{title}", :align => :center, :size => 32
     text Settings.School.SchoolYear, :align => :center, :size => 32
+    text title, :align => :center, :size => 32
     text Settings.School.Name, :align => :center, :size => 20
     text Settings.School.Address, :align => :center
     text "#{Settings.School.City}, #{Settings.School.State}  #{Settings.School.ZipCode}", :align => :center

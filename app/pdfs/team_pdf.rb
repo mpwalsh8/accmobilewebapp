@@ -9,7 +9,7 @@ class TeamPdf< Prawn::Document
     @athletes = AthletesTeam.select("*").joins(:athlete).where(:team_id => team)
     @jerseycount = AthletesTeam.select("*").joins(:athlete).where(:team_id => team).where.not(jerseynumber: [nil, '']).count
 
-    CoverPage(self, "Title Page")
+    CoverPage(self, team.formalname)
     start_new_page
 
     ##  Create a bounding box within the default bounding box which is slightly smaller.

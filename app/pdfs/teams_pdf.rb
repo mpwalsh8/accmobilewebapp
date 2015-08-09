@@ -7,7 +7,8 @@ class TeamsPdf < Prawn::Document
     #@teams = teams
 
     start_new_page
-    CoverPage(self, Settings.School.Name + " Yearbook")
+    #CoverPage(self, Settings.School.Name + " Athletics:  Year in Review " + Settings.School.SchoolYear)
+    CoverPage(self, "Year in Review")
 
     ##  Create a bounding box within the default bounding box which is slightly smaller.
     self.bounding_box([self.bounds.left + INNER_BOUNDING_BOX_MARGIN_LEFT,
@@ -34,7 +35,7 @@ class TeamsPdf < Prawn::Document
     end
 
     ## Generate the header and footer for each page
-    PDFHeader(self, Settings.School.Name + " Yearbook")
+    PDFHeader(self, Settings.School.Name + " Athletics:  Year in Review " + Settings.School.SchoolYear)
     PDFFooter(self)
 
   end
