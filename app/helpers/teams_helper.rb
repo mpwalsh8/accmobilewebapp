@@ -132,26 +132,32 @@ module TeamsHelper
   end
 
   def TeamEventsTable(events, fn)
-    table TeamEventsRows(events, fn) do
+    table TeamEventsRows(events, fn), :cell_style => { size: 10 } do
       row(0).font_style = :bold
+      row(0).font_size = 7
        self.header = true
        self.row_colors = ['DDDDDD', 'FFFFFF']
-       self.column_widths = [80, 250, 60, 100]
+       #self.column_widths = [80, 250, 60, 100]
+       self.column_widths = [60, 220, 120, 90]
     end
 
   end
 
   ##  Build an array of rows for the team's events and results
   def TeamEventsRows(events, fn)
-    rows = [['Date', 'Opponent', 'Location', 'Result']]
+    #rows = [['Date', 'Opponent', 'Location', 'Result']]
+    rows = [['Date', 'Opponent', 'Venue', 'Result']]
     events.map do |event|
       opponent = event.opponentid.blank? ? nil : Opponent.find_by(:id => event.opponentid)
       result = Result.find_by(:event_id => event.id)
       rs = result.nil? ? "" : sprintf("%s%s", result.resulttext[1], result.notes.blank? ? "" : "\n#{result.notes}")
 
+##      rows += [[event.datetimeshort,
+##        event.eventtitle[0].remove!(fn).strip.remove!("vs ").strip,
+##        event.eventlocation.camelize, rs]]
       rows += [[event.datetimeshort,
         event.eventtitle[0].remove!(fn).strip.remove!("vs ").strip,
-        event.eventlocation.camelize, rs]]
+        event.eventtitle[2], rs]]
     end
     return rows
   end
