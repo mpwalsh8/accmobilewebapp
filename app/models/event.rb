@@ -62,7 +62,7 @@ class Event < ActiveRecord::Base
     else
       title = "None"
     end
-    return title.strip, subtitle.strip
+    return title.strip, subtitle.strip, venue.name
   end
 
   ##  Does event have a result?
