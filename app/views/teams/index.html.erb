@@ -13,9 +13,10 @@
         <% end %>
       </ul>
       <% else %>
-        <p>No teams for <%= key.camelize %> season.</p>
+        <div class="ui-body ui-body-a ui-corner-all">
+          <p>No teams for <%= Settings.School.SchoolYear %> <%= key.camelize %> season.</p>
+        </div>
       <% end %>
     </div>
   <% end %>
 </div>
-
