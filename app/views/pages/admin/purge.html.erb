@@ -3,7 +3,7 @@
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Database Purge</h3>
     <div class="ui-body ui-body-a ui-corner-all">
-      <p>The actions on this page are intended to reset the system for the beginning of a new season.  They should be performed in sequence they are listed and are non-reversable.  Be sure to back your database rior to purging the system.</p>
+      <p>The actions on this page are intended to reset the system for the beginning of a new season.  They should be performed in sequence they are listed and are non-reversable.  Be sure to backup your database rior to purging the system!</p>
     <p>The recommened order of purging the database is as follows:
     <ol>
       <li>Results</li>
@@ -24,6 +24,7 @@
     <% end %>
     </div>
   </div>
+  <% if 0 == 1 %>
     <ul data-role="listview" data-inset="true">
       <li data-role="list-divider"><h1>Purge Operations</h1></li>
       <li><div class="ui-grid-a">
@@ -70,7 +71,7 @@
 
       </div></li>
     </ul>
-
+  <% end %>
 <% else %>
   <div data-role="container">
     <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
