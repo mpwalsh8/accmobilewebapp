@@ -1,6 +1,12 @@
 <h3 class="ui-bar ui-bar-a ui-corner-none">Athletes</h3>
-<ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
-  <% @athletes.each do |athlete| %>
-    <li><%= link_to sprintf("%s<span class=\"ui-li-count\">%s</span>", athlete.lastcommafirst, athlete.teams.count).html_safe, athlete %></li>
-  <% end %>
-</ul>
+<% if @athletes.count > 0 %>
+  <ul data-role="listview" data-inset="true" data-filter="true" data-autodividers="true">
+    <% @athletes.each do |athlete| %>
+      <li><%= link_to sprintf("%s<span class=\"ui-li-count\">%s</span>", athlete.lastcommafirst, athlete.teams.count).html_safe, athlete %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="ui-body ui-body-a ui-corner-all">
+    <p>No athletes for <%= Settings.School.SchoolYear %> school year.</p>
+  </div>
+<% end %>

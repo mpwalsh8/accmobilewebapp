@@ -35,9 +35,13 @@ Rails.application.routes.draw do
 
   resources :teams
 
+  match "/athletes/purge", to: "athletes#purge", via: [:delete], as: :purge_athletes
   resources :athletes do
-    collection { get :import }
-    collection { post :import }
+    collection do
+      get :import
+      post :import
+      delete :purge
+    end
   end
 
   resources :venues

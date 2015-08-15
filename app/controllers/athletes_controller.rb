@@ -1,5 +1,6 @@
 class AthletesController < ApplicationController
   before_action :set_athlete, only: [:show, :edit, :update, :destroy]
+  before_action :set_athletes, only: [:purge]
 
   # GET /athletes
   # GET /athletes.json
@@ -74,11 +75,36 @@ class AthletesController < ApplicationController
     end
   end
 
+  # PURGE /athletes
+  # PURGE /athletes.json
+  def purge
+    session[:return_to] ||= request.referer
+    c = @athletes.count
+    @athletes.destroy_all
+    respond_to do |format|
+      #format.html { redirect_to :back, notice: "Athletes (#{c}) were successfully destroyed." }
+      format.html { redirect_to athletes_url, notice: "Athletes (#{c}) were successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_athlete
       #logger.info(sprintf("set_athlete - %s::%s", __FILE__, __LINE__))
-      @athlete = Athlete.find(params[:id])
+      # Make sure :id is numeric!
+      if params[:id].is_a? Integer
+        @athlete = Athlete.find(params[:id])
+      else
+        redirect_to athletes_path, { notice: "Parameter (#{params[:id]}) is not numeric." }
+      end
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_athletes
+      @athletes = Athlete.where(["gradyear = ?", params[:gradyear]])
+      #logger.info(sprintf("set_athletes - %s::%s", __FILE__, __LINE__))
+      #logger.info(@athletes.count)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
