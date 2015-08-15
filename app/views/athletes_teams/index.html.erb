@@ -9,7 +9,7 @@
       <% end %>
       <% if tid != at.team.id %>
         <div data-role="collapsible" data-mini="true" data-inset="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
-          <h3><%= at.team.formalname %></h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none"><%= at.team.formalname %><span class="ui-li-count-fix ui-li-count"><%= at.team.athletes.count %></span></h3>
           <div data-role="collapsible-set" data-mini="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
       <% end %> 
       <div data-role="collapsible" data-collapsed="true" data-inset="true">
