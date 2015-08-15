@@ -79,7 +79,7 @@
     <% if params.has_key?(:eventduration) %>
       <%= f.text_area :eventduration, :value => params[:eventduration] %>
     <% else %>
-      <%= f.text_area :eventduration %>
+      <%= f.text_area :eventduration, :value =>'120' %>
     <% end %>
   </div>
   <div data-role="fieldcontain" class="field">

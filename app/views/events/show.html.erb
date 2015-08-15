@@ -102,7 +102,7 @@
     <% else %>
       <div class="ui-block-b"><%= link_to 'Update<br />Result'.html_safe, edit_result_path(:event_id => @event.id, :id => result.id), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
     <% end %>
-    <div class="ui-block-c"><%= link_to 'Add<br />Event'.html_safe, new_event_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+    <div class="ui-block-c"><%= link_to 'Add<br />Event'.html_safe, new_event_path(:teamid => @event.teamid), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
     <div class="ui-block-d"><%= link_to 'Copy<br />Event'.html_safe, new_event_path(:teamid => @event.teamid, :opponents => @event.opponents, :venueid => @event.venueid, :eventlocation => @event.eventlocation, :eventduration => @event.eventduration, :eventdate => @event.eventdate, :eventtime => @event.eventtime, :status => @event.status, :notes => @event.notes, :description => @event.description), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
     <div class="ui-block-e"><%= link_to 'Delete<br />Event'.html_safe, @event, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
   </div>
