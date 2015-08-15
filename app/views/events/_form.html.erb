@@ -4,7 +4,11 @@
 
   <div data-role="fieldcontain" class="field">
     <%= f.label :teamid, "Team" %>
-    <%= f.collection_select :teamid, Team.all.sort { |a,b| a.sportname <=> b.sportname }, :id, :sportname, {include_blank: true} %>
+    <% if params.has_key?(:teamid) %>
+      <%= f.collection_select(:teamid, Team.all.sort { |a,b| a.sportname <=> b.sportname }, :id, :sportname, {include_blank: true, :selected => params[:teamid]}) %>
+    <% else %>
+      <%= f.collection_select :teamid, Team.all.sort { |a,b| a.sportname <=> b.sportname }, :id, :sportname, {include_blank: true} %>
+    <% end %>
   </div>
 <!--
   <div id="single-opponent" data-role="fieldcontain" class="field">
@@ -20,43 +24,79 @@
 -->
   <div id="multiple-opponents" data-role="fieldcontain" class="field">
     <%= f.label :opponents, "Opponents" %>
-    <%= f.collection_select :opponents, Opponent.order(:name).all, :id, :name, { :include_blank => false }, { :size => 1, :multiple => true, :'data-native-menu' => false, :'data-role' => "none" } %>
+    <% if params.has_key?(:opponents) %>
+        <%= f.collection_select(:opponents, Opponent.order(:name).all, :id, :name, { :include_blank => false, :selected => params[:opponents] }, { :size => 1, :multiple => true, :'data-native-menu' => false, :'data-role' => "none" }) %>
+      <% else %>
+        <%= f.collection_select(:opponents, Opponent.order(:name).all, :id, :name, { :include_blank => false }, { :size => 1, :multiple => true, :'data-native-menu' => false, :'data-role' => "none" }) %>
+      <% end %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :venueid, "Venue" %>
-    <%= f.collection_select :venueid, Venue.order(:name).all, :id, :name, {include_blank: true} %>
+    <% if params.has_key?(:venueid) %>
+      <%= f.collection_select :venueid, Venue.order(:name).all, :id, :name, {include_blank: true, :selected => params[:venueid]} %>
+    <% else %>
+      <%= f.collection_select :venueid, Venue.order(:name).all, :id, :name, {include_blank: true} %>
+    <% end %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventlocation, "Location" %>
-    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-      <%= f.input :eventlocation, as: :radio_buttons, :label => false, :collection => [ ['Home', 'home'], ['Away', 'away'], ['Nuetral', 'nuetral' ] ] %>
+      <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+    <% if params.has_key?(:eventlocation) %>
+        <%= f.input :eventlocation, as: :radio_buttons, :label => false, :collection => [ ['Home', 'home'], ['Away', 'away'], ['Nuetral', 'nuetral' ] ], :checked => params[:eventlocation] %>
+    <% else %>
+        <%= f.input :eventlocation, as: :radio_buttons, :label => false, :collection => [ ['Home', 'home'], ['Away', 'away'], ['Nuetral', 'nuetral' ] ] %>
+    <% end %>
     </fieldset>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventdate, "Event Date" %>
-    <%= f.text_field :eventdate, :type => "date" %>
+    <% if params.has_key?(:eventdate) %>
+      <%= f.text_field :eventdate, :type => "date", :value => params[:eventdate] %>
+    <% else %>
+      <%= f.text_field :eventdate, :type => "date" %>
+    <% end %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventtime, "Event Time" %>
-    <%= f.text_field :eventtime, :type => "time" %>
+    <% if params.has_key?(:eventdate) %>
+      <%= f.text_field :eventtime, :type => "time", :value => params[:eventtime] %>
+    <% else %>
+      <%= f.text_field :eventtime, :type => "time" %>
+    <% end %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :status, "Status" %>
     <fieldset data-role="controlgroup" data-type="vertical" data-mini="true">
-      <%= f.input :status, as: :radio_buttons, :label => false, :collection => [ ['Scheduled', 'scheduled'], ['Rescheduled', 'rescheduled'], ['Postponed', 'postponed'], ['Canceled', 'canceled'] ] %>
+      <% if params.has_key?(:status) %>
+        <%= f.input :status, as: :radio_buttons, :label => false, :collection => [ ['Scheduled', 'scheduled'], ['Rescheduled', 'rescheduled'], ['Postponed', 'postponed'], ['Canceled', 'canceled'] ], :checked => params[:status] %>
+      <% else %>
+        <%= f.input :status, as: :radio_buttons, :label => false, :collection => [ ['Scheduled', 'scheduled'], ['Rescheduled', 'rescheduled'], ['Postponed', 'postponed'], ['Canceled', 'canceled'] ] %>
+      <% end %>
     </fieldset>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :eventduration, "Duration (minutes)" %>
-    <%= f.text_field :eventduration, :type => "number", :value => "120" %>
+    <% if params.has_key?(:eventduration) %>
+      <%= f.text_area :eventduration, :value => params[:eventduration] %>
+    <% else %>
+      <%= f.text_area :eventduration %>
+    <% end %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <% if params.has_key?(:description) %>
+      <%= f.text_area :description, :value => params[:description] %>
+    <% else %>
+      <%= f.text_area :description %>
+    <% end %>
   </div>
   <div data-role="fieldcontain" class="field">
     <%= f.label :notes %>
-    <%= f.text_area :notes %>
+    <% if params.has_key?(:notes) %>
+      <%= f.text_area :notes, :value => params[:notes] %>
+    <% else %>
+      <%= f.text_area :notes %>
+    <% end %>
   </div>
 
   <div class="actions">
@@ -98,3 +138,5 @@
     /*width: auto;*/
 }
 </style>
+
+<% logger.info(params.to_yaml) %>
