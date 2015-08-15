@@ -75,6 +75,16 @@ class AthletesTeamsController < ApplicationController
     end
   end
 
+  # PURGE /events
+  # PURGE /events.json
+  def purge
+    AthletesTeam.destroy_all
+    respond_to do |format|
+      format.html { redirect_to athletes_teams_url, notice: 'Rosters were successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_athletes_team

@@ -1,0 +1,73 @@
+<% content_for :title do %>Purge<% end %>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <h3 class="ui-bar ui-bar-a">Database Purge</h3>
+    <div class="ui-body ui-body-a ui-corner-all">
+      <p>The actions on this page are intended to reset the system for the beginning of a new season.  They should be performed in sequence they are listed and are non-reversable.  Be sure to back your database rior to purging the system.</p>
+    <p>The recommened order of purging the database is as follows:
+    <ol>
+      <li>Results</li>
+      <li>Events</li>
+      <li>Rosters</li>
+      <li>Athletes</li>
+    </ol>
+    <p>
+    </div>
+    <div data-role="controlgroup" data-type="vertical">
+      <%= link_to 'Purge Results', purge_results_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Results?' }, :'data-inline' => false %>
+      <%= link_to 'Purge Events', purge_events_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Events?' }, :'data-inline' => false %>
+      <%= link_to 'Purge Rosters', purge_athletes_teams_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Rosters?' }, :'data-inline' => false %>
+    </div>
+  </div>
+    <ul data-role="listview" data-inset="true">
+      <li data-role="list-divider"><h1>Purge Operations</h1></li>
+      <li><div class="ui-grid-a">
+
+        <div class="ui-block-a">
+          <%= link_to 'Purge Results', purge_results_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Results?' }, :'data-inline' => false %>
+        </div>
+
+        <div class="ui-block-b">
+          <%= link_to 'Purge Events', purge_events_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Events?' }, :'data-inline' => false %>
+        </div>
+
+        <div class="ui-block-a">
+          <%= link_to 'Purge Rosters', purge_athletes_teams_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Rosters?' }, :'data-inline' => false %>
+        </div>
+
+        <div class="ui-block-b">
+          <%= link_to 'Opponent', page_path('admin/opponent'), :'data-role' => "button", :'data-icon' => "location" %>
+        </div>
+
+        <div class="ui-block-a">
+          <%= link_to 'Coach', page_path('admin/coach'), :'data-role' => "button", :'data-icon' => "user" %>
+        </div>
+
+        <div class="ui-block-b">
+          <%= link_to 'Athlete', page_path('admin/athlete'), :'data-role' => "button", :'data-icon' => "user" %>
+        </div>
+
+        <div class="ui-block-a">
+          <%= link_to 'Venue', page_path('admin/venue'), :'data-role' => "button", :'data-icon' => "location" %>
+        </div>
+
+        <div class="ui-block-b">
+          <%= link_to 'Sport', page_path('admin/sport'), :'data-role' => "button", :'data-icon' => "user" %>
+        </div>
+
+        <div class="ui-block-a">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+        <div class="ui-block-b">
+          <a href="#" data-role="button">TBD</a>
+        </div>
+
+      </div></li>
+    </ul>
+
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>

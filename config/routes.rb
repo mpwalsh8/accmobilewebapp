@@ -1,13 +1,27 @@
 Rails.application.routes.draw do
-  resources :results
+  match "/results/purge", to: "results#purge", via: [:delete], as: :purge_results
+  resources :results do
+    collection do
+      delete :purge
+    end
+  end
 
-  resources :events
+  match "/events/purge", to: "events#purge", via: [:delete], as: :purge_events
+  resources :events do
+    collection do
+      delete :purge
+    end
+  end
 
   resources :opponents
 
+  match "/athlets_teams/purge", to: "athlets_teams#purge", via: [:delete], as: :purge_athlets_teams
   resources :athletes_teams do
-    collection { get :import }
-    collection { post :import }
+    collection do
+      get :import
+      post :import
+      delete :purge
+    end
   end
 
   resources :coaches_teams

@@ -61,6 +61,16 @@ class ResultsController < ApplicationController
     end
   end
 
+  # PURGE /results
+  # PURGE /results.json
+  def purge
+    Result.destroy_all
+    respond_to do |format|
+      format.html { redirect_to results_url, notice: 'Results were successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_result
