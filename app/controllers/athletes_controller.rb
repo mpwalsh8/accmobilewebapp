@@ -92,8 +92,9 @@ class AthletesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_athlete
       #logger.info(sprintf("set_athlete - %s::%s", __FILE__, __LINE__))
-      # Make sure :id is numeric!
-      if params[:id].is_a? Integer
+      # Make sure :id is numeric!  We'll use a RegExp to do so...
+      if params[:id].match(/^\d+$/)
+      #if params[:id].is_a? Integer
         @athlete = Athlete.find(params[:id])
       else
         redirect_to athletes_path, { notice: "Parameter (#{params[:id]}) is not numeric." }
