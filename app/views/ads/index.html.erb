@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ads</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image URL</th>
+      <th>Click URL</th>
+      <th>Ad Type</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ads.each do |ad| %>
+      <tr>
+        <td><%= ad.name %></td>
+        <td><%= ad.imageurl %></td>
+        <td><%= ad.clickurl %></td>
+        <td><%= ad.adtype %></td>
+        <td><%= ad.active %></td>
+        <td><%= link_to 'Show', ad %></td>
+        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
+        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New ad', new_ad_path %>
+
+<% content_for :title do %>Ad Admin<% end %>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <h3 class="ui-bar ui-bar-a">Ad Administration</h3>
+    <div class="ui-grid-solo">
+      <div class="ui-block-a"><%= link_to 'Add<br />Ad'.html_safe, new_ad_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+    </div>
+    <!-- List of Existing Ads -->
+    <h3 class="ui-bar ui-bar-a ui-corner-none">Ads</h3>
+    <ul data-role="listview" data-count-theme="a" data-inset="true" data-filter="true" data-autodividers="true">
+      <% @ads = Ad.all.order(:name) %>
+      <% @ads.each do |ad| %>
+        <li><%= link_to sprintf("%s<span class=\"ui-li-count\">%s / %s</span>", ad.name, ad.adtype.camelize[0], ad.active ? "A" : "I").html_safe, ad %><%= link_to 'Edit', edit_ad_path(ad), :'data-icon' => 'edit' %></li>
+      <% end %>
+    </ul>
+    <!-- /List of Existing Ads -->
+    <br />
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
+

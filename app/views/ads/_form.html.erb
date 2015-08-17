@@ -1,0 +1,54 @@
+<%= simple_form_for(@ad) do |f| %>
+  <%= f.error_notification %>
+  <%= render 'layouts/error_messages', object: f.object %>
+
+<!--
+  <div class="form-inputs">
+    <%#= f.input :patron %>
+    <%#= f.input :imageurl %>
+    <%#= f.input :clickurl %>
+    <%#= f.input :active %>
+  </div>
+
+  <div class="form-actions">
+    <%#= f.button :submit %>
+  </div>
+-->
+
+  <div class="field">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :imageurl, "Image URL" %>
+    <%= f.text_field :imageurl, :type => "url" %>
+  </div>
+  <div class="field">
+    <%= f.label :clickurl, "Click URL" %>
+    <%= f.text_field :clickurl, :type => "url" %>
+  </div>
+  <div class="ui-grid-a">
+    <div class="ui-block-a">
+      <div class="field">
+        <%#= f.label :adtype, "Ad Type" %>
+        <fieldset data-role="controlgroup" data-type="horizontal">
+          <%= f.radio_button :adtype, 'banner' %>
+          <%= f.label :adtype, 'Banner', :value => 'banner' %>
+          <%= f.radio_button :adtype, 'splash' %>
+          <%= f.label :adtype, 'Splash', :value => 'splash' %>
+        </fieldset>
+      </div>
+    </div>
+    <div class="ui-block-b">
+      <div class="field">
+        <%= f.label :active, "Active Ad" %>
+        <%= f.check_box :active %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
