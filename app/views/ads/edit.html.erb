@@ -1,17 +1,19 @@
-<h3 class="ui-bar ui-bar-a ui-corner-none">Edit Ad</h3>
-
-<p class="framed-p center-wrapper"><a href="<%= @ad.clickurl %>" title="<%= @ad.name %>"><img class="framed-image" src="<%= @ad.imageurl %>"></a></p>
-
-
-<%= render 'form' %>
-
+<% if current_user.try(:admin?) %>
+  <h3 class="ui-bar ui-bar-a ui-corner-none">Edit Ad</h3>
+  
+  <p class="framed-p center-wrapper"><a href="<%= @ad.clickurl %>" title="<%= @ad.name %>"><img class="framed-image" src="<%= @ad.imageurl %>"></a></p>
+  
+  <%= render 'form' %>
+  
+  <br />
+  <div class="ui-grid-b">
+    <div class="ui-block-a"><%= link_to 'Admin<br />&nbsp;'.html_safe, page_path('admin'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+    <div class="ui-block-b"><%= link_to 'Ad<br />Admin'.html_safe, ads_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+    <div class="ui-block-c"><%= link_to 'Show<br />Ad'.html_safe, @ad, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div> 
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
 <br />
-<div class="ui-grid-b">
-  <div class="ui-block-a"><%= link_to 'Admin<br />&nbsp;'.html_safe, page_path('admin'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
-  <div class="ui-block-b"><%= link_to 'Ad<br />Admin'.html_safe, ads_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
-  <div class="ui-block-c"><%= link_to 'Show<br />Ad'.html_safe, @ad, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div> 
-</div>
-<br />
-
-<%= link_to 'Show', @ad %> |
-<%= link_to 'Back', ads_path %>

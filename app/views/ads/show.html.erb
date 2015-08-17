@@ -1,25 +1,32 @@
-<h3 class="ui-bar ui-bar-a ui-corner-all"><%=h @ad.name %></h3>
-<p class="framed-p center-wrapper"><a href="<%= @ad.clickurl %>"><img class="framed-image" src="<%= @ad.imageurl %>"></a></p>
-
-<h4>Ad Type:  <%= @ad.adtype.camelize %></h4>
-<ul data-role="listview" data-inset="true">
-  <% if !@ad.imageurl.blank? %>
-    <li><a href="<%= sprintf("%s", @ad.imageurl) %>">Image URL</a><span class="ui-li-aside" data-rel="external""><%= @ad.imageurl %></span></li>
-  <% end %>
-  <% if !@ad.clickurl.blank? %>
-    <li><a href="<%= sprintf("mailto:%s", @ad.clickurl) %>">Click URL</a><span class="ui-li-aside" data-rel="external""><%= @ad.clickurl %></span></li>
-  <% end %>
-</ul>
-
-<div class="ui-grid-solo">
-  <div class="ui-block-a"><%= link_to 'Back to Ads', ads_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
-</div>
-
 <% if current_user.try(:admin?) %>
-  <br />
-  <div class="ui-grid-a">
-    <div class="ui-block-a"><%= link_to 'Edit<br />Ad'.html_safe, edit_ad_path(@ad), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
-    <div class="ui-block-b"><%= link_to 'Delete<br />Ad'.html_safe, @ad, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+  <h3 class="ui-bar ui-bar-a ui-corner-all"><%=h @ad.name %></h3>
+  <p class="framed-p center-wrapper"><a href="<%= @ad.clickurl %>"><img class="framed-image" src="<%= @ad.imageurl %>"></a></p>
+  
+  <h4>Ad Type:  <%= @ad.adtype.camelize %></h4>
+  <ul data-role="listview" data-inset="true">
+    <% if !@ad.imageurl.blank? %>
+      <li><a href="<%= sprintf("%s", @ad.imageurl) %>">Image URL</a><span class="ui-li-aside" data-rel="external""><%= @ad.imageurl %></span></li>
+    <% end %>
+    <% if !@ad.clickurl.blank? %>
+      <li><a href="<%= sprintf("mailto:%s", @ad.clickurl) %>">Click URL</a><span class="ui-li-aside" data-rel="external""><%= @ad.clickurl %></span></li>
+    <% end %>
+  </ul>
+  
+  <div class="ui-grid-solo">
+    <div class="ui-block-a"><%= link_to 'Back to Ads', ads_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
   </div>
-  <br />
+  
+  <% if current_user.try(:admin?) %>
+    <br />
+    <div class="ui-grid-a">
+      <div class="ui-block-a"><%= link_to 'Edit<br />Ad'.html_safe, edit_ad_path(@ad), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Delete<br />Ad'.html_safe, @ad, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+    </div>
+    <br />
+  <% end %>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
 <% end %>
+<br  />
