@@ -25,7 +25,7 @@ GoogleMaps:
   Enabled:  "Yes"
 
 Twitter:
-  Enabled:  "Yes"
+  Enabled:  "No"
   Username: "apexcougarclub"
   ConsumerKey: "YOUR_CONSUMER_KEY"
   ConsumerSecret: "YOUR_CONSUMER_SECRET"
@@ -35,3 +35,5 @@ Twitter:
 AppSettings:
   AutoTweetResults: Off
   AutoTweetScheduleUpdates: Off
+  BannerAds: Off
+  SplashAds: Off

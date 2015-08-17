@@ -1,5 +1,5 @@
 <% render 'events/event_li' %>
-<% if  Ad.where(:adtype => 'splash', :active => true).count > 0 %>
+<% if Settings.AppSettings.SplashAds == :On && Ad.where(:adtype => 'splash', :active => true).count > 0 %>
   <!-- Splash Banner -->
   <% splashads = Ad.where(:adtype => 'splash', :active => true).pluck(:id) %>
   <% splashad = Ad.find(splashads.sample) %>

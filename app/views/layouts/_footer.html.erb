@@ -11,7 +11,7 @@
       <li><%= link_to 'Athletes', athletes_path, :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'flip' %></li>
     </ul>
   </div>
-    <% if Ad.where(:adtype => 'banner', :active => true).count > 0 %>
+    <% if Settings.AppSettings.BannerAds == :On && Ad.where(:adtype => 'banner', :active => true).count > 0 %>
     <div id="banner-content">
       <% bannerads = Ad.where(:adtype => 'banner', :active => true).pluck(:id) %>
       <% bannerad = Ad.find(bannerads.sample) %>

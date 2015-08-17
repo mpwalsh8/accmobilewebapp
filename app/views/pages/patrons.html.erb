@@ -3,7 +3,7 @@
 <div class="ui-body ui-body-a ui-corner-all">
   <h4 class="ui-bar ui-bar-a ui-corner-all">Gold Patrons</h4>
   <p>
-  <% if Ad.where(:adtype => 'splash', :active => true).count > 0 %>
+  <% if Settings.AppSettings.SplashAds == :On && Ad.where(:adtype => 'splash', :active => true).count > 0 %>
     <!-- Splash Ads -->
     <% splashads = Ad.where(:adtype => 'splash', :active => true).order(:name => :asc) %>
     <% splashads.each do |splashad| %>
@@ -16,7 +16,7 @@
   </p>
   <h4 class="ui-bar ui-bar-a ui-corner-all">Black Patrons</h4>
   <p>
-  <% if Ad.where(:adtype => 'banner', :active => true).count > 0 %>
+  <% if Settings.AppSettings.BannerAds == :On && Ad.where(:adtype => 'banner', :active => true).count > 0 %>
     <!-- Banner Ads -->
     <% bannerads = Ad.where(:adtype => 'banner', :active => true).order(:name => :asc) %>
     <% bannerads.each do |bannerad| %>
