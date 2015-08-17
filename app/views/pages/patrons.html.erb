@@ -3,24 +3,28 @@
 <div class="ui-body ui-body-a ui-corner-all">
   <h4 class="ui-bar ui-bar-a ui-corner-all">Gold Patrons</h4>
   <p>
-  <!-- Splash Ads -->
-  <% splashads = Ad.where(:adtype => 'splash', :active => true).order(:name => :asc) %>
-  <% splashads.each do |splashad| %>
-    <div class="ui-content center-wrapper" id="splash-content-<%= splashad[:imageurl][-3,3] %>">
-      <a href="<%= splashad[:clickurl] %>" alt="<%= splashad[:name] %>"><p class="sponsor-p center-wrapper"><img class="sponsor-image" src="<%= image_url(splashad[:imageurl]) %>"></p></a>
-    </div>
+  <% if Ad.where(:adtype => 'splash', :active => true).count > 0 %>
+    <!-- Splash Ads -->
+    <% splashads = Ad.where(:adtype => 'splash', :active => true).order(:name => :asc) %>
+    <% splashads.each do |splashad| %>
+      <div class="ui-content center-wrapper" id="splash-content-<%= splashad[:imageurl][-3,3] %>">
+        <a href="<%= splashad[:clickurl] %>" alt="<%= splashad[:name] %>"><p class="sponsor-p center-wrapper"><img class="sponsor-image" src="<%= image_url(splashad[:imageurl]) %>"></p></a>
+      </div>
+    <% end %>
+    <!-- /Splash Ads -->
   <% end %>
-  <!-- /Splash Ads -->
   </p>
   <h4 class="ui-bar ui-bar-a ui-corner-all">Black Patrons</h4>
   <p>
-  <!-- Banner Ads -->
-  <% bannerads = Ad.where(:adtype => 'banner', :active => true).order(:name => :asc) %>
-  <% bannerads.each do |bannerad| %>
-    <div class="ui-content center-wrapper" id="banner-content-<%= bannerad[:imageurl][-3,3] %>">
-      <a href="<%= bannerad[:clickurl] %>" alt="<%= bannerad[:name] %>"><p class="sponsor-p center-wrapper"><img class="sponsor-image" src="<%= image_url(bannerad[:imageurl]) %>"></p></a>
-    </div>
+  <% if Ad.where(:adtype => 'banner', :active => true).count > 0 %>
+    <!-- Banner Ads -->
+    <% bannerads = Ad.where(:adtype => 'banner', :active => true).order(:name => :asc) %>
+    <% bannerads.each do |bannerad| %>
+      <div class="ui-content center-wrapper" id="banner-content-<%= bannerad[:imageurl][-3,3] %>">
+        <a href="<%= bannerad[:clickurl] %>" alt="<%= bannerad[:name] %>"><p class="sponsor-p center-wrapper"><img class="sponsor-image" src="<%= image_url(bannerad[:imageurl]) %>"></p></a>
+      </div>
+    <% end %>
+    <!-- /Banner Ads -->
   <% end %>
-  <!-- /Banner Ads -->
   </p>
 </div>

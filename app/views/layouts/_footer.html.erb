@@ -11,11 +11,13 @@
       <li><%= link_to 'Athletes', athletes_path, :'data-role' => "button", :'data-icon' => 'user', :'data-transition' => 'flip' %></li>
     </ul>
   </div>
-  <div id="banner-content">
-    <% bannerads = Ad.where(:adtype => 'banner', :active => true).pluck(:id) %>
-    <% bannerad = Ad.find(bannerads.sample) %>
-    <a href="<%= bannerad[:clickurl] %>" target="_blank" alt="<%= bannerad[:name] %>"><img src="<%= image_url(bannerad[:imageurl]) %>"></a>
-  </div>
+    <% if Ad.where(:adtype => 'banner', :active => true).count > 0 %>
+    <div id="banner-content">
+      <% bannerads = Ad.where(:adtype => 'banner', :active => true).pluck(:id) %>
+      <% bannerad = Ad.find(bannerads.sample) %>
+      <a href="<%= bannerad[:clickurl] %>" target="_blank" alt="<%= bannerad[:name] %>"><img src="<%= image_url(bannerad[:imageurl]) %>"></a>
+    </div>
+  <% end %>
 </div>
 
 <!--  End of Footer  -->

@@ -1,11 +1,13 @@
 <% render 'events/event_li' %>
-<!-- Splash Banner -->
-<% splashads = Ad.where(:adtype => 'splash', :active => true).pluck(:id) %>
-<% splashad = Ad.find(splashads.sample) %>
-<div class="ui-content center-wrapper splash-content-<%= splashad[:imageurl][-3,3] %>" id="splash-content">
- <a href="<%= splashad[:clickurl] %>" alt="<%= splashad[:name] %>"><img src="<%= image_url(splashad[:imageurl]) %>"></a>
-</div>
-<!-- /Splash Banner -->
+<% if  Ad.where(:adtype => 'x-splash', :active => true).count > 0 %>
+  <!-- Splash Banner -->
+  <% splashads = Ad.where(:adtype => 'x-splash', :active => true).pluck(:id) %>
+  <% splashad = Ad.find(splashads.sample) %>
+  <div class="ui-content center-wrapper splash-content-<%= splashad[:imageurl][-3,3] %>" id="splash-content">
+   <a href="<%= splashad[:clickurl] %>" alt="<%= splashad[:name] %>"><img src="<%= image_url(splashad[:imageurl]) %>"></a>
+  </div>
+  <!-- /Splash Banner -->
+<% end %>
 
 <% seasons = { 'fall' => "fall icon", 'winter' => 'winter icon', 'spring' => 'spring icon' } %>
 <div data-role="collapsible-set" data-inset="true">
