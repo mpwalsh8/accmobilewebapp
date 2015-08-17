@@ -12,8 +12,9 @@
     </ul>
   </div>
   <div id="banner-content">
-    <% banner = ACCMobileWebApp::Application::BANNERADS.sample %>
-    <a href="<%= banner[:url] %>" target="_blank" alt="<%= banner[:name] %>"><img src="<%= image_url(banner[:img]) %>"></a>
+    <% bannerads = Ad.where(:adtype => 'banner', :active => true).pluck(:id) %>
+    <% bannerad = Ad.find(bannerads.sample) %>
+    <a href="<%= bannerad[:clickurl] %>" target="_blank" alt="<%= bannerad[:name] %>"><img src="<%= image_url(bannerad[:imageurl]) %>"></a>
   </div>
 </div>
 
