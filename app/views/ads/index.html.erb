@@ -1,39 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Ads</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image URL</th>
-      <th>Click URL</th>
-      <th>Ad Type</th>
-      <th>Active</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @ads.each do |ad| %>
-      <tr>
-        <td><%= ad.name %></td>
-        <td><%= ad.imageurl %></td>
-        <td><%= ad.clickurl %></td>
-        <td><%= ad.adtype %></td>
-        <td><%= ad.active %></td>
-        <td><%= link_to 'Show', ad %></td>
-        <td><%= link_to 'Edit', edit_ad_path(ad) %></td>
-        <td><%= link_to 'Destroy', ad, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New ad', new_ad_path %>
-
 <% content_for :title do %>Ad Admin<% end %>
 <% if current_user.try(:admin?) %>
   <div data-role="container">
