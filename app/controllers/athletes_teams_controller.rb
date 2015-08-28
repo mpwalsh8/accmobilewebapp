@@ -12,8 +12,22 @@ class AthletesTeamsController < ApplicationController
   def import
     if request.post?
       begin
+        #  Replace the existing roster?
+        if ['true', '1', 'yes', 'on', 't'].include? params[:import][:replace]
+          #AthletesTeam.where(:team_id => params[:import][:team_id]).count
+          AthletesTeam.where(:team_id => params[:import][:team_id]).delete_all
+        end
+
         team_athletes = AthletesTeam.import(params[:import][:file], params[:import][:team_id])
-#logger.info(team_athletes.to_yaml)
+        #if ['true', '1', 'yes', 'on', 't'].include? params[:import][:replace]
+        #  logger.info("TTTTTTTTTTTTT")
+        #  logger.info(params[:import])
+        #  logger.info(AthletesTeam.where(:team_id => params[:import][:team_id]).count)
+        #else
+        #  logger.info("FFFFFFFFFFFFF")
+        #  logger.info(params[:import])
+        #end
+        #logger.info(team_athletes.to_yaml)
         redirect_to page_path('admin/team'), notice: sprintf("Athletes/Team:  %d/%d imported, %d/%d skipped", team_athletes[:athletes][:imported], team_athletes[:team_athletes][:imported], team_athletes[:athletes][:skipped], team_athletes[:team_athletes][:skipped])
       rescue
         redirect_to page_path('admin/team'), alert: "Invalid CSV file format."
@@ -93,6 +107,6 @@ class AthletesTeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def athletes_team_params
-      params.require(:athletes_team).permit(:athlete_id, :team_id, :captain, :jerseynumber, :position)
+      params.require(:athletes_team).permit(:athlete_id, :team_id, :captain, :jerseynumber, :position, :replace)
     end
 end

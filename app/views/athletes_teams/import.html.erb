@@ -1,4 +1,4 @@
-<h3 class="ui-bar ui-bar-a ui-corner-none">Import Teams</h3>
+<h3 class="ui-bar ui-bar-a ui-corner-none">Import Team</h3>
 
 <%= simple_form_for :import, :url => import_athletes_teams_path, :html => { :multipart => true, :'data-ajax' => false}, :class => 'Team'  do |f| %>
   <%#= f.error_notification %>
@@ -15,6 +15,12 @@
     <%= f.file_field :file %>
     <%= f.error :file %>
   </div>
+
+  <%= f.label :replace, "Replace Roster" %>
+  <div class="field">
+  <%= f.select :replace, options_for_select([["On", true], ["Off", false]]), {}, { :'data-role' => 'slider' } %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Import Team" %>
   </div>
