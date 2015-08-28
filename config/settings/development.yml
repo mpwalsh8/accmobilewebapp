@@ -35,5 +35,5 @@ Twitter:
 AppSettings:
   AutoTweetResults: Off
   AutoTweetScheduleUpdates: Off
-  BannerAds: Off
-  SplashAds: Off
+  BannerAds: On
+  SplashAds: On
