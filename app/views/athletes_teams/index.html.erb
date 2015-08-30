@@ -3,6 +3,8 @@
 <div data-role="collapsible-set" data-autodividers="true" data-mini="true" data-collapsed-icon="carat-r" data-expanded-icon="carat-d">
     <% tid = nil %>
     <% @athletes_teams.each do |at| %>
+<% Rails.logger.info(tid.to_yaml) %>
+<% Rails.logger.info(at.to_yaml) %>
       <% if !tid.nil? && tid != at.team.id %>
           </div>
         </div>
