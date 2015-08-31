@@ -1,5 +1,6 @@
 class Result < ActiveRecord::Base
-  belongs_to :event, :dependent => :destroy
+  belongs_to :event
+  #belongs_to :event, :dependent => :destroy
   validates :result, :presence => { :message => 'Result must be specified.' }
 
   ##  Generic event, not connected to a team?
