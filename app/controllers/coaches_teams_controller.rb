@@ -4,7 +4,8 @@ class CoachesTeamsController < ApplicationController
   # GET /coaches_teams
   # GET /coaches_teams.json
   def index
-    @coaches_teams = CoachesTeam.all
+    #@coaches_teams = CoachesTeam.all
+    @coaches_teams = CoachesTeam.all.joins(:team).joins(:team => :sport).order(Sport.arel_table[:name], Team.arel_table[:gender], :team_id)
   end
 
   # GET /coaches_teams/1

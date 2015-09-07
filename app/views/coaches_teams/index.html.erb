@@ -14,11 +14,17 @@
       <% end %> 
       <div data-role="collapsible" data-collapsed="true" data-inset="true">
         <h1><%= ct.coach.fullname %></h1>
-        <div data-role="controlgroup" data-type="horizontal" data-mini="true">
-          <%= link_to 'Show', ct, :'data-role' => 'button', :'data-icon' => "eye" %>
-          <%= link_to 'Edit', edit_coaches_team_path(ct), :'data-role' => "button", :'data-icon' => "edit" %>
-          <%= link_to 'Destroy', ct, method: :delete, data: { confirm: 'Are you sure?' }, :'data-role' => "button", :'data-icon' => "delete" %>
-        </div>
+        <% if current_user.try(:admin?) %>
+          <div class="ui-grid-b">
+            <div class="ui-block-a"><%= link_to 'Show', ct, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
+            <div class="ui-block-b"><%= link_to 'Edit', edit_coaches_team_path(ct), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini"%></div>
+            <div class="ui-block-c"><%= link_to 'Destroy', ct, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini"%></div>
+          </div>
+        <% else %>
+          <div class="ui-grid-a">
+            <div class="ui-block-a"><%= link_to 'Show', ct, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
+          </div>
+        <% end %>
       </div>
       <% tid = ct.team.id %>
     <% end %>

@@ -4,7 +4,9 @@ class AthletesTeamsController < ApplicationController
   # GET /athletes_teams
   # GET /athletes_teams.json
   def index
-    @athletes_teams = AthletesTeam.all.order(:team_id)
+    #@athletes_teams = AthletesTeam.all.order(:team_id)
+    @athletes_teams = AthletesTeam.all.joins(:team => :sport).order(Sport.arel_table[:name], Team.arel_table[:gender], :team_id)
+
   end
 
   # POST /athletes_teams/import
