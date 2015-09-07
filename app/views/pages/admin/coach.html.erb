@@ -2,10 +2,11 @@
 <% if current_user.try(:admin?) %>
   <div data-role="container">
     <h3 class="ui-bar ui-bar-a">Coach Administration</h3>
-    <div class="ui-grid-b">
+    <div class="ui-grid-c">
       <div class="ui-block-a"><%= link_to 'Add<br />Coach'.html_safe, new_coach_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
-      <div class="ui-block-b"><%= link_to 'Import<br />Coaches'.html_safe, import_coaches_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
-      <div class="ui-block-c"><%= link_to 'Add Coach<br />To Team'.html_safe, new_coaches_team_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Add Coach<br />To Team'.html_safe, new_coaches_team_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+      <div class="ui-block-c"><%= link_to 'Edit Coach<br />on Team'.html_safe, coaches_teams_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+      <div class="ui-block-d"><%= link_to 'Import<br />Coaches'.html_safe, import_coaches_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
     </div>
     <!-- List of Existing Coaches -->
     <h3 class="ui-bar ui-bar-a ui-corner-none">Coaches</h3>

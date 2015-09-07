@@ -13,8 +13,9 @@
         <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
 
           <h2><%= h sport.name %></h2>
-          <%= link_to 'Edit', edit_sport_path(sport), :'data-role' => 'button', :'data-icon' => 'edit', :'data-inline' => "true", :'data-mini' => "true" %>
-          <%= link_to 'Delete', sport, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure?' }, :'data-mini' => "true" %>
+          <%= link_to 'Show', sport, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-eye ui-mini ui-btn-inline" %>
+          <%= link_to 'Edit', edit_sport_path(sport), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini ui-btn-inline" %>
+          <%= link_to 'Delete', sport, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete ui-mini ui-btn-inline" %>
         </div>
       <% end %>
     </div>

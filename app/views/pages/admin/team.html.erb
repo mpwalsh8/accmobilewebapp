@@ -46,11 +46,9 @@
         <% @teams.each do |team| %>
         <div data-role="collapsible" data-iconpos="right" data-collapsed="true" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-autodividers="true" data-mini="true">
           <h2><%= h team.formalname %></h2>
-          <div class="ui-grid-b">
-            <div class="ui-block-a"><%= link_to 'Show', team, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini"%></div>
-            <div class="ui-block-b"><%= link_to 'Edit', edit_team_path(team), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini"%></div>
-            <div class="ui-block-c"><%= link_to 'Delete', team, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini"%></div>
-          </div>
+          <%= link_to 'Show', team, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-eye ui-mini ui-btn-inline"%>
+          <%= link_to 'Edit', edit_team_path(team), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini ui-btn-inline"%>
+          <%= link_to 'Delete', team, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete ui-mini ui-btn-inline"%>
         </div>
         <% end %>
       </ul>
