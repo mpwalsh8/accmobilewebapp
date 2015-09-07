@@ -14,16 +14,10 @@
       <% end %> 
       <div data-role="collapsible" data-collapsed="true" data-inset="true">
         <h1><%= at.athlete.nil? ? "N/A" : at.athlete.displayname %></h1>
+        <%= link_to 'Show', at, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-eye ui-mini ui-btn-inline" %>
         <% if current_user.try(:admin?) %>
-          <div class="ui-grid-b">
-            <div class="ui-block-a"><%= link_to 'Show', at, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
-              <div class="ui-block-b"><%= link_to 'Edit', edit_athletes_team_path(at), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini"%></div>
-              <div class="ui-block-c"><%= link_to 'Destroy', at, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini"%></div>
-          </div>
-        <% else %>
-          <div class="ui-grid-a">
-            <div class="ui-block-a"><%= link_to 'Show', at, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
-          </div>
+          <%= link_to 'Edit', edit_athletes_team_path(at), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini ui-btn-inline" %>
+          <%= link_to 'Destroy', at, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete ui-mini ui-btn-inline" %>
         <% end %>
       </div>
       <% tid = at.team.id %>
@@ -33,6 +27,6 @@
     
 <% if current_user.try(:admin?) %>
   <div data-role="controlgroup" data-type="horizontal" data-mini="false">
-    <%= link_to 'New Team Athletes', new_athletes_team_path, :'data-role' => "button", :'data-icon' => "plus", :'data-inline' => "true" %>
+    <%= link_to 'New Team Athlete', new_athletes_team_path, :'data-role' => "button", :'data-icon' => "plus", :'data-inline' => "true" %>
   </div>
 <% end %>

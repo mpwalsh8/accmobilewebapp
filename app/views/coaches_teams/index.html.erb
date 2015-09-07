@@ -14,6 +14,7 @@
       <% end %> 
       <div data-role="collapsible" data-collapsed="true" data-inset="true">
         <h1><%= ct.coach.fullname %></h1>
+<% if false %>
         <% if current_user.try(:admin?) %>
           <div class="ui-grid-b">
             <div class="ui-block-a"><%= link_to 'Show', ct, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
@@ -24,6 +25,12 @@
           <div class="ui-grid-a">
             <div class="ui-block-a"><%= link_to 'Show', ct, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div>
           </div>
+        <% end %>
+<% end %>
+        <%= link_to 'Show', ct, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-eye ui-mini ui-btn-inline" %>
+        <% if current_user.try(:admin?) %>
+          <%= link_to 'Edit', edit_coaches_team_path(ct), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit ui-mini ui-btn-inline"%>
+          <%= link_to 'Destroy', ct, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete ui-mini ui-btn-inline"%>
         <% end %>
       </div>
       <% tid = ct.team.id %>
