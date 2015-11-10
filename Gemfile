@@ -59,7 +59,7 @@ gem 'twitter'
 gem 'twitter-text'
 
 ##  Cycle2 support
-gem 'rails-assets-jquery-cycle2'
+#gem 'rails-assets-jquery-cycle2'
 
 ##  Unicorn support for Heroku deployment
 gem 'unicorn'
