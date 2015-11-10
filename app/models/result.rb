@@ -2,6 +2,7 @@ class Result < ActiveRecord::Base
   belongs_to :event
   #belongs_to :event, :dependent => :destroy
   validates :result, :presence => { :message => 'Result must be specified.' }
+  validates_uniqueness_of :event_id
 
   ##  Generic event, not connected to a team?
   ##  Multi-team event?  Lots of possible scenarios ...
