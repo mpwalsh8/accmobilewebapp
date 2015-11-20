@@ -37,4 +37,5 @@ AppSettings:
   AutoTweetScheduleUpdates: On
   BannerAds: On
   SplashAds: On
-
+  OfflineMode: Off
+  SignUpGenius: On

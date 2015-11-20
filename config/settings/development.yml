@@ -38,3 +38,4 @@ AppSettings:
   BannerAds: Off
   SplashAds: Off
   OfflineMode: Off
+  SignUpGenius: On
