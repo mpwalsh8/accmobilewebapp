@@ -1,66 +1,18 @@
-<% content_for :title do %>Volunteer<% end %>
-<h3 class="ui-bar ui-bar-a ui-corner-none">Volunteer</h3>
-<ul data-role="listview" data-inset="true">
-    <li><a rel="external" href="http://www.signupgenius.com/go/60b0f4eadab23a64-cougar">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Cougar Club Volunteer Opportunites</h2>
-    <p>Please help by volunteering for one of the many opportunities.</p></a>
-    </li>
-    <li><a rel="external" href="http://www.signupgenius.com/go/60b0f4eadab23a64-concessions">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Varsity and JV Football Volunteer Opportunites</h2>
-    <p>Please help by volunteering for Football concessions and other needs.</p></a>
-    </li>
-    <li><a rel="external" href="http://www.signupgenius.com/go/60b0f4eadab23a64-mens">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Men's Soccer Concessions</h2>
-    <p>Concessions needs your help at JV and Varsity Men's Soccer games.</p></a>
-    </li>
-<!--
-    <li><a rel="external" href="http://www.signupgenius.com/go/60B0F4EADAB23A64-basketball">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Basketball Playoff Volunteer Opportunites</h2>
-    <p>Please help by volunteering for Basketball Playoffs.</p></a>
-    </li>
--->
-<!--
-    <li><a rel="external" href="http://www.signupgenius.com/go/60B0F4EADAB23A64-boys1">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Men's Lacrosse Concessions</h2>
-    <p>Concessions needs your help at JV and Varsity Men's Lacrosse games.</p></a>
-    </li>
--->
-<!--
-    <li><a rel="external" href="http://www.signupgenius.com/go/60B0F4EADAB23A64-girls2">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Women's Lacrosse Concessions</h2>
-    <p>Concessions needs your help at JV and Varsity Women's Lacrosse games.</p></a>
-    </li>
--->
-<!--
-    <li><a rel="external" href="http://www.signupgenius.com/go/60B0F4EADAB23A64-mens">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Women's Soccer Concessions</h2>
-    <p>Concessions needs your help at JV and Varsity Women's Soccer games.</p></a>
-    </li>
--->
-<!--
-    <li><a rel="external" href="http://www.signupgenius.com/go/60b0f4eadab23a64-lacrosse">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Lacrosse Playoffs Concessions</h2>
-    <p>Concessions needs your help at the Men's Lacrosse playoff game on 5/15.</p></a>
-    </li>
--->
-<!--
-    <li><a rel="external" href="http://www.signupgenius.com/go/60b0f4eadab23a64-coach">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Coach D 5K</h2>
-    <p>Numerous volunteer opportunities to help at the Coach D 5K.</p></a>
-    </li>
--->
-    <li><a rel="external" href="http://www.signupgenius.com/go/60b0f4eadab23a64-ahsstudent">
-        <img src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>">
-    <h2>Apex HS Student Volunteer Opportunites</h2>
-    <p>Please help by volunteering for one of the many opportunities.</p></a>
-    </li>
-</ul>
+<% content_for :title do %>Volunteer Opportunties<% end %>
+<h3 class="ui-bar ui-bar-a ui-corner-none">Apex Cougar Club Volunteer Opportunties</h3>
+<div class="ui-body ui-body-a ui-corner-all">
+  <p>
+  <% if Settings.AppSettings.SignUpGenius && Sug.where(:active => true).count > 0 %>
+    <!-- Sign Up Genius -->
+    <ul data-role="listview" data-count-theme="a" data-inset="true" data-filter="false" data-autodividers="true">
+    <% sugs = Sug.where(:active => true).order(:name => :asc) %>
+    <% sugs.each do |sug| %>
+      <li><%= link_to sprintf("<img src=\"%s\"><h2>%s</h2><p>%s</p>",
+            image_path('webapp/icons/SignUpGenius-80x80.png'), sug.name, sug.description).html_safe,
+            sug.sugurl %></li>
+    <% end %>
+    <!-- /Sign Up Genius -->
+    </ul>
+  <% end %>
+  </p>
+</div>
