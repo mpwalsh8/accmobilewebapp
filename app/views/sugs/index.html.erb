@@ -1,0 +1,26 @@
+<% content_for :title do %>Sign Up Genius Admin<% end %>
+<% if current_user.try(:admin?) %>
+  <div data-role="container">
+    <h3 class="ui-bar ui-bar-a">SUG Administration</h3>
+    <div class="ui-grid-solo">
+      <div class="ui-block-a"><%= link_to 'Add<br />Sign Up Genius'.html_safe, new_sug_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-plus ui-mini" %></div>
+    </div>
+    <!-- List of Existing SUGs -->
+    <h3 class="ui-bar ui-bar-a ui-corner-none">Sign Up Geniuses</h3>
+    <ul data-role="listview" data-count-theme="a" data-inset="true" data-filter="false" data-autodividers="true">
+      <% @sugs = Sug.all.order(:name) %>
+      <% @sugs.each do |sug| %>
+        <li><%= link_to sprintf("<img src=\"%s\"><h2>%s</h2><p>%s</p><span class=\"ui-li-count\">%s</span>",
+            image_path('webapp/icons/SignUpGenius-80x80.png'), sug.name, sug.description,
+            sug.active ? "A" : "I").html_safe, sug %><%= link_to 'Edit', edit_sug_path(sug), :'data-icon' => 'edit' %></li>
+      <% end %>
+    </ul>
+    <!-- /List of Existing SUGs -->
+    <br />
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
+

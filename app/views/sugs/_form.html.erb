@@ -1,0 +1,26 @@
+<%= simple_form_for(@sug) do |f| %>
+  <%= f.error_notification %>
+  <%= render 'layouts/error_messages', object: f.object %>
+
+  <div class="field">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Description" %>
+    <%= f.text_field :description%>
+  </div>
+  <div class="field">
+    <%= f.label :sugurl, "Sign Up Genius URL" %>
+    <%= f.text_field :sugurl, :type => "url" %>
+  </div>
+  <div class="field">
+    <%= f.label :active, "Active Sign Up Genius" %>
+    <%= f.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

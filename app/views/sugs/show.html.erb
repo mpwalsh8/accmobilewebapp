@@ -1,0 +1,30 @@
+<% if current_user.try(:admin?) %>
+  <h3 class="ui-bar ui-bar-a ui-corner-all"><%=h @sug.name %></h3>
+  <div class="ui-body ui-body-a ui-corner-all">
+    <p class="framed-p center-wrapper"><a href="<%= @sug.sugurl %>"><img class="framed-image" src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>"></a></p>
+    <p><%= @sug.description %></p>
+  </div>
+  <ul data-role="listview" data-inset="true">
+    <% if !@sug.sugurl.blank? %>
+      <li><a href="<%= sprintf("mailto:%s", @sug.sugurl) %>">URL</a><span class="ui-li-aside" data-rel="external""><%= @sug.sugurl %></span></li>
+    <% end %>
+  </ul>
+  
+  <div class="ui-grid-solo">
+    <div class="ui-block-a"><%= link_to 'Back to SUGs', sugs_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+  </div>
+  
+  <% if current_user.try(:admin?) %>
+    <br />
+    <div class="ui-grid-a">
+      <div class="ui-block-a"><%= link_to 'Edit<br />SUG'.html_safe, edit_sug_path(@sug), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-edit ui-mini" %></div>
+      <div class="ui-block-b"><%= link_to 'Delete<br />SUG'.html_safe, @sug, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "false", method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-delete ui-mini" %></div>
+    </div>
+    <br />
+  <% end %>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
+<br />

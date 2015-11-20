@@ -1,0 +1,2 @@
+module SugsHelper
+end

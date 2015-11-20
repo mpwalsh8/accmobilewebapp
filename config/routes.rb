@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sugs
+  resources :sugs
   resources :ads
   resources :ads
   match "/results/purge", to: "results#purge", via: [:delete], as: :purge_results

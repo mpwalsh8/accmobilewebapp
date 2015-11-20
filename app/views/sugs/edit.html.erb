@@ -1,0 +1,19 @@
+<% if current_user.try(:admin?) %>
+  <h3 class="ui-bar ui-bar-a ui-corner-none">Edit Sign Up Genius</h3>
+  
+  <p class="framed-p center-wrapper"><a href="<%= @sug.sugurl %>" title="<%= @sug.name %>"><img class="framed-image" src="<%= image_path('webapp/icons/SignUpGenius-80x80.png') %>"></a></p>
+  
+  <%= render 'form' %>
+  
+  <br />
+  <div class="ui-grid-b">
+    <div class="ui-block-a"><%= link_to 'Admin<br />&nbsp;'.html_safe, page_path('admin'), :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+    <div class="ui-block-b"><%= link_to 'SUG<br />Admin'.html_safe, sugs_path, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-back ui-mini" %></div>
+    <div class="ui-block-c"><%= link_to 'Show<br />SUG'.html_safe, @sug, :class => "ui-btn ui-shadow ui-corner-all ui-btn-icon-top ui-icon-eye ui-mini" %></div> 
+  </div>
+<% else %>
+  <div data-role="container">
+    <h2 class="ui-bar ui-bar-a ui-icon-forbidden ui-btn-icon-left">Not allowed.</h2>
+  </div>
+<% end %>
+<br />
