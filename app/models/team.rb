@@ -21,6 +21,9 @@ class Team < ActiveRecord::Base
   #  the sport name, and varsity or jv designation. 
 
   def sportname
+    logger.info('============')
+    logger.info(sport.to_yaml)
+    logger.info('============')
     if gender != 'co-ed' && showgender
       sprintf("%s %s%s - %s", sport.name,
         varsity? ? "" : "JV", suffix.blank? ? "" : "-#{suffix.upcase}",  gender.camelize)
