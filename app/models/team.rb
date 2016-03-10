@@ -22,7 +22,8 @@ class Team < ActiveRecord::Base
 
   def sportname
     logger.info('============')
-    logger.info(sport.to_yaml)
+    logger.info(self.to_yaml)
+    #logger.info(sport.to_yaml)
     logger.info('============')
     if gender != 'co-ed' && showgender
       sprintf("%s %s%s - %s", sport.name,
