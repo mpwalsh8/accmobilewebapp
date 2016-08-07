@@ -16,6 +16,7 @@
     <div data-role="controlgroup" data-type="vertical">
   <% if 0 == 1 %>
       <%= link_to 'Purge Results', purge_results_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Results?' }, :'data-inline' => false %>
+  <% end %>
       <%= link_to 'Purge Events', purge_events_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Events?' }, :'data-inline' => false %>
       <%= link_to 'Purge Rosters', purge_athletes_teams_path, :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: 'Are you sure your want to purge all Rosters?' }, :'data-inline' => false %>
 <% Rails.logger.info(Athlete.uniq.pluck(:gradyear).count) %>
@@ -23,7 +24,6 @@
 <% Rails.logger.info(gradyear) %>
       <%= link_to "Purge #{gradyear} Athletes", purge_athletes_path(:gradyear => gradyear), :'data-role' => 'button', :'data-icon' => 'delete', :'data-inline' => "true", method: :delete, data: { confirm: "Are you sure your want to purge all #{gradyear} Athletes?", :gradyear => gradyear }, :'data-inline' => false %>
     <% end %>
-  <% end %>
     </div>
   </div>
   <% if 0 == 1 %>
