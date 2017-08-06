@@ -7,10 +7,10 @@ School:
   Name:  "Apex High School"
   Conference:  "SWAC4A"
   Classification:  "4A"
-  Address:  "1501 Laura Duncan Rd."
-  City:  "Apex"
+  Address:  "7600 Roberts Rd."
+  City:  "Cary"
   State:  "North Carolina"
-  ZipCode:  "27502"
+  ZipCode:  "27519"
   Phone:  "+1-919-387-2208"
   WebSite:  "http://www.apexhigh.com"
   Twitter:  "@ApexHighSchool"
@@ -19,7 +19,7 @@ School:
   AthleticDirector:  "Del Philips"
   AthleticDirectorEmail:  "wphillips@wcpss.net"
   HomeVenueId:  1
-  SchoolYear:  "2016-2017"
+  SchoolYear:  "2017-2018"
 
 GoogleMaps:
   Enabled:  "No"
